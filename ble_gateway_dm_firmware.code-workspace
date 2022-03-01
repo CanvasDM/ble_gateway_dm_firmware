@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../ble_gateway_dm_firmware_manifest"
+		},
+		{
+			"path": "../zephyr"
+		},
+		{
+			"path": "../nrf"
 		}
 	],
 	"settings": {}

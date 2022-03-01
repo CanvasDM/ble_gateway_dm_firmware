@@ -36,6 +36,36 @@
 			"command": "west flash -d ${workspaceRoot}/build/${input:board}",
 			"problemMatcher": []
 		},
+		{
+			"label": "clean",
+			"type": "shell",
+			"command": "west build -t pristine -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"problemMatcher": []
+		},
+		{
+			"label": "menuconfig",
+			"type": "shell",
+			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"problemMatcher": []
+		},
+		{
+			"label": "ram_report",
+			"type": "shell",
+			"command": "west build -b ${input:board} -d ${workspaceRoot}/build/${input:board} --target ram_report > ${workspaceRoot}/build/${input:board}/ram_report.txt",
+			"problemMatcher": []
+		},
+		{
+			"label": "rom_report",
+			"type": "shell",
+			"command": "west build -b ${input:board} -d ${workspaceRoot}/build/${input:board} --target rom_report > ${workspaceRoot}/build/${input:board}/rom_report.txt",
+			"problemMatcher": []
+		},
+		{
+			"label": "puncover",
+			"type": "shell",
+			"command": "west build -t puncover -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"problemMatcher": []
+		},
 	],
 	"inputs": [
 		{
