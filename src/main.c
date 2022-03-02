@@ -4,10 +4,14 @@
  * SPDX-License-Identifier: LicenseRef-LairdConnectivity-Clause
  */
 
+#include <logging/log.h>
+LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
+
 #include <zephyr.h>
-#include <sys/printk.h>
+
+#include "app_version.h"
 
 void main(void)
 {
-	printk("Hello World! %s\n", CONFIG_BOARD);
+	LOG_INF("BLE Gateway DM Firmware v%s [%s]", APP_VERSION_STRING, CONFIG_BOARD);
 }

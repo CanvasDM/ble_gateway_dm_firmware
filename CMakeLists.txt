@@ -28,4 +28,8 @@ list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(ble_gateway_dm_firmware)
 
+target_include_directories(app PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/version
+)
+
 target_sources(app PRIVATE src/main.c)

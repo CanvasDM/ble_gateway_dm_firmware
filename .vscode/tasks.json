@@ -43,6 +43,12 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "Run QEMU",
+			"type": "shell",
+			"command": "west build -t run -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"problemMatcher": []
+		},
+		{
 			"label": "menuconfig",
 			"type": "shell",
 			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
