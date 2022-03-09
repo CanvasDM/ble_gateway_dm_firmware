@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../nrf"
+		},
+		{
+			"path": "../modules/zephyr_lib"
 		}
 	],
 	"settings": {}

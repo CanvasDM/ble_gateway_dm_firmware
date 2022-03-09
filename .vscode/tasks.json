@@ -33,7 +33,7 @@
 		{
 			"label": "flash app",
 			"type": "shell",
-			"command": "west flash -d ${workspaceRoot}/build/${input:board}",
+			"command": "west flash --recover -d ${workspaceRoot}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
@@ -46,6 +46,12 @@
 			"label": "Run QEMU",
 			"type": "shell",
 			"command": "west build -t run -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"problemMatcher": []
+		},
+		{
+			"label": "PM report",
+			"type": "shell",
+			"command": "west build -t partition_manager_report -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
