@@ -14,7 +14,16 @@
 		},
 		{
 			"path": "../modules/zephyr_lib"
+		},
+		{
+			"path": "../bootloader/mcuboot"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"*h.in": "c"
+		},
+		"C_Cpp.errorSquiggles": "Disabled",
+		"C_Cpp.dimInactiveRegions": false
+	}
 }

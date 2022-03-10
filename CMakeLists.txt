@@ -30,6 +30,30 @@ set(mcuboot_DTC_OVERLAY_FILE
 
 endif()
 
+# generate build ID based on UTC timestamp
+string(TIMESTAMP build_time "%s" UTC)
+set(APP_VERSION_BUILD ${build_time})
+set(ver_file ${CMAKE_SOURCE_DIR}/src/version/app_version.h)
+configure_file(${CMAKE_SOURCE_DIR}/src/version/app_version.h.in ${ver_file})
+# Get application version
+file(READ ${ver_file} ver)
+string(REGEX MATCH "APP_VERSION_MAJOR ([0-9]*)" _ ${ver})
+set(ver_major ${CMAKE_MATCH_1})
+string(REGEX MATCH "APP_VERSION_MINOR ([0-9]*)" _ ${ver})
+set(ver_minor ${CMAKE_MATCH_1})
+string(REGEX MATCH "APP_VERSION_PATCH ([0-9]*)" _ ${ver})
+set(ver_patch ${CMAKE_MATCH_1})
+set(app_version ${ver_major}.${ver_minor}.${ver_patch}+${build_time})
+message("app version: ${app_version}")
+
+if(NOT (BOARD STREQUAL qemu_cortex_m3))
+# Set application version for mcuboot
+set(mcuboot_ver_conf ${CMAKE_SOURCE_DIR}/build/generated_mcuboot_image_version.conf)
+set(MCUBOOT_IMAGE_VERSION ${app_version})
+configure_file(${CMAKE_SOURCE_DIR}/src/version/mcuboot_image_version.conf.in ${mcuboot_ver_conf})
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf ${mcuboot_ver_conf})
+endif()
+
 # Prepend the additional boards directory but still allow the original Zephyr
 # boards directory to be used with lower priority
 list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)
