@@ -32,7 +32,7 @@
 			}
 		},
 		{
-			// Use this task as a second step after 'build with custom keys', to build firmware with new keys to test key revocation 
+			// Use this task as a second step after 'build with custom keys', to build firmware with new keys to test key revocation
 			"label": "build with NEW key",
 			"type": "shell",
 			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
@@ -75,6 +75,12 @@
 			"windows": {
 				"command": "del ${workspaceRoot}/build/${input:board}"
 			},
+			"problemMatcher": []
+		},
+		{
+			"label": "run all tests",
+			"type": "shell",
+			"command": "${workspaceRoot}/../zephyr/scripts/twister -v -v -v -T ${workspaceRoot}",
 			"problemMatcher": []
 		},
 		{
@@ -126,9 +132,15 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "mcumgr image upload",
+			"label": "mcumgr image upload app",
 			"type": "shell",
 			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceRoot}/build/${input:board}/zephyr/app_update.bin",
+			"problemMatcher": []
+		},
+		{
+			"label": "mcumgr image upload mcuboot",
+			"type": "shell",
+			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceRoot}/build/${input:board}/zephyr/signed_by_mcuboot_and_b0_s1_image_update.bin",
 			"problemMatcher": []
 		},
 		{
@@ -147,6 +159,12 @@
 			"label": "mcumgr image confirm",
 			"type": "shell",
 			"command": "mcumgr ${input:mcumgr_cnx} image confirm",
+			"problemMatcher": []
+		},
+		{
+			"label": "mcumgr image confirm with hash",
+			"type": "shell",
+			"command": "mcumgr ${input:mcumgr_cnx} image confirm ${input:image-hash}",
 			"problemMatcher": []
 		},
 		{
@@ -171,6 +189,12 @@
 			"label": "mcumgr file upload",
 			"type": "shell",
 			"command": "mcumgr -t 5 -r 2 ${input:mcumgr_cnx} fs upload ${input:src_file_path} ${input:dst_file_name}",
+			"problemMatcher": []
+		},
+		{
+			"label": "mcumgr file download",
+			"type": "shell",
+			"command": "mcumgr -t 5 -r 2 ${input:mcumgr_cnx} fs download ${input:src_file_path} ${input:dst_file_name}",
 			"problemMatcher": []
 		},
 		{
@@ -203,7 +227,8 @@
 				// Change 'peer_name=' to match your device name
 				"--conntype ble --connstring ctlr_name=hci0,peer_name='MG100-0303848'",
 				// Change 'dev=' to match your serial device
-				"--conntype serial --connstring dev=/dev/tty.usbserial-FT4G5B9B"
+				"--conntype serial --connstring dev=/dev/tty.usbserial-FT4G5B9B",
+				"--conntype serial --connstring dev=/dev/cu.usbserial-FT61HZ7Y"
 			]
 		},
 		{
@@ -214,15 +239,15 @@
 		},
 		{
 			"id": "src_file_path",
-			"description": "full path of file to upload",
+			"description": "full path of the source file",
 			"type": "promptString",
-			"default": "enter file path"
+			"default": "enter src file path"
 		},
 		{
 			"id": "dst_file_name",
 			"description": "full path of the destination file",
 			"type": "promptString",
-			"default": "/lfs1/myfile"
+			"default": "enter dst file path"
 		},
 		{
 			"id": "sb_signing_key",

@@ -7,19 +7,18 @@ if(NOT (BOARD STREQUAL qemu_cortex_m3))
 set(mcuboot_CONF_FILE
     ${CMAKE_SOURCE_DIR}/config/mcuboot.${BOARD}.conf
 )
+
 set(PM_STATIC_YML_FILE
     ${CMAKE_SOURCE_DIR}/../modules/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
 )
-
-endif()
-
-if((BOARD STREQUAL mg100) OR (BOARD STREQUAL pinnacle_100_dvk))
 
 set(b0_OVERLAY_CONFIG
    ${CMAKE_SOURCE_DIR}/config/b0.${BOARD}.conf
 )
 
-elseif ((BOARD STREQUAL bl5340_dvk_cpuapp) OR (BOARD STREQUAL bl5340pa_dvk_cpuapp))
+endif()
+
+if ((BOARD STREQUAL bl5340_dvk_cpuapp) OR (BOARD STREQUAL bl5340pa_dvk_cpuapp))
 
 set(b0_DTC_OVERLAY_FILE
     ${CMAKE_SOURCE_DIR}/boards/bl5340_dvk_cpuapp.overlay
@@ -30,7 +29,7 @@ set(mcuboot_DTC_OVERLAY_FILE
 
 endif()
 
-# generate build ID based on UTC timestamp
+# Generate build ID based on UTC timestamp
 string(TIMESTAMP build_time "%s" UTC)
 set(APP_VERSION_BUILD ${build_time})
 set(ver_file ${CMAKE_SOURCE_DIR}/src/version/app_version.h)
@@ -55,6 +54,8 @@ configure_file(${CMAKE_SOURCE_DIR}/src/version/mcuboot_image_version.conf.in ${m
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf ${mcuboot_ver_conf})
 # Enable file system
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/filesystem.conf)
+# Enable hardware unique key generation
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
 endif()
 
 # Prepend the additional boards directory but still allow the original Zephyr
