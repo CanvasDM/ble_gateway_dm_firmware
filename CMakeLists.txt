@@ -2,6 +2,8 @@
 
 cmake_minimum_required(VERSION 3.20.0)
 
+set(lcz_module_dir ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect)
+
 if(NOT (BOARD STREQUAL qemu_cortex_m3))
 
 set(mcuboot_CONF_FILE
@@ -9,7 +11,7 @@ set(mcuboot_CONF_FILE
 )
 
 set(PM_STATIC_YML_FILE
-    ${CMAKE_SOURCE_DIR}/../modules/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
+    ${lcz_module_dir}/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
 )
 
 set(b0_OVERLAY_CONFIG

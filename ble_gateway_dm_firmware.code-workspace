@@ -13,7 +13,7 @@
 			"path": "../nrf"
 		},
 		{
-			"path": "../modules/zephyr_lib"
+			"path": "../modules/lib/laird_connect/zephyr_lib"
 		},
 		{
 			"path": "../bootloader/mcuboot"
