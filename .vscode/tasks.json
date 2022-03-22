@@ -53,7 +53,7 @@
 		{
 			"label": "flash app",
 			"type": "shell",
-			"command": "west flash --recover -d ${workspaceRoot}/build/${input:board}",
+			"command": "west flash -d ${workspaceRoot}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
