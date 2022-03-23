@@ -49,11 +49,13 @@ message("app version: ${app_version}")
 
 if(NOT (BOARD STREQUAL qemu_cortex_m3))
 # Set application version for mcuboot
-set(mcuboot_ver_conf ${CMAKE_SOURCE_DIR}/build/generated_mcuboot_image_version.conf)
+set(mcuboot_ver_conf ${CMAKE_BINARY_DIR}/generated_mcuboot_image_version.conf)
 set(MCUBOOT_IMAGE_VERSION ${app_version})
+# This configuration file will get automatically merged when building.
+# No need to append to OVERLAY_CONFIG
 configure_file(${CMAKE_SOURCE_DIR}/src/version/mcuboot_image_version.conf.in ${mcuboot_ver_conf})
 # Enable firmware update
-list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf ${mcuboot_ver_conf})
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf)
 # Enable file system
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/filesystem.conf)
 # Enable hardware unique key generation
