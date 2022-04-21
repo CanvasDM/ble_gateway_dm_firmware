@@ -60,6 +60,8 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf)
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/filesystem.conf)
 # Enable hardware unique key generation
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
+# Enable networking support
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 endif()
 
 # Prepend the additional boards directory but still allow the original Zephyr
