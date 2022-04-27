@@ -38,11 +38,11 @@ set(ver_file ${CMAKE_SOURCE_DIR}/src/version/app_version.h)
 configure_file(${CMAKE_SOURCE_DIR}/src/version/app_version.h.in ${ver_file})
 # Get application version
 file(READ ${ver_file} ver)
-string(REGEX MATCH "APP_VERSION_MAJOR ([0-9]*)" _ ${ver})
+string(REGEX MATCH "APP_VERSION_MAJOR ([0-9]+)" _ ${ver})
 set(ver_major ${CMAKE_MATCH_1})
-string(REGEX MATCH "APP_VERSION_MINOR ([0-9]*)" _ ${ver})
+string(REGEX MATCH "APP_VERSION_MINOR ([0-9]+)" _ ${ver})
 set(ver_minor ${CMAKE_MATCH_1})
-string(REGEX MATCH "APP_VERSION_PATCH ([0-9]*)" _ ${ver})
+string(REGEX MATCH "APP_VERSION_PATCH ([0-9]+)" _ ${ver})
 set(ver_patch ${CMAKE_MATCH_1})
 set(app_version ${ver_major}.${ver_minor}.${ver_patch}+${build_time})
 message("app version: ${app_version}")
@@ -62,7 +62,13 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/filesystem.conf)
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
 # Enable networking support
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
+# Enable device management
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/device_management.conf)
 endif()
+
+# Add framework ID and msgcode files prior to Zephyr package init
+set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)
+set(FWK_APP_MSG_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_msg_codes.h)
 
 # Prepend the additional boards directory but still allow the original Zephyr
 # boards directory to be used with lower priority
