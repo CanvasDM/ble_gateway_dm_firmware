@@ -58,8 +58,10 @@ configure_file(${CMAKE_SOURCE_DIR}/src/version/mcuboot_image_version.conf.in ${m
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/firmware_update.conf)
 # Enable file system
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/filesystem.conf)
+# MBED TLS for secure IoT
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/mbedtls.conf)
 # Enable hardware unique key generation
-list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
+# list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
 # Enable networking support
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 # Enable device management
