@@ -1,0 +1,15 @@
+---
+openrpc: 1.2.6
+info:
+  title: BLE Gateway DM Firmware
+  version: 0.0.1
+methods: []
+components:
+  contentDescriptors:
+    device_params:
+      name: device_parameters
+      schema:
+        type: array
+      x-device-parameters:
+        - $ref: ./app/attributes/app_params.yml
+        - $ref: ../modules/lib/laird_connect/lwm2m_client/attributes/params.yml

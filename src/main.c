@@ -18,6 +18,9 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #ifdef CONFIG_LCZ_HW_KEY
 #include "lcz_hw_key.h"
 #endif
+#ifdef CONFIG_ATTR
+#include "attr.h"
+#endif
 
 #include "app_version.h"
 
@@ -33,6 +36,12 @@ void main(void)
 
 #ifdef CONFIG_LCZ_MCUMGR_WRAPPER
 	mcumgr_wrapper_register_subsystems();
+#endif
+
+#ifdef CONFIG_ATTR
+	(void)attr_set_string(ATTR_ID_firmware_version, APP_VERSION_STRING,
+			      strlen(APP_VERSION_STRING));
+	(void)attr_set_string(ATTR_ID_board, CONFIG_BOARD, strlen(CONFIG_BOARD));
 #endif
 
 	LOG_INF("BLE Gateway DM Firmware v%s [%s]", APP_VERSION_STRING, CONFIG_BOARD);

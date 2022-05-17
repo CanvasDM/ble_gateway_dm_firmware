@@ -72,6 +72,8 @@ endif()
 set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)
 set(FWK_APP_MSG_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_msg_codes.h)
 
+set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes)
+
 # Prepend the additional boards directory but still allow the original Zephyr
 # boards directory to be used with lower priority
 list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)

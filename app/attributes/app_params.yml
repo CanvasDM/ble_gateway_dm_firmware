@@ -1,0 +1,86 @@
+---
+api_version:
+  name: api_version
+  required: true
+  schema:
+    maxLength: 11
+    minLength: 6
+    type: string
+    x-ctype: string
+  x-broadcast: false
+  x-default: 0.0.0
+  x-example: 0.1.0
+  x-lockable: false
+  x-prepare: false
+  x-readable: true
+  x-savable: false
+  x-writable: false
+  summary: The API version that the firmware supports
+firmware_version:
+  name: firmware_version
+  required: true
+  schema:
+    maxLength: 64
+    minLength: 5
+    type: string
+    x-ctype: string
+  x-broadcast: false
+  x-default: 0.0.0+0
+  x-example: 0.0.0+0
+  x-lockable: false
+  x-prepare: false
+  x-readable: true
+  x-savable: false
+  x-writable: false
+  summary: "Firmware Version. Format = Major.Minor.Fix+build"
+dump_path:
+  name: dump_path
+  required: true
+  schema:
+    maxLength: 32
+    minLength: 1
+    type: string
+    x-ctype: string
+  x-broadcast: false
+  x-default: /lfs1/attr_dump.txt
+  x-example: /lfs1/attr_dump.txt
+  x-lockable: false
+  x-prepare: false
+  x-readable: true
+  x-savable: true
+  x-writable: true
+  summary: "Path for attribute dump"
+load_path:
+  name: load_path
+  required: true
+  schema:
+    maxLength: 32
+    minLength: 1
+    type: string
+    x-ctype: string
+  x-broadcast: false
+  x-default: /lfs1/attr_load.txt
+  x-example: /lfs1/attr_load.txt
+  x-lockable: false
+  x-prepare: false
+  x-readable: true
+  x-savable: true
+  x-writable: true
+  summary: "Path for attribute load"
+board:
+  name: board
+  required: true
+  schema:
+    maxLength: 64
+    minLength: 1
+    type: string
+    x-ctype: string
+  x-broadcast: false
+  x-default: my_board
+  x-example: pinnacle_100_dvk
+  x-lockable: false
+  x-prepare: false
+  x-readable: true
+  x-savable: false
+  x-writable: false
+  summary: "Zephyr board the firmware is built for."

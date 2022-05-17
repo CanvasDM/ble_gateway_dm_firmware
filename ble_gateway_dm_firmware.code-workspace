@@ -21,7 +21,8 @@
 	],
 	"settings": {
 		"files.associations": {
-			"*h.in": "c"
+			"*h.in": "c",
+			"*.in": "c"
 		},
 		"C_Cpp.errorSquiggles": "Disabled",
 		"C_Cpp.dimInactiveRegions": false
