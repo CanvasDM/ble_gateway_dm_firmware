@@ -16,6 +16,7 @@
 #include <string.h>
 #include <errno_str.h>
 #include "attr_validator.h"
+#include "attr_custom_validator.h"
 /* pyend */
 #include "attr_table.h"
 
@@ -40,6 +41,12 @@ typedef struct rw_attribute {
 	uint8_t lwm2m_psk[16];
 	bool lwm2m_bootstrap;
 	uint16_t lwm2m_short_id;
+	char lwm2m_mfg[32 + 1];
+	char lwm2m_mn[32 + 1];
+	char lwm2m_sn[64 + 1];
+	char lwm2m_fw_ver[32 + 1];
+	char lwm2m_sw_ver[32 + 1];
+	char lwm2m_hw_ver[32 + 1];
 } rw_attribute_t;
 /* pyend */
 
@@ -53,7 +60,13 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.lwm2m_psk_id = "my_device",
 	.lwm2m_psk = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f },
 	.lwm2m_bootstrap = 0,
-	.lwm2m_short_id = 1
+	.lwm2m_short_id = 1,
+	.lwm2m_mfg = "Laird Connectivity",
+	.lwm2m_mn = "MG100",
+	.lwm2m_sn = "MG100",
+	.lwm2m_fw_ver = "0.0.0",
+	.lwm2m_sw_ver = "0.0.0",
+	.lwm2m_hw_ver = "0.0.0",
 };
 /* pyend */
 
@@ -62,6 +75,9 @@ typedef struct ro_attribute {
 	char api_version[11 + 1];
 	char firmware_version[64 + 1];
 	char board[64 + 1];
+	enum lwm2m_pwr_src lwm2m_pwr_src;
+	int32_t lwm2m_pwr_src_volt;
+	enum lwm2m_batt_stat lwm2m_batt_stat;
 } ro_attribute_t;
 /* pyend */
 
@@ -70,6 +86,9 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.api_version = "0.0.1",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
+	.lwm2m_pwr_src = 0,
+	.lwm2m_pwr_src_volt = 0,
+	.lwm2m_batt_stat = 6
 };
 /* pyend */
 
@@ -120,13 +139,22 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[2  ] = { RW_ATTRS(dump_path)                           , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[3  ] = { RW_ATTRS(load_path)                           , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[4  ] = { RO_ATTRS(board)                               , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
-	[5  ] = { RW_ATTRS(lwm2m_server_url)                    , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
-	[6  ] = { RW_ATTRS(lwm2m_endpoint)                      , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[7  ] = { RW_ATTRE(lwm2m_security)                      , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[8  ] = { RW_ATTRS(lwm2m_psk_id)                        , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[9  ] = { RW_ATTRX(lwm2m_psk)                           , ATTR_TYPE_BYTE_ARRAY    , 0x1b  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
-	[10 ] = { RW_ATTRX(lwm2m_bootstrap)                     , ATTR_TYPE_BOOL          , 0x1b  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
-	[11 ] = { RW_ATTRX(lwm2m_short_id)                      , ATTR_TYPE_U16           , 0x1b  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     }
+	[5  ] = { RW_ATTRS(lwm2m_server_url)                    , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
+	[6  ] = { RW_ATTRS(lwm2m_endpoint)                      , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[7  ] = { RW_ATTRE(lwm2m_security)                      , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[8  ] = { RW_ATTRS(lwm2m_psk_id)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[9  ] = { RW_ATTRX(lwm2m_psk)                           , ATTR_TYPE_BYTE_ARRAY    , 0x1f  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
+	[10 ] = { RW_ATTRX(lwm2m_bootstrap)                     , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
+	[11 ] = { RW_ATTRX(lwm2m_short_id)                      , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
+	[12 ] = { RW_ATTRS(lwm2m_mfg)                           , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[13 ] = { RW_ATTRS(lwm2m_mn)                            , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[14 ] = { RW_ATTRS(lwm2m_sn)                            , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
+	[15 ] = { RW_ATTRS(lwm2m_fw_ver)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[16 ] = { RO_ATTRE(lwm2m_pwr_src)                       , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 7         },
+	[17 ] = { RO_ATTRX(lwm2m_pwr_src_volt)                  , ATTR_TYPE_S32           , 0xa   , av_int32            , NULL                                , .min.sx = -600000   , .max.sx = 600000    },
+	[18 ] = { RW_ATTRS(lwm2m_sw_ver)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[19 ] = { RW_ATTRS(lwm2m_hw_ver)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[20 ] = { RO_ATTRE(lwm2m_batt_stat)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 6         }
 };
 /* pyend */
 
@@ -142,11 +170,40 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 const char *const attr_get_string_lwm2m_security(int value)
 {
 	switch (value) {
-		case 0:           return "LwM2M Sec Psk";
-		case 1:           return "LwM2M Sec Rpk";
+		case 0:           return "LwM2M Sec PSK";
+		case 1:           return "LwM2M Sec RPK";
 		case 2:           return "LwM2M Sec Cert";
 		case 3:           return "LwM2M Sec No Sec";
 		case 4:           return "LwM2M Sec Cert Est";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lwm2m_pwr_src(int value)
+{
+	switch (value) {
+		case 0:           return "LwM2M Pwr Src DC";
+		case 1:           return "LwM2M Pwr Src Int Batt";
+		case 2:           return "LwM2M Pwr Src Ext Batt";
+		case 3:           return "LwM2M Pwr Src Fuel Cell";
+		case 4:           return "LwM2M Pwr Src PoE";
+		case 5:           return "LwM2M Pwr Src USB";
+		case 6:           return "LwM2M Pwr Src AC";
+		case 7:           return "LwM2M Pwr Src Solar";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lwm2m_batt_stat(int value)
+{
+	switch (value) {
+		case 0:           return "LwM2M Batt Stat Norm";
+		case 1:           return "LwM2M Batt Stat Charging";
+		case 2:           return "LwM2M Batt Stat Charge Comp";
+		case 3:           return "LwM2M Batt Stat Damaged";
+		case 4:           return "LwM2M Batt Stat Low";
+		case 5:           return "LwM2M Batt Stat Not Inst";
+		case 6:           return "LwM2M Batt Stat Unknown";
 		default:          return "?";
 	}
 }
