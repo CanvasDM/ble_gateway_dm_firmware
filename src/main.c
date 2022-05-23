@@ -4,11 +4,13 @@
  * SPDX-License-Identifier: LicenseRef-LairdConnectivity-Clause
  */
 
+/**************************************************************************************************/
+/* Includes                                                                                       */
+/**************************************************************************************************/
 #include <logging/log.h>
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
-
 #include <zephyr.h>
-
+#include <version.h>
 #ifdef CONFIG_LCZ_MCUMGR_WRAPPER
 #include "mcumgr_wrapper.h"
 #endif
@@ -21,9 +23,24 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #ifdef CONFIG_ATTR
 #include "attr.h"
 #endif
-
+#ifdef CONFIG_LCZ_LWM2M_CLIENT
+#include "lcz_lwm2m_client.h"
+#endif
+#ifdef CONFIG_LCZ_LWM2M_FW_UPDATE
+#include "lcz_lwm2m_fw_update.h"
+#endif
 #include "app_version.h"
 
+/**************************************************************************************************/
+/* Local Constant, Macro and Type Definitions                                                     */
+/**************************************************************************************************/
+#define DEFAULT_HW_VERSION "0"
+#define PKG_NAME_PREFIX "BLE_GW_DM"
+#define PKG_NAME PKG_NAME_PREFIX "[" CONFIG_BOARD "]"
+
+/**************************************************************************************************/
+/* Global Function Definitions                                                                    */
+/**************************************************************************************************/
 void main(void)
 {
 #ifdef CONFIG_LCZ_HW_KEY
@@ -42,6 +59,16 @@ void main(void)
 	(void)attr_set_string(ATTR_ID_firmware_version, APP_VERSION_STRING,
 			      strlen(APP_VERSION_STRING));
 	(void)attr_set_string(ATTR_ID_board, CONFIG_BOARD, strlen(CONFIG_BOARD));
+#endif
+#ifdef CONFIG_LCZ_LWM2M_CLIENT
+	(void)lcz_lwm2m_client_set_device_model_number(CONFIG_BOARD);
+	(void)lcz_lwm2m_client_set_device_firmware_version(APP_VERSION_STRING);
+	(void)lcz_lwm2m_client_set_software_version(KERNEL_VERSION_STRING);
+	(void)lcz_lwm2m_client_set_hardware_version(DEFAULT_HW_VERSION);
+#endif
+#ifdef CONFIG_LCZ_LWM2M_FW_UPDATE
+	(void)lcz_lwm2m_fw_update_set_pkg_name(PKG_NAME);
+	(void)lcz_lwm2m_fw_update_set_pkg_version(APP_VERSION_STRING);
 #endif
 
 	LOG_INF("BLE Gateway DM Firmware v%s [%s]", APP_VERSION_STRING, CONFIG_BOARD);

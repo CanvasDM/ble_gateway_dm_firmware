@@ -90,11 +90,13 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_sw_ver                          18
 #define ATTR_ID_lwm2m_hw_ver                          19
 #define ATTR_ID_lwm2m_batt_stat                       20
+#define ATTR_ID_lwm2m_fup_pkg_name                    21
+#define ATTR_ID_lwm2m_fup_pkg_ver                     22
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                             21
-#define ATTR_TABLE_MAX_ID                           20
+#define ATTR_TABLE_SIZE                             23
+#define ATTR_TABLE_MAX_ID                           22
 #define ATTR_TABLE_WRITABLE_COUNT                   16
 #define ATTR_MAX_STR_LENGTH                         255
 #define ATTR_MAX_STR_SIZE                           256
@@ -116,6 +118,8 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_LWM2M_FW_VER_MAX_STR_SIZE              33
 #define ATTR_LWM2M_SW_VER_MAX_STR_SIZE              33
 #define ATTR_LWM2M_HW_VER_MAX_STR_SIZE              33
+#define ATTR_LWM2M_FUP_PKG_NAME_MAX_STR_SIZE        33
+#define ATTR_LWM2M_FUP_PKG_VER_MAX_STR_SIZE         33
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                         16

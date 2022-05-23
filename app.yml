@@ -13,3 +13,4 @@ components:
       x-device-parameters:
         - $ref: ./app/attributes/app_params.yml
         - $ref: ../modules/lib/laird_connect/lwm2m_client/attributes/params.yml
+        - $ref: ../modules/lib/laird_connect/lwm2m_firmware_update/attributes/params.yml
