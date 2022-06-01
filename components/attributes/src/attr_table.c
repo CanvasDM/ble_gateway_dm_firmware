@@ -145,7 +145,7 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[4  ] = { RO_ATTRS(board)                               , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
 	[5  ] = { RW_ATTRS(lwm2m_server_url)                    , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
 	[6  ] = { RW_ATTRS(lwm2m_endpoint)                      , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[7  ] = { RW_ATTRE(lwm2m_security)                      , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[7  ] = { RW_ATTRE(lwm2m_security)                      , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 4         },
 	[8  ] = { RW_ATTRS(lwm2m_psk_id)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[9  ] = { RW_ATTRX(lwm2m_psk)                           , ATTR_TYPE_BYTE_ARRAY    , 0x1f  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
 	[10 ] = { RW_ATTRX(lwm2m_bootstrap)                     , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
@@ -176,11 +176,11 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 const char *const attr_get_string_lwm2m_security(int value)
 {
 	switch (value) {
-		case 0:           return "LwM2M Sec PSK";
-		case 1:           return "LwM2M Sec RPK";
-		case 2:           return "LwM2M Sec Cert";
-		case 3:           return "LwM2M Sec No Sec";
-		case 4:           return "LwM2M Sec Cert Est";
+		case 0:           return "PSK";
+		case 1:           return "RPK";
+		case 2:           return "Cert";
+		case 3:           return "No Sec";
+		case 4:           return "Cert Est";
 		default:          return "?";
 	}
 }
@@ -188,14 +188,14 @@ const char *const attr_get_string_lwm2m_security(int value)
 const char *const attr_get_string_lwm2m_pwr_src(int value)
 {
 	switch (value) {
-		case 0:           return "LwM2M Pwr Src DC";
-		case 1:           return "LwM2M Pwr Src Int Batt";
-		case 2:           return "LwM2M Pwr Src Ext Batt";
-		case 3:           return "LwM2M Pwr Src Fuel Cell";
-		case 4:           return "LwM2M Pwr Src PoE";
-		case 5:           return "LwM2M Pwr Src USB";
-		case 6:           return "LwM2M Pwr Src AC";
-		case 7:           return "LwM2M Pwr Src Solar";
+		case 0:           return "DC";
+		case 1:           return "Int Batt";
+		case 2:           return "Ext Batt";
+		case 3:           return "Fuel Cell";
+		case 4:           return "PoE";
+		case 5:           return "USB";
+		case 6:           return "AC";
+		case 7:           return "Solar";
 		default:          return "?";
 	}
 }
@@ -203,13 +203,13 @@ const char *const attr_get_string_lwm2m_pwr_src(int value)
 const char *const attr_get_string_lwm2m_batt_stat(int value)
 {
 	switch (value) {
-		case 0:           return "LwM2M Batt Stat Norm";
-		case 1:           return "LwM2M Batt Stat Charging";
-		case 2:           return "LwM2M Batt Stat Charge Comp";
-		case 3:           return "LwM2M Batt Stat Damaged";
-		case 4:           return "LwM2M Batt Stat Low";
-		case 5:           return "LwM2M Batt Stat Not Inst";
-		case 6:           return "LwM2M Batt Stat Unknown";
+		case 0:           return "Norm";
+		case 1:           return "Charging";
+		case 2:           return "Charge Comp";
+		case 3:           return "Damaged";
+		case 4:           return "Low";
+		case 5:           return "Not Inst";
+		case 6:           return "Unknown";
 		default:          return "?";
 	}
 }
