@@ -34,7 +34,8 @@ endif()
 # Generate build ID based on UTC timestamp
 string(TIMESTAMP build_time "%s" UTC)
 set(APP_VERSION_BUILD ${build_time})
-set(ver_file ${CMAKE_SOURCE_DIR}/src/version/app_version.h)
+set(gen_dir ${CMAKE_BINARY_DIR}/zephyr/include/generated/app)
+set(ver_file ${gen_dir}/app_version.h)
 configure_file(${CMAKE_SOURCE_DIR}/src/version/app_version.h.in ${ver_file})
 # Get application version
 file(READ ${ver_file} ver)
@@ -89,8 +90,6 @@ list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(ble_gateway_dm_firmware)
 
-target_include_directories(app PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/version
-)
+target_include_directories(app PRIVATE ${gen_dir})
 
 target_sources(app PRIVATE src/main.c)
