@@ -66,6 +66,14 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/mbedtls.conf)
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 # Enable device management
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/device_management.conf)
+# Enable memfault
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/memfault.conf)
+set(MEMFAULT_SW_VER ${ver_major}.${ver_minor}.${ver_patch})
+set(MEMFAULT_HW_VER ${BOARD})
+set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
+# This configuration file will get automatically merged when building.
+# No need to append to OVERLAY_CONFIG
+configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
 endif()
 
 # Add framework ID and msgcode files prior to Zephyr package init
