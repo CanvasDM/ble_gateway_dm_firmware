@@ -168,9 +168,6 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 /**************************************************************************************************/
 /* Local Function Definitions                                                                     */
 /**************************************************************************************************/
-/* pystart - prepare for read */
-/* pyend */
-
 /* pystart - get string */
 #ifdef CONFIG_ATTR_STRING_NAME
 const char *const attr_get_string_lwm2m_security(int value)
