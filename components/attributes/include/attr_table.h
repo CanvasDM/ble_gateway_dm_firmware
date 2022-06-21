@@ -92,11 +92,12 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_batt_stat                       20
 #define ATTR_ID_lwm2m_fup_pkg_name                    21
 #define ATTR_ID_lwm2m_fup_pkg_ver                     22
+#define ATTR_ID_bluetooth_address                     23
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                             23
-#define ATTR_TABLE_MAX_ID                           22
+#define ATTR_TABLE_SIZE                             24
+#define ATTR_TABLE_MAX_ID                           23
 #define ATTR_TABLE_WRITABLE_COUNT                   16
 #define ATTR_MAX_STR_LENGTH                         255
 #define ATTR_MAX_STR_SIZE                           256
@@ -120,6 +121,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_LWM2M_HW_VER_MAX_STR_SIZE              33
 #define ATTR_LWM2M_FUP_PKG_NAME_MAX_STR_SIZE        33
 #define ATTR_LWM2M_FUP_PKG_VER_MAX_STR_SIZE         33
+#define ATTR_BLUETOOTH_ADDRESS_MAX_STR_SIZE         13
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                         16

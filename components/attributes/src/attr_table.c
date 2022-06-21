@@ -80,19 +80,21 @@ typedef struct ro_attribute {
 	enum lwm2m_batt_stat lwm2m_batt_stat;
 	char lwm2m_fup_pkg_name[32 + 1];
 	char lwm2m_fup_pkg_ver[32 + 1];
+	char bluetooth_address[12 + 1];
 } ro_attribute_t;
 /* pyend */
 
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
-	.api_version = "0.0.1",
+	.api_version = "0.0.2",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
 	.lwm2m_pwr_src_volt = 0,
 	.lwm2m_batt_stat = 6,
 	.lwm2m_fup_pkg_name = "my_firmware",
-	.lwm2m_fup_pkg_ver = "0.0.0"
+	.lwm2m_fup_pkg_ver = "0.0.0",
+	.bluetooth_address = "0"
 };
 /* pyend */
 
@@ -160,7 +162,8 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[19 ] = { RW_ATTRS(lwm2m_hw_ver)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[20 ] = { RO_ATTRE(lwm2m_batt_stat)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 6         },
 	[21 ] = { RO_ATTRS(lwm2m_fup_pkg_name)                  , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[22 ] = { RO_ATTRS(lwm2m_fup_pkg_ver)                   , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        }
+	[22 ] = { RO_ATTRS(lwm2m_fup_pkg_ver)                   , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[23 ] = { RO_ATTRS(bluetooth_address)                   , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 12        , .max.ux = 12        }
 };
 /* pyend */
 

@@ -75,6 +75,8 @@ set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
 # This configuration file will get automatically merged when building.
 # No need to append to OVERLAY_CONFIG
 configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
+# Enable BLE
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble.conf)
 endif()
 
 # Add framework ID and msgcode files prior to Zephyr package init

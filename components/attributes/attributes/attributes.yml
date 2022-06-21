@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.0.1
+  version: 0.0.2
 methods:
 - name: get_parameter
   summary: Get Parameter
@@ -1172,7 +1172,7 @@ components:
           type: string
         x-ctype: string
         x-broadcast: false
-        x-default: 0.0.1
+        x-default: 0.0.2
         x-example: 0.1.0
         x-lockable: false
         x-prepare: false
@@ -1570,3 +1570,20 @@ components:
         x-writable: false
         summary: Firmware update package version
         x-id: 22
+      - name: bluetooth_address
+        required: true
+        schema:
+          minLength: 12
+          maxLength: 12
+          type: string
+        x-ctype: string
+        x-broadcast: false
+        x-default: '0'
+        x-example: '010203040506'
+        x-lockable: false
+        x-prepare: false
+        x-readable: true
+        x-savable: false
+        x-writable: false
+        summary: Bluetooth address
+        x-id: 23
