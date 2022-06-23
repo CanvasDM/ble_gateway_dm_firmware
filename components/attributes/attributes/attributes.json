@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.0.2"
+    "version": "0.0.3"
   },
   "methods": [
     {
@@ -1529,7 +1529,7 @@
             },
             "x-ctype": "string",
             "x-broadcast": false,
-            "x-default": "0.0.2",
+            "x-default": "0.0.3",
             "x-example": "0.1.0",
             "x-lockable": false,
             "x-prepare": false,
@@ -2013,6 +2013,29 @@
             "x-writable": false,
             "summary": "Bluetooth address",
             "x-id": 23
+          },
+          {
+            "name": "lte_rat",
+            "required": false,
+            "schema": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer",
+              "enum": {
+                "CAT_M1": 0,
+                "CAT_NB1": 1
+              }
+            },
+            "x-ctype": "uint8_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-lockable": false,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": false,
+            "x-writable": false,
+            "summary": "Radio Access Technology",
+            "x-id": 24
           }
         ]
       }

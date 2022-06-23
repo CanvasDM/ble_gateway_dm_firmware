@@ -10,7 +10,7 @@ attributes:
       type: string
     x-ctype: string
     x-broadcast: false
-    x-default: 0.0.1
+    x-default: 0.0.2
     x-example: 0.1.0
     x-lockable: false
     x-prepare: false

@@ -57,12 +57,18 @@ enum lwm2m_batt_stat {
 	LWM2M_BATT_STAT_UNKNOWN = 6,
 };
 
+enum lte_rat {
+	LTE_RAT_CAT_M1 = 0,
+	LTE_RAT_CAT_NB1 = 1,
+};
+
 /* pyend */
 
 /* pystart - enum size check */
 BUILD_ASSERT(sizeof(enum lwm2m_security) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_pwr_src) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 /* pyend */
 
 /**************************************************************************************************/
@@ -93,11 +99,12 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_fup_pkg_name                    21
 #define ATTR_ID_lwm2m_fup_pkg_ver                     22
 #define ATTR_ID_bluetooth_address                     23
+#define ATTR_ID_lte_rat                               24
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                             24
-#define ATTR_TABLE_MAX_ID                           23
+#define ATTR_TABLE_SIZE                             25
+#define ATTR_TABLE_MAX_ID                           24
 #define ATTR_TABLE_WRITABLE_COUNT                   16
 #define ATTR_MAX_STR_LENGTH                         255
 #define ATTR_MAX_STR_SIZE                           256
@@ -137,6 +144,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 const char *const attr_get_string_lwm2m_security(int value);
 const char *const attr_get_string_lwm2m_pwr_src(int value);
 const char *const attr_get_string_lwm2m_batt_stat(int value);
+const char *const attr_get_string_lte_rat(int value);
 /* pyend */
 
 #ifdef __cplusplus
