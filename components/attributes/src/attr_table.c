@@ -47,6 +47,7 @@ typedef struct rw_attribute {
 	char lwm2m_fw_ver[32 + 1];
 	char lwm2m_sw_ver[32 + 1];
 	char lwm2m_hw_ver[32 + 1];
+	char lwm2m_fup_proxy_srv[255 + 1];
 } rw_attribute_t;
 /* pyend */
 
@@ -67,6 +68,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.lwm2m_fw_ver = "0.0.0",
 	.lwm2m_sw_ver = "0.0.0",
 	.lwm2m_hw_ver = "0.0.0",
+	.lwm2m_fup_proxy_srv = "coaps://coap-proxy.salticidae.net:5684",
 };
 /* pyend */
 
@@ -165,8 +167,9 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[20 ] = { RO_ATTRE(lwm2m_batt_stat)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 6         },
 	[21 ] = { RO_ATTRS(lwm2m_fup_pkg_name)                  , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[22 ] = { RO_ATTRS(lwm2m_fup_pkg_ver)                   , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[23 ] = { RO_ATTRS(bluetooth_address)                   , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 12        , .max.ux = 12        },
-	[24 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[23 ] = { RW_ATTRS(lwm2m_fup_proxy_srv)                 , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
+	[24 ] = { RO_ATTRS(bluetooth_address)                   , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 12        , .max.ux = 12        },
+	[25 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 

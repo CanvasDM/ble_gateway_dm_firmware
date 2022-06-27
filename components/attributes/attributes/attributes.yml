@@ -1570,6 +1570,23 @@ components:
         x-writable: false
         summary: Firmware update package version
         x-id: 22
+      - name: lwm2m_fup_proxy_srv
+        required: true
+        schema:
+          maxLength: 255
+          minLength: 11
+          type: string
+          pattern: ^coaps?://[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?(\.[a-zA-Z0-9]+(-[a-zA-Z0-9]+)?)+(:\d{1,5})?/?$
+        x-ctype: string
+        x-broadcast: true
+        x-default: coaps://coap-proxy.salticidae.net:5684
+        x-lockable: true
+        x-prepare: false
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        summary: Firmware update proxy server
+        x-id: 23
       - name: bluetooth_address
         required: true
         schema:
@@ -1586,7 +1603,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Bluetooth address
-        x-id: 23
+        x-id: 24
       - name: lte_rat
         required: false
         schema:
@@ -1605,4 +1622,4 @@ components:
         x-savable: false
         x-writable: false
         summary: Radio Access Technology
-        x-id: 24
+        x-id: 25

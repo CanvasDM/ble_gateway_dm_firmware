@@ -98,40 +98,42 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_batt_stat                       20
 #define ATTR_ID_lwm2m_fup_pkg_name                    21
 #define ATTR_ID_lwm2m_fup_pkg_ver                     22
-#define ATTR_ID_bluetooth_address                     23
-#define ATTR_ID_lte_rat                               24
+#define ATTR_ID_lwm2m_fup_proxy_srv                   23
+#define ATTR_ID_bluetooth_address                     24
+#define ATTR_ID_lte_rat                               25
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                             25
-#define ATTR_TABLE_MAX_ID                           24
-#define ATTR_TABLE_WRITABLE_COUNT                   16
-#define ATTR_MAX_STR_LENGTH                         255
-#define ATTR_MAX_STR_SIZE                           256
-#define ATTR_MAX_BIN_SIZE                           16
-#define ATTR_MAX_INT_SIZE                           4
+#define ATTR_TABLE_SIZE                              26
+#define ATTR_TABLE_MAX_ID                            25
+#define ATTR_TABLE_WRITABLE_COUNT                    17
+#define ATTR_MAX_STR_LENGTH                          255
+#define ATTR_MAX_STR_SIZE                            256
+#define ATTR_MAX_BIN_SIZE                            16
+#define ATTR_MAX_INT_SIZE                            4
 
 /* Attribute Max String Lengths */
-#define ATTR_API_VERSION_MAX_STR_SIZE               12
-#define ATTR_FIRMWARE_VERSION_MAX_STR_SIZE          65
-#define ATTR_DUMP_PATH_MAX_STR_SIZE                 33
-#define ATTR_LOAD_PATH_MAX_STR_SIZE                 33
-#define ATTR_BOARD_MAX_STR_SIZE                     65
-#define ATTR_LWM2M_SERVER_URL_MAX_STR_SIZE          256
-#define ATTR_LWM2M_ENDPOINT_MAX_STR_SIZE            33
-#define ATTR_LWM2M_PSK_ID_MAX_STR_SIZE              33
-#define ATTR_LWM2M_MFG_MAX_STR_SIZE                 33
-#define ATTR_LWM2M_MN_MAX_STR_SIZE                  33
-#define ATTR_LWM2M_SN_MAX_STR_SIZE                  65
-#define ATTR_LWM2M_FW_VER_MAX_STR_SIZE              33
-#define ATTR_LWM2M_SW_VER_MAX_STR_SIZE              33
-#define ATTR_LWM2M_HW_VER_MAX_STR_SIZE              33
-#define ATTR_LWM2M_FUP_PKG_NAME_MAX_STR_SIZE        33
-#define ATTR_LWM2M_FUP_PKG_VER_MAX_STR_SIZE         33
-#define ATTR_BLUETOOTH_ADDRESS_MAX_STR_SIZE         13
+#define ATTR_API_VERSION_MAX_STR_SIZE                12
+#define ATTR_FIRMWARE_VERSION_MAX_STR_SIZE           65
+#define ATTR_DUMP_PATH_MAX_STR_SIZE                  33
+#define ATTR_LOAD_PATH_MAX_STR_SIZE                  33
+#define ATTR_BOARD_MAX_STR_SIZE                      65
+#define ATTR_LWM2M_SERVER_URL_MAX_STR_SIZE           256
+#define ATTR_LWM2M_ENDPOINT_MAX_STR_SIZE             33
+#define ATTR_LWM2M_PSK_ID_MAX_STR_SIZE               33
+#define ATTR_LWM2M_MFG_MAX_STR_SIZE                  33
+#define ATTR_LWM2M_MN_MAX_STR_SIZE                   33
+#define ATTR_LWM2M_SN_MAX_STR_SIZE                   65
+#define ATTR_LWM2M_FW_VER_MAX_STR_SIZE               33
+#define ATTR_LWM2M_SW_VER_MAX_STR_SIZE               33
+#define ATTR_LWM2M_HW_VER_MAX_STR_SIZE               33
+#define ATTR_LWM2M_FUP_PKG_NAME_MAX_STR_SIZE         33
+#define ATTR_LWM2M_FUP_PKG_VER_MAX_STR_SIZE          33
+#define ATTR_LWM2M_FUP_PROXY_SRV_MAX_STR_SIZE        256
+#define ATTR_BLUETOOTH_ADDRESS_MAX_STR_SIZE          13
 
 /* Attribute Byte Array Lengths */
-#define ATTR_LWM2M_PSK_SIZE                         16
+#define ATTR_LWM2M_PSK_SIZE                          16
 /* pyend */
 
 /**************************************************************************************************/
