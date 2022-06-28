@@ -16,12 +16,14 @@ The BLE gateway and the BLE end nodes can be managed via LwM2M.
 
 When updating attributes use the following command to regenerate code:
 
+> **NOTE:** replace `{project}` in the following commands with `mg100` or `bl5340_dvk`
+
 ```
 # From the ble_gateway_dm_firmware directory
 
 # Linux and macOS
-python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py ${PWD}
+python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py ${PWD} {project}
 
 # Windows
-python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py %CD%
+python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py %CD% {project}
 ```

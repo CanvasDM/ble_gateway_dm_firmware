@@ -18,9 +18,15 @@ set(b0_OVERLAY_CONFIG
    ${CMAKE_SOURCE_DIR}/config/b0.${BOARD}.conf
 )
 
+if ((BOARD STREQUAL mg100) OR (BOARD STREQUAL pinnacle_100_dvk))
+set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/mg100)
+endif()
+
 endif()
 
 if ((BOARD STREQUAL bl5340_dvk_cpuapp) OR (BOARD STREQUAL bl5340pa_dvk_cpuapp))
+
+set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/bl5340_dvk)
 
 set(b0_DTC_OVERLAY_FILE
     ${CMAKE_SOURCE_DIR}/boards/bl5340_dvk_cpuapp.overlay
@@ -82,8 +88,6 @@ endif()
 # Add framework ID and msgcode files prior to Zephyr package init
 set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)
 set(FWK_APP_MSG_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_msg_codes.h)
-
-set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes)
 
 # Prepend the additional boards directory but still allow the original Zephyr
 # boards directory to be used with lower priority
