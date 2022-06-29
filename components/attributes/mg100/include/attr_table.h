@@ -100,13 +100,16 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_fup_pkg_ver                     22
 #define ATTR_ID_lwm2m_fup_proxy_srv                   23
 #define ATTR_ID_bluetooth_address                     24
-#define ATTR_ID_lte_rat                               25
+#define ATTR_ID_dm_cnx_delay                          25
+#define ATTR_ID_dm_cnx_delay_min                      26
+#define ATTR_ID_dm_cnx_delay_max                      27
+#define ATTR_ID_lte_rat                               28
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                              26
-#define ATTR_TABLE_MAX_ID                            25
-#define ATTR_TABLE_WRITABLE_COUNT                    17
+#define ATTR_TABLE_SIZE                              29
+#define ATTR_TABLE_MAX_ID                            28
+#define ATTR_TABLE_WRITABLE_COUNT                    20
 #define ATTR_MAX_STR_LENGTH                          255
 #define ATTR_MAX_STR_SIZE                            256
 #define ATTR_MAX_BIN_SIZE                            16

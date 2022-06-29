@@ -48,6 +48,9 @@ typedef struct rw_attribute {
 	char lwm2m_sw_ver[32 + 1];
 	char lwm2m_hw_ver[32 + 1];
 	char lwm2m_fup_proxy_srv[255 + 1];
+	uint16_t dm_cnx_delay;
+	uint16_t dm_cnx_delay_min;
+	uint16_t dm_cnx_delay_max;
 } rw_attribute_t;
 /* pyend */
 
@@ -63,12 +66,15 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.lwm2m_bootstrap = 0,
 	.lwm2m_short_id = 1,
 	.lwm2m_mfg = "Laird Connectivity",
-	.lwm2m_mn = "MG100",
-	.lwm2m_sn = "MG100",
+	.lwm2m_mn = "model",
+	.lwm2m_sn = "serial_number",
 	.lwm2m_fw_ver = "0.0.0",
 	.lwm2m_sw_ver = "0.0.0",
 	.lwm2m_hw_ver = "0.0.0",
 	.lwm2m_fup_proxy_srv = "coaps://coap-proxy.salticidae.net:5684",
+	.dm_cnx_delay = 0,
+	.dm_cnx_delay_min = 1,
+	.dm_cnx_delay_max = 300,
 };
 /* pyend */
 
@@ -153,7 +159,7 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[6  ] = { RW_ATTRS(lwm2m_endpoint)                      , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[7  ] = { RW_ATTRE(lwm2m_security)                      , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 4         },
 	[8  ] = { RW_ATTRS(lwm2m_psk_id)                        , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[9  ] = { RW_ATTRX(lwm2m_psk)                           , ATTR_TYPE_BYTE_ARRAY    , 0x1f  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
+	[9  ] = { RW_ATTRX(lwm2m_psk)                           , ATTR_TYPE_BYTE_ARRAY    , 0x1d  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
 	[10 ] = { RW_ATTRX(lwm2m_bootstrap)                     , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
 	[11 ] = { RW_ATTRX(lwm2m_short_id)                      , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
 	[12 ] = { RW_ATTRS(lwm2m_mfg)                           , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
@@ -169,7 +175,10 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[22 ] = { RO_ATTRS(lwm2m_fup_pkg_ver)                   , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[23 ] = { RW_ATTRS(lwm2m_fup_proxy_srv)                 , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
 	[24 ] = { RO_ATTRS(bluetooth_address)                   , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 12        , .max.ux = 12        },
-	[25 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[25 ] = { RW_ATTRX(dm_cnx_delay)                        , ATTR_TYPE_U16           , 0x1f  , av_cp16             , NULL                                , .min.ux = 0         , .max.ux = 600       },
+	[26 ] = { RW_ATTRX(dm_cnx_delay_min)                    , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 599       },
+	[27 ] = { RW_ATTRX(dm_cnx_delay_max)                    , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 2         , .max.ux = 600       },
+	[28 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 

@@ -1720,7 +1720,7 @@
             "x-default": "{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f }",
             "x-lockable": true,
             "x-prepare": false,
-            "x-readable": true,
+            "x-readable": false,
             "x-savable": true,
             "x-writable": true,
             "summary": "Pre-shared key",
@@ -1795,7 +1795,7 @@
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "MG100",
+            "x-default": "model",
             "x-lockable": true,
             "x-prepare": false,
             "x-readable": true,
@@ -1814,7 +1814,7 @@
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "MG100",
+            "x-default": "serial_number",
             "x-lockable": true,
             "x-prepare": false,
             "x-readable": true,
@@ -2035,6 +2035,65 @@
             "x-id": 24
           },
           {
+            "name": "dm_cnx_delay",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 600
+            },
+            "x-ctype": "uint16_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-lockable": true,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-validator": "cp16",
+            "summary": "Delay (in seconds) before connecting to DM server",
+            "description": "Write: Control point - Write 0 to generate new randomized delay with value between (mdm_cnx_delay_minin, dm_cnx_delay_max). Read: time in seconds to delay before connecting.",
+            "x-id": 25
+          },
+          {
+            "name": "dm_cnx_delay_min",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 599
+            },
+            "x-ctype": "uint16_t",
+            "x-broadcast": true,
+            "x-default": 1,
+            "x-lockable": true,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "summary": "Min delay (in seconds) before connecting to DM server.",
+            "x-id": 26
+          },
+          {
+            "name": "dm_cnx_delay_max",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 2,
+              "maximum": 600
+            },
+            "x-ctype": "uint16_t",
+            "x-broadcast": true,
+            "x-default": 300,
+            "x-lockable": true,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "summary": "Max delay (in seconds) before connecting to DM server.",
+            "x-id": 27
+          },
+          {
             "name": "lte_rat",
             "required": false,
             "schema": {
@@ -2055,7 +2114,7 @@
             "x-savable": false,
             "x-writable": false,
             "summary": "Radio Access Technology",
-            "x-id": 25
+            "x-id": 28
           }
         ]
       }
