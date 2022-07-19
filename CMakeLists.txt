@@ -96,6 +96,10 @@ list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(ble_gateway_dm_firmware)
 
+if(CONFIG_LCZ_MEMFAULT)
+zephyr_include_directories(${CMAKE_SOURCE_DIR}/memfault)
+endif()
+
 target_include_directories(app PRIVATE ${gen_dir})
 
 target_sources(app PRIVATE src/main.c)
