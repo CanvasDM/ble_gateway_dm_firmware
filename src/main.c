@@ -43,10 +43,6 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 /**************************************************************************************************/
 void main(void)
 {
-#ifdef CONFIG_LCZ_HW_KEY
-	lcz_hw_key_generate_and_init();
-#endif
-
 #ifdef CONFIG_FILE_SYSTEM_UTILITIES
 	fsu_lfs_mount();
 #endif
