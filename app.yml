@@ -17,5 +17,6 @@ components:
         - $ref: ../modules/lib/laird_connect/lwm2m_client/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/lwm2m_firmware_update/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params.yml
+        - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
       x-mg100:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/MG100/params.yml
