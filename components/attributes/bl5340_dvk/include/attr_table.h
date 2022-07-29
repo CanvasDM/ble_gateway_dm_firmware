@@ -106,19 +106,20 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_ID_dm_cnx_delay                          25
 #define ATTR_ID_dm_cnx_delay_min                      26
 #define ATTR_ID_dm_cnx_delay_max                      27
-#define ATTR_ID_lwm2m_telem_server_url                28
-#define ATTR_ID_lwm2m_telem_endpoint                  29
-#define ATTR_ID_lwm2m_telem_security                  30
-#define ATTR_ID_lwm2m_telem_psk_id                    31
-#define ATTR_ID_lwm2m_telem_psk                       32
-#define ATTR_ID_lwm2m_telem_short_id                  33
-#define ATTR_ID_lwm2m_telem_enable                    34
+#define ATTR_ID_factory_load_path                     28
+#define ATTR_ID_lwm2m_telem_server_url                29
+#define ATTR_ID_lwm2m_telem_endpoint                  30
+#define ATTR_ID_lwm2m_telem_security                  31
+#define ATTR_ID_lwm2m_telem_psk_id                    32
+#define ATTR_ID_lwm2m_telem_psk                       33
+#define ATTR_ID_lwm2m_telem_short_id                  34
+#define ATTR_ID_lwm2m_telem_enable                    35
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 35
-#define ATTR_TABLE_MAX_ID                               34
-#define ATTR_TABLE_WRITABLE_COUNT                       27
+#define ATTR_TABLE_SIZE                                 36
+#define ATTR_TABLE_MAX_ID                               35
+#define ATTR_TABLE_WRITABLE_COUNT                       28
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
@@ -143,6 +144,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_LWM2M_FUP_PKG_VER_MAX_STR_SIZE             33
 #define ATTR_LWM2M_FUP_PROXY_SRV_MAX_STR_SIZE           256
 #define ATTR_BLUETOOTH_ADDRESS_MAX_STR_SIZE             13
+#define ATTR_FACTORY_LOAD_PATH_MAX_STR_SIZE             33
 #define ATTR_LWM2M_TELEM_SERVER_URL_MAX_STR_SIZE        256
 #define ATTR_LWM2M_TELEM_ENDPOINT_MAX_STR_SIZE          65
 #define ATTR_LWM2M_TELEM_PSK_ID_MAX_STR_SIZE            65

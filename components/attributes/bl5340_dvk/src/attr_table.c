@@ -51,6 +51,7 @@ typedef struct rw_attribute {
 	uint16_t dm_cnx_delay;
 	uint16_t dm_cnx_delay_min;
 	uint16_t dm_cnx_delay_max;
+	char factory_load_path[32 + 1];
 	char lwm2m_telem_server_url[255 + 1];
 	char lwm2m_telem_endpoint[64 + 1];
 	enum lwm2m_telem_security lwm2m_telem_security;
@@ -63,8 +64,8 @@ typedef struct rw_attribute {
 
 /* pystart - rw defaults */
 static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
-	.dump_path = "/lfs1/attr_dump.txt",
-	.load_path = "/lfs1/attr_load.txt",
+	.dump_path = "/lfs1/enc/attr_dump.txt",
+	.load_path = "/lfs1/enc/attr_load.txt",
 	.lwm2m_server_url = "coap://leshan.eclipseprojects.io:5683",
 	.lwm2m_endpoint = "my_device",
 	.lwm2m_security = 3,
@@ -82,6 +83,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.dm_cnx_delay = 0,
 	.dm_cnx_delay_min = 1,
 	.dm_cnx_delay_max = 300,
+	.factory_load_path = "/lfs1/enc/factory_load.txt",
 	.lwm2m_telem_server_url = "coap://leshan.eclipseprojects.io:5683",
 	.lwm2m_telem_endpoint = "endpoint",
 	.lwm2m_telem_security = 3,
@@ -190,13 +192,14 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[25 ] = { RW_ATTRX(dm_cnx_delay)                        , ATTR_TYPE_U16           , 0x1f  , av_cp16             , NULL                                , .min.ux = 0         , .max.ux = 600       },
 	[26 ] = { RW_ATTRX(dm_cnx_delay_min)                    , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 599       },
 	[27 ] = { RW_ATTRX(dm_cnx_delay_max)                    , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 2         , .max.ux = 600       },
-	[28 ] = { RW_ATTRS(lwm2m_telem_server_url)              , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
-	[29 ] = { RW_ATTRS(lwm2m_telem_endpoint)                , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
-	[30 ] = { RW_ATTRE(lwm2m_telem_security)                , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 4         },
-	[31 ] = { RW_ATTRS(lwm2m_telem_psk_id)                  , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
-	[32 ] = { RW_ATTRX(lwm2m_telem_psk)                     , ATTR_TYPE_BYTE_ARRAY    , 0x1d  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
-	[33 ] = { RW_ATTRX(lwm2m_telem_short_id)                , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
-	[34 ] = { RW_ATTRX(lwm2m_telem_enable)                  , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[28 ] = { RW_ATTRS(factory_load_path)                   , ATTR_TYPE_STRING        , 0x17  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[29 ] = { RW_ATTRS(lwm2m_telem_server_url)              , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
+	[30 ] = { RW_ATTRS(lwm2m_telem_endpoint)                , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
+	[31 ] = { RW_ATTRE(lwm2m_telem_security)                , ATTR_TYPE_U8            , 0x1f  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 4         },
+	[32 ] = { RW_ATTRS(lwm2m_telem_psk_id)                  , ATTR_TYPE_STRING        , 0x1f  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
+	[33 ] = { RW_ATTRX(lwm2m_telem_psk)                     , ATTR_TYPE_BYTE_ARRAY    , 0x1d  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
+	[34 ] = { RW_ATTRX(lwm2m_telem_short_id)                , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
+	[35 ] = { RW_ATTRX(lwm2m_telem_enable)                  , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 

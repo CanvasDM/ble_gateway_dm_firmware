@@ -1206,8 +1206,8 @@ components:
           type: string
         x-ctype: string
         x-broadcast: false
-        x-default: /lfs1/attr_dump.txt
-        x-example: /lfs1/attr_dump.txt
+        x-default: /lfs1/enc/attr_dump.txt
+        x-example: /lfs1/enc/attr_dump.txt
         x-lockable: false
         x-prepare: false
         x-readable: true
@@ -1223,8 +1223,8 @@ components:
           type: string
         x-ctype: string
         x-broadcast: false
-        x-default: /lfs1/attr_load.txt
-        x-example: /lfs1/attr_load.txt
+        x-default: /lfs1/enc/attr_load.txt
+        x-example: /lfs1/enc/attr_load.txt
         x-lockable: false
         x-prepare: false
         x-readable: true
@@ -1656,6 +1656,22 @@ components:
         x-writable: true
         summary: Max delay (in seconds) before connecting to DM server.
         x-id: 27
+      - name: factory_load_path
+        required: true
+        schema:
+          maxLength: 32
+          minLength: 1
+          type: string
+        x-ctype: string
+        x-broadcast: false
+        x-default: /lfs1/enc/factory_load.txt
+        x-lockable: true
+        x-prepare: false
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        summary: Path for factory settings that can be restored with attribute load
+        x-id: 28
       - name: lwm2m_telem_server_url
         required: true
         schema:
@@ -1673,7 +1689,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Server URL to connect to
-        x-id: 28
+        x-id: 29
       - name: lwm2m_telem_endpoint
         required: true
         schema:
@@ -1689,7 +1705,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Endpoint name to identify the device
-        x-id: 29
+        x-id: 30
       - name: lwm2m_telem_security
         required: true
         schema:
@@ -1712,7 +1728,7 @@ components:
         x-savable: true
         x-writable: true
         summary: LwM2M Security mode
-        x-id: 30
+        x-id: 31
       - name: lwm2m_telem_psk_id
         required: true
         schema:
@@ -1729,7 +1745,7 @@ components:
         x-savable: true
         x-writable: true
         summary: PSK ID
-        x-id: 31
+        x-id: 32
       - name: lwm2m_telem_psk
         required: true
         schema:
@@ -1747,7 +1763,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Pre-shared key
-        x-id: 32
+        x-id: 33
       - name: lwm2m_telem_short_id
         required: true
         schema:
@@ -1766,7 +1782,7 @@ components:
         summary: short_server_id This identifier uniquely identifies each LwM2M Server
           configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server
           Resource has a value of 'false'.
-        x-id: 33
+        x-id: 34
       - name: lwm2m_telem_enable
         required: true
         schema:
@@ -1782,7 +1798,7 @@ components:
         x-savable: true
         x-writable: true
         summary: 0 - disable telemetry connection, 1 - enable
-        x-id: 34
+        x-id: 35
       - name: lte_rat
         required: false
         schema:
@@ -1801,4 +1817,4 @@ components:
         x-savable: false
         x-writable: false
         summary: Radio Access Technology
-        x-id: 35
+        x-id: 36
