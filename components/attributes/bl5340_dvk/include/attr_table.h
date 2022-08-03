@@ -114,12 +114,13 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_telem_psk                       33
 #define ATTR_ID_lwm2m_telem_short_id                  34
 #define ATTR_ID_lwm2m_telem_enable                    35
+#define ATTR_ID_shell_password                        36
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 36
-#define ATTR_TABLE_MAX_ID                               35
-#define ATTR_TABLE_WRITABLE_COUNT                       28
+#define ATTR_TABLE_SIZE                                 37
+#define ATTR_TABLE_MAX_ID                               36
+#define ATTR_TABLE_WRITABLE_COUNT                       29
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
@@ -148,6 +149,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_LWM2M_TELEM_SERVER_URL_MAX_STR_SIZE        256
 #define ATTR_LWM2M_TELEM_ENDPOINT_MAX_STR_SIZE          65
 #define ATTR_LWM2M_TELEM_PSK_ID_MAX_STR_SIZE            65
+#define ATTR_SHELL_PASSWORD_MAX_STR_SIZE                33
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                             16

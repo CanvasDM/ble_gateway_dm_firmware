@@ -1799,6 +1799,25 @@ components:
         x-writable: true
         summary: 0 - disable telemetry connection, 1 - enable
         x-id: 35
+      - name: shell_password
+        required: true
+        schema:
+          maxLength: 32
+          minLength: 4
+          type: string
+        x-ctype: string
+        x-broadcast: false
+        x-default: zephyr
+        x-lockable: true
+        x-prepare: false
+        x-readable: false
+        x-savable: true
+        x-writable: true
+        x-hide-in-show: true
+        x-show-on-change: false
+        x-hide-in-dump: true
+        summary: Password to login and use the shell
+        x-id: 36
       - name: lte_rat
         required: false
         schema:
@@ -1817,4 +1836,4 @@ components:
         x-savable: false
         x-writable: false
         summary: Radio Access Technology
-        x-id: 36
+        x-id: 37

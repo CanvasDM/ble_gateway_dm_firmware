@@ -59,6 +59,7 @@ typedef struct rw_attribute {
 	uint8_t lwm2m_telem_psk[16];
 	uint16_t lwm2m_telem_short_id;
 	bool lwm2m_telem_enable;
+	char shell_password[32 + 1];
 } rw_attribute_t;
 /* pyend */
 
@@ -91,6 +92,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.lwm2m_telem_psk = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f },
 	.lwm2m_telem_short_id = 2,
 	.lwm2m_telem_enable = 0,
+	.shell_password = "zephyr",
 };
 /* pyend */
 
@@ -202,7 +204,8 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[33 ] = { RW_ATTRX(lwm2m_telem_psk)                     , ATTR_TYPE_BYTE_ARRAY    , 0x1d  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
 	[34 ] = { RW_ATTRX(lwm2m_telem_short_id)                , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
 	[35 ] = { RW_ATTRX(lwm2m_telem_enable)                  , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
-	[36 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[36 ] = { RW_ATTRS(shell_password)                      , ATTR_TYPE_STRING        , 0x495 , av_string           , NULL                                , .min.ux = 4         , .max.ux = 32        },
+	[37 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 
