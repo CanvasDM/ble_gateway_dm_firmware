@@ -121,13 +121,21 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_ID_lwm2m_telem_short_id                  34
 #define ATTR_ID_lwm2m_telem_enable                    35
 #define ATTR_ID_shell_password                        36
-#define ATTR_ID_lte_rat                               37
+#define ATTR_ID_tel_trust_path                        37
+#define ATTR_ID_tel_key_path                          38
+#define ATTR_ID_dm_trust_path                         39
+#define ATTR_ID_dm_key_path                           40
+#define ATTR_ID_fs_trust_path                         41
+#define ATTR_ID_fs_key_path                           42
+#define ATTR_ID_p2p_trust_path                        43
+#define ATTR_ID_p2p_key_path                          44
+#define ATTR_ID_lte_rat                               45
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 38
-#define ATTR_TABLE_MAX_ID                               37
-#define ATTR_TABLE_WRITABLE_COUNT                       29
+#define ATTR_TABLE_SIZE                                 46
+#define ATTR_TABLE_MAX_ID                               45
+#define ATTR_TABLE_WRITABLE_COUNT                       37
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
@@ -157,6 +165,14 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_LWM2M_TELEM_ENDPOINT_MAX_STR_SIZE          65
 #define ATTR_LWM2M_TELEM_PSK_ID_MAX_STR_SIZE            65
 #define ATTR_SHELL_PASSWORD_MAX_STR_SIZE                33
+#define ATTR_TEL_TRUST_PATH_MAX_STR_SIZE                33
+#define ATTR_TEL_KEY_PATH_MAX_STR_SIZE                  33
+#define ATTR_DM_TRUST_PATH_MAX_STR_SIZE                 33
+#define ATTR_DM_KEY_PATH_MAX_STR_SIZE                   33
+#define ATTR_FS_TRUST_PATH_MAX_STR_SIZE                 33
+#define ATTR_FS_KEY_PATH_MAX_STR_SIZE                   33
+#define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                33
+#define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                  33
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                             16

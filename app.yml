@@ -19,5 +19,6 @@ components:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
         - $ref: ../modules/lib/laird_connect/shell_login/attributes/params.yml
+        - $ref: ../modules/lib/laird_connect/pki_auth/attributes/params.yml
       x-mg100:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/MG100/params.yml

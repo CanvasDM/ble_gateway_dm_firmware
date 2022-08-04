@@ -60,6 +60,14 @@ typedef struct rw_attribute {
 	uint16_t lwm2m_telem_short_id;
 	bool lwm2m_telem_enable;
 	char shell_password[32 + 1];
+	char tel_trust_path[32 + 1];
+	char tel_key_path[32 + 1];
+	char dm_trust_path[32 + 1];
+	char dm_key_path[32 + 1];
+	char fs_trust_path[32 + 1];
+	char fs_key_path[32 + 1];
+	char p2p_trust_path[32 + 1];
+	char p2p_key_path[32 + 1];
 } rw_attribute_t;
 /* pyend */
 
@@ -93,6 +101,14 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.lwm2m_telem_short_id = 2,
 	.lwm2m_telem_enable = 0,
 	.shell_password = "zephyr",
+	.tel_trust_path = "/lfs1/tel/trust",
+	.tel_key_path = "/lfs1/enc/tel/key",
+	.dm_trust_path = "/lfs1/dm/trust",
+	.dm_key_path = "/lfs1/enc/dm/key",
+	.fs_trust_path = "/lfs1/fs/trust",
+	.fs_key_path = "/lfs1/enc/fs/key",
+	.p2p_trust_path = "/lfs1/p2p/trust",
+	.p2p_key_path = "/lfs1/enc/p2p/key",
 };
 /* pyend */
 
@@ -205,7 +221,15 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[34 ] = { RW_ATTRX(lwm2m_telem_short_id)                , ATTR_TYPE_U16           , 0x1f  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
 	[35 ] = { RW_ATTRX(lwm2m_telem_enable)                  , ATTR_TYPE_BOOL          , 0x1f  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
 	[36 ] = { RW_ATTRS(shell_password)                      , ATTR_TYPE_STRING        , 0x495 , av_string           , NULL                                , .min.ux = 4         , .max.ux = 32        },
-	[37 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[37 ] = { RW_ATTRS(tel_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[38 ] = { RW_ATTRS(tel_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[39 ] = { RW_ATTRS(dm_trust_path)                       , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[40 ] = { RW_ATTRS(dm_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[41 ] = { RW_ATTRS(fs_trust_path)                       , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[42 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[43 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[44 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
+	[45 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 
