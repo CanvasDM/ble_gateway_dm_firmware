@@ -202,6 +202,12 @@
 			"type": "shell",
 			"command": "arm-none-eabi-readelf -n ${workspaceRoot}/build/${input:board}/zephyr/zephyr.elf",
 			"problemMatcher": []
+		},
+		{
+			"label": "mcumgr shell cmd",
+			"type": "shell",
+			"command": "mcumgr -t 5 -r 2 ${input:mcumgr_cnx} shell exec ${input:shell_cmd}",
+			"problemMatcher": []
 		}
 	],
 	"inputs": [
@@ -282,5 +288,11 @@
 				"signed_by_mcuboot_and_b0_s1_image_signed.hex"
 			]
 		},
+		{
+			"id": "shell_cmd",
+			"description": "Enter a shell cmd",
+			"type": "promptString",
+			"default": "cmd"
+		}
 	]
 }
