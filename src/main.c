@@ -30,6 +30,9 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #include "lcz_lwm2m_fw_update.h"
 #endif
 #include "app_version.h"
+#ifdef CONFIG_SHELL_BACKEND_SERIAL
+#include <shell/shell_uart.h>
+#endif
 
 /**************************************************************************************************/
 /* Local Constant, Macro and Type Definitions                                                     */
@@ -43,6 +46,13 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 /**************************************************************************************************/
 void main(void)
 {
+#ifdef CONFIG_SHELL_BACKEND_SERIAL
+	/* Disable log output by default on the UART console.
+	 * Re-enable logging using the 'log go' cmd.
+	 * LCZ_SHELL_LOGIN selects SHELL_START_OBSCURED which disables log output before main().
+	 */
+	log_backend_deactivate(shell_backend_uart_get_ptr()->log_backend->backend);
+#endif
 #ifdef CONFIG_FILE_SYSTEM_UTILITIES
 	fsu_lfs_mount();
 #endif
