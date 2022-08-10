@@ -1714,6 +1714,24 @@ components:
         x-writable: true
         summary: Path for factory settings that can be restored with attribute load
         x-id: 28
+      - name: device_id
+        required: true
+        schema:
+          maxLength: 64
+          minLength: 0
+          type: string
+        x-ctype: string
+        x-broadcast: true
+        x-default: ''
+        x-lockable: true
+        x-prepare: false
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        summary: Unique identifier for the device. When firmware boots, if the value
+          is blank (the default value), the firmware will set a unique value for the
+          device using BLE MAC address, IMEI, or some similar value.
+        x-id: 29
       - name: lwm2m_telem_server_url
         required: true
         schema:
@@ -1731,7 +1749,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Server URL to connect to
-        x-id: 29
+        x-id: 30
       - name: lwm2m_telem_endpoint
         required: true
         schema:
@@ -1747,7 +1765,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Endpoint name to identify the device
-        x-id: 30
+        x-id: 31
       - name: lwm2m_telem_security
         required: true
         schema:
@@ -1770,7 +1788,7 @@ components:
         x-savable: true
         x-writable: true
         summary: LwM2M Security mode
-        x-id: 31
+        x-id: 32
       - name: lwm2m_telem_psk_id
         required: true
         schema:
@@ -1787,7 +1805,7 @@ components:
         x-savable: true
         x-writable: true
         summary: PSK ID
-        x-id: 32
+        x-id: 33
       - name: lwm2m_telem_psk
         required: true
         schema:
@@ -1805,7 +1823,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Pre-shared key
-        x-id: 33
+        x-id: 34
       - name: lwm2m_telem_short_id
         required: true
         schema:
@@ -1824,7 +1842,7 @@ components:
         summary: short_server_id This identifier uniquely identifies each LwM2M Server
           configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server
           Resource has a value of 'false'.
-        x-id: 34
+        x-id: 35
       - name: lwm2m_telem_enable
         required: true
         schema:
@@ -1840,7 +1858,7 @@ components:
         x-savable: true
         x-writable: true
         summary: 0 - disable telemetry connection, 1 - enable
-        x-id: 35
+        x-id: 36
       - name: shell_password
         required: true
         schema:
@@ -1859,7 +1877,7 @@ components:
         x-show-on-change: false
         x-hide-in-dump: true
         summary: Password to login and use the shell
-        x-id: 36
+        x-id: 37
       - name: tel_trust_path
         required: true
         schema:
@@ -1875,7 +1893,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for telemetry authentication.
-        x-id: 37
+        x-id: 38
       - name: tel_key_path
         required: true
         schema:
@@ -1891,7 +1909,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for telemetry authentication.
-        x-id: 38
+        x-id: 39
       - name: dm_trust_path
         required: true
         schema:
@@ -1907,7 +1925,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for DM authentication.
-        x-id: 39
+        x-id: 40
       - name: dm_key_path
         required: true
         schema:
@@ -1923,7 +1941,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for DM authentication.
-        x-id: 40
+        x-id: 41
       - name: fs_trust_path
         required: true
         schema:
@@ -1939,7 +1957,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for firmware and file service authentication.
-        x-id: 41
+        x-id: 42
       - name: fs_key_path
         required: true
         schema:
@@ -1955,7 +1973,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for firmware and file service authentication.
-        x-id: 42
+        x-id: 43
       - name: p2p_trust_path
         required: true
         schema:
@@ -1971,7 +1989,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for peer-to-peer authentication.
-        x-id: 43
+        x-id: 44
       - name: p2p_key_path
         required: true
         schema:
@@ -1987,7 +2005,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for peer-to-peer authentication.
-        x-id: 44
+        x-id: 45
       - name: lte_rat
         required: false
         schema:
@@ -2006,4 +2024,4 @@ components:
         x-savable: false
         x-writable: false
         summary: Radio Access Technology
-        x-id: 45
+        x-id: 46
