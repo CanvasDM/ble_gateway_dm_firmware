@@ -8,7 +8,6 @@ The BLE gateway and the BLE end nodes can be managed via LwM2M.
 - mg100
 - pinnacle_100_dvk
 - bl5340_dvk_cpuapp
-- qemu_cortex_m3
 
 ## Generating attributes
 

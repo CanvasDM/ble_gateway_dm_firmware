@@ -4,8 +4,6 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(lcz_module_dir ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect)
 
-if(NOT (BOARD STREQUAL qemu_cortex_m3))
-
 set(mcuboot_CONF_FILE
     ${CMAKE_SOURCE_DIR}/config/mcuboot.${BOARD}.conf
 )
@@ -20,8 +18,6 @@ set(b0_OVERLAY_CONFIG
 
 if ((BOARD STREQUAL mg100) OR (BOARD STREQUAL pinnacle_100_dvk))
 set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/mg100)
-endif()
-
 endif()
 
 if ((BOARD STREQUAL bl5340_dvk_cpuapp) OR (BOARD STREQUAL bl5340pa_dvk_cpuapp))
@@ -54,7 +50,6 @@ set(ver_patch ${CMAKE_MATCH_1})
 set(app_version ${ver_major}.${ver_minor}.${ver_patch}+${build_time})
 message("app version: ${app_version}")
 
-if(NOT (BOARD STREQUAL qemu_cortex_m3))
 # Set application version for mcuboot
 set(mcuboot_ver_conf ${CMAKE_BINARY_DIR}/generated_mcuboot_image_version.conf)
 set(MCUBOOT_IMAGE_VERSION ${app_version})
@@ -83,7 +78,6 @@ set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
 configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
 # Enable BLE
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble.conf)
-endif()
 
 # Add framework ID and msgcode files prior to Zephyr package init
 set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)

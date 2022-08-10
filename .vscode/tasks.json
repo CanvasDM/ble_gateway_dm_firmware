@@ -219,8 +219,7 @@
 			"options": [
 				"pinnacle_100_dvk",
 				"mg100",
-				"bl5340_dvk_cpuapp",
-				"qemu_cortex_m3"
+				"bl5340_dvk_cpuapp"
 			]
 		},
 		{
