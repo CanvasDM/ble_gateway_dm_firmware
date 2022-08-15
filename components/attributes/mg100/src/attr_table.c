@@ -69,6 +69,7 @@ typedef struct rw_attribute {
 	char fs_key_path[32 + 1];
 	char p2p_trust_path[32 + 1];
 	char p2p_key_path[32 + 1];
+	enum lte_log_lvl lte_log_lvl;
 } rw_attribute_t;
 /* pyend */
 
@@ -111,6 +112,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.fs_key_path = "/lfs1/enc/fs/key",
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
+	.lte_log_lvl = 2,
 };
 /* pyend */
 
@@ -125,7 +127,23 @@ typedef struct ro_attribute {
 	char lwm2m_fup_pkg_name[32 + 1];
 	char lwm2m_fup_pkg_ver[32 + 1];
 	char bluetooth_address[12 + 1];
+	char lte_imei[15 + 1];
+	char lte_iccid[20 + 1];
+	char lte_imsi[15 + 1];
+	char lte_sn[14 + 1];
+	char lte_version[29 + 1];
+	enum lte_network_state lte_network_state;
+	enum lte_startup_state lte_startup_state;
+	enum lte_init_error lte_init_error;
+	char lte_apn[64 + 1];
+	int16_t lte_rsrp;
+	int16_t lte_sinr;
+	char lte_bands[20 + 1];
+	char lte_active_bands[20 + 1];
+	uint8_t lte_operator_index;
+	enum lte_sleep_state lte_sleep_state;
 	enum lte_rat lte_rat;
+	enum lte_fup_status lte_fup_status;
 } ro_attribute_t;
 /* pyend */
 
@@ -140,7 +158,23 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lwm2m_fup_pkg_name = "my_firmware",
 	.lwm2m_fup_pkg_ver = "0.0.0",
 	.bluetooth_address = "0",
-	.lte_rat = 0
+	.lte_imei = "",
+	.lte_iccid = "",
+	.lte_imsi = "",
+	.lte_sn = "",
+	.lte_version = "",
+	.lte_network_state = 0,
+	.lte_startup_state = 0,
+	.lte_init_error = 0,
+	.lte_apn = "",
+	.lte_rsrp = 0,
+	.lte_sinr = 0,
+	.lte_bands = "",
+	.lte_active_bands = "",
+	.lte_operator_index = 255,
+	.lte_sleep_state = 0,
+	.lte_rat = 0,
+	.lte_fup_status = 0
 };
 /* pyend */
 
@@ -232,7 +266,24 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[43 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[44 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[45 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[46 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 1         }
+	[46 ] = { RO_ATTRS(lte_imei)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[47 ] = { RO_ATTRS(lte_iccid)                           , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[48 ] = { RO_ATTRS(lte_imsi)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 14        , .max.ux = 15        },
+	[49 ] = { RO_ATTRS(lte_sn)                              , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 14        },
+	[50 ] = { RO_ATTRS(lte_version)                         , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 29        },
+	[51 ] = { RO_ATTRE(lte_network_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[52 ] = { RO_ATTRE(lte_startup_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[53 ] = { RO_ATTRE(lte_init_error)                      , ATTR_TYPE_S8            , 0xa   , av_int8             , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[54 ] = { RO_ATTRS(lte_apn)                             , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 64        },
+	[55 ] = { RO_ATTRX(lte_rsrp)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[56 ] = { RO_ATTRX(lte_sinr)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[57 ] = { RO_ATTRS(lte_bands)                           , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 20        },
+	[58 ] = { RO_ATTRS(lte_active_bands)                    , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[59 ] = { RO_ATTRX(lte_operator_index)                  , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[60 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[61 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[62 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[63 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         }
 };
 /* pyend */
 
@@ -295,11 +346,93 @@ const char *const attr_get_string_lwm2m_telem_security(int value)
 	}
 }
 
+const char *const attr_get_string_lte_network_state(int value)
+{
+	switch (value) {
+		case 0:           return "Not Registered";
+		case 1:           return "Home Network";
+		case 2:           return "Searching";
+		case 3:           return "Registration Denied";
+		case 4:           return "Out Of Coverage";
+		case 5:           return "Roaming";
+		case 8:           return "Emergency";
+		case 240:         return "Unable To Configure";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lte_startup_state(int value)
+{
+	switch (value) {
+		case 0:           return "Ready";
+		case 1:           return "Waiting For ACcess Code";
+		case 2:           return "Sim Not Present";
+		case 3:           return "Sim Lock";
+		case 4:           return "Unrecoverable Error";
+		case 5:           return "Unknown";
+		case 6:           return "Inactive Sim";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lte_init_error(int value)
+{
+	switch (value) {
+		case 0:           return "None";
+		case -1:          return "No Iface";
+		case -2:          return "Iface Cfg";
+		case -3:          return "Dns Cfg";
+		case -4:          return "Modem";
+		case -5:          return "Airplane";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lte_sleep_state(int value)
+{
+	switch (value) {
+		case 0:           return "Uninitialized";
+		case 1:           return "Hibernate";
+		case 2:           return "Awake";
+		case 3:           return "Lite Hibernate";
+		case 4:           return "Sleep";
+		default:          return "?";
+	}
+}
+
 const char *const attr_get_string_lte_rat(int value)
 {
 	switch (value) {
 		case 0:           return "Cat M1";
 		case 1:           return "Cat NB1";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lte_log_lvl(int value)
+{
+	switch (value) {
+		case 0:           return "None";
+		case 1:           return "Error";
+		case 2:           return "Warning";
+		case 3:           return "Info";
+		case 4:           return "Debug";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lte_fup_status(int value)
+{
+	switch (value) {
+		case 0:           return "Idle";
+		case 1:           return "Start";
+		case 2:           return "Wip";
+		case 3:           return "Pad";
+		case 4:           return "Send Eot";
+		case 5:           return "File Err";
+		case 6:           return "Install";
+		case 7:           return "Reboot Reconfig";
+		case 8:           return "Complete";
 		default:          return "?";
 	}
 }

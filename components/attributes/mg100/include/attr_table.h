@@ -65,9 +65,67 @@ enum lwm2m_telem_security {
 	LWM2M_TELEM_SECURITY_CERT_EST = 4,
 };
 
+enum lte_network_state {
+	LTE_NETWORK_STATE_NOT_REGISTERED = 0,
+	LTE_NETWORK_STATE_HOME_NETWORK = 1,
+	LTE_NETWORK_STATE_SEARCHING = 2,
+	LTE_NETWORK_STATE_REGISTRATION_DENIED = 3,
+	LTE_NETWORK_STATE_OUT_OF_COVERAGE = 4,
+	LTE_NETWORK_STATE_ROAMING = 5,
+	LTE_NETWORK_STATE_EMERGENCY = 8,
+	LTE_NETWORK_STATE_UNABLE_TO_CONFIGURE = 240,
+};
+
+enum lte_startup_state {
+	LTE_STARTUP_STATE_READY = 0,
+	LTE_STARTUP_STATE_WAITING_FOR_ACCESS_CODE = 1,
+	LTE_STARTUP_STATE_SIM_NOT_PRESENT = 2,
+	LTE_STARTUP_STATE_SIM_LOCK = 3,
+	LTE_STARTUP_STATE_UNRECOVERABLE_ERROR = 4,
+	LTE_STARTUP_STATE_UNKNOWN = 5,
+	LTE_STARTUP_STATE_INACTIVE_SIM = 6,
+};
+
+enum lte_init_error {
+	LTE_INIT_ERROR_NONE = 0,
+	LTE_INIT_ERROR_NO_IFACE = -1,
+	LTE_INIT_ERROR_IFACE_CFG = -2,
+	LTE_INIT_ERROR_DNS_CFG = -3,
+	LTE_INIT_ERROR_MODEM = -4,
+	LTE_INIT_ERROR_AIRPLANE = -5,
+};
+
+enum lte_sleep_state {
+	LTE_SLEEP_STATE_UNINITIALIZED = 0,
+	LTE_SLEEP_STATE_HIBERNATE = 1,
+	LTE_SLEEP_STATE_AWAKE = 2,
+	LTE_SLEEP_STATE_LITE_HIBERNATE = 3,
+	LTE_SLEEP_STATE_SLEEP = 4,
+};
+
 enum lte_rat {
 	LTE_RAT_CAT_M1 = 0,
 	LTE_RAT_CAT_NB1 = 1,
+};
+
+enum lte_log_lvl {
+	LTE_LOG_LVL_NONE = 0,
+	LTE_LOG_LVL_ERROR = 1,
+	LTE_LOG_LVL_WARNING = 2,
+	LTE_LOG_LVL_INFO = 3,
+	LTE_LOG_LVL_DEBUG = 4,
+};
+
+enum lte_fup_status {
+	LTE_FUP_STATUS_IDLE = 0,
+	LTE_FUP_STATUS_START = 1,
+	LTE_FUP_STATUS_WIP = 2,
+	LTE_FUP_STATUS_PAD = 3,
+	LTE_FUP_STATUS_SEND_EOT = 4,
+	LTE_FUP_STATUS_FILE_ERR = 5,
+	LTE_FUP_STATUS_INSTALL = 6,
+	LTE_FUP_STATUS_REBOOT_RECONFIG = 7,
+	LTE_FUP_STATUS_COMPLETE = 8,
 };
 
 /* pyend */
@@ -77,7 +135,13 @@ BUILD_ASSERT(sizeof(enum lwm2m_security) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_pwr_src) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_network_state) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_startup_state) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_init_error) == ATTR_SIZE_S8);
+BUILD_ASSERT(sizeof(enum lte_sleep_state) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_log_lvl) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum lte_fup_status) == ATTR_SIZE_U8);
 /* pyend */
 
 /**************************************************************************************************/
@@ -130,13 +194,30 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_ID_fs_key_path                           43
 #define ATTR_ID_p2p_trust_path                        44
 #define ATTR_ID_p2p_key_path                          45
-#define ATTR_ID_lte_rat                               46
+#define ATTR_ID_lte_imei                              46
+#define ATTR_ID_lte_iccid                             47
+#define ATTR_ID_lte_imsi                              48
+#define ATTR_ID_lte_sn                                49
+#define ATTR_ID_lte_version                           50
+#define ATTR_ID_lte_network_state                     51
+#define ATTR_ID_lte_startup_state                     52
+#define ATTR_ID_lte_init_error                        53
+#define ATTR_ID_lte_apn                               54
+#define ATTR_ID_lte_rsrp                              55
+#define ATTR_ID_lte_sinr                              56
+#define ATTR_ID_lte_bands                             57
+#define ATTR_ID_lte_active_bands                      58
+#define ATTR_ID_lte_operator_index                    59
+#define ATTR_ID_lte_sleep_state                       60
+#define ATTR_ID_lte_rat                               61
+#define ATTR_ID_lte_log_lvl                           62
+#define ATTR_ID_lte_fup_status                        63
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 47
-#define ATTR_TABLE_MAX_ID                               46
-#define ATTR_TABLE_WRITABLE_COUNT                       38
+#define ATTR_TABLE_SIZE                                 64
+#define ATTR_TABLE_MAX_ID                               63
+#define ATTR_TABLE_WRITABLE_COUNT                       42
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
@@ -175,6 +256,14 @@ BUILD_ASSERT(sizeof(enum lte_rat) == ATTR_SIZE_U8);
 #define ATTR_FS_KEY_PATH_MAX_STR_SIZE                   33
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                  33
+#define ATTR_LTE_IMEI_MAX_STR_SIZE                      16
+#define ATTR_LTE_ICCID_MAX_STR_SIZE                     21
+#define ATTR_LTE_IMSI_MAX_STR_SIZE                      16
+#define ATTR_LTE_SN_MAX_STR_SIZE                        15
+#define ATTR_LTE_VERSION_MAX_STR_SIZE                   30
+#define ATTR_LTE_APN_MAX_STR_SIZE                       65
+#define ATTR_LTE_BANDS_MAX_STR_SIZE                     21
+#define ATTR_LTE_ACTIVE_BANDS_MAX_STR_SIZE              21
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                             16
@@ -192,7 +281,13 @@ const char *const attr_get_string_lwm2m_security(int value);
 const char *const attr_get_string_lwm2m_pwr_src(int value);
 const char *const attr_get_string_lwm2m_batt_stat(int value);
 const char *const attr_get_string_lwm2m_telem_security(int value);
+const char *const attr_get_string_lte_network_state(int value);
+const char *const attr_get_string_lte_startup_state(int value);
+const char *const attr_get_string_lte_init_error(int value);
+const char *const attr_get_string_lte_sleep_state(int value);
 const char *const attr_get_string_lte_rat(int value);
+const char *const attr_get_string_lte_log_lvl(int value);
+const char *const attr_get_string_lte_fup_status(int value);
 /* pyend */
 
 #ifdef __cplusplus

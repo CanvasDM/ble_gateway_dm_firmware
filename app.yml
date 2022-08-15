@@ -22,4 +22,4 @@ components:
         - $ref: ../modules/lib/laird_connect/shell_login/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/pki_auth/attributes/params.yml
       x-mg100:
-        - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/MG100/params.yml
+        - $ref: ../modules/lib/laird_connect/modem_hl7800/attributes/params.yml
