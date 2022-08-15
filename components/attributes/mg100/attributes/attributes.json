@@ -1104,11 +1104,8 @@
           "x-ctype": "uint64_t",
           "x-sequencenumber": 1,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 0
+            "type": "integer"
           }
         },
         {
@@ -1142,9 +1139,7 @@
             "x-example": 0,
             "x-sequencenumber": 1,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
@@ -1156,9 +1151,7 @@
             "x-example": 0,
             "x-sequencenumber": 2,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
@@ -1169,9 +1162,7 @@
             "x-ctype": "array<byte>",
             "x-sequencenumber": 3,
             "schema": {
-              "type": "array",
-              "minItems": 0,
-              "maxItems": 0
+              "type": "array"
             }
           },
           {
@@ -1183,9 +1174,7 @@
             "x-example": 100,
             "x-sequencenumber": 4,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           }
         ]
@@ -1207,11 +1196,8 @@
           "x-ctype": "uint64_t",
           "x-sequencenumber": 1,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 0
+            "type": "integer"
           }
         },
         {
@@ -1238,9 +1224,7 @@
           "x-sequencenumber": 3,
           "x-default": 0,
           "schema": {
-            "type": "array",
-            "minLength": 0,
-            "maxLength": 0
+            "type": "array"
           }
         },
         {
@@ -1251,11 +1235,8 @@
           "x-ctype": "uint64_t",
           "x-sequencenumber": 4,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 0
+            "type": "integer"
           }
         }
       ],
@@ -1274,9 +1255,7 @@
             "x-example": 0,
             "x-sequencenumber": 1,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
@@ -1288,9 +1267,7 @@
             "x-example": 0,
             "x-sequencenumber": 2,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           }
         ]
@@ -1335,9 +1312,7 @@
             "x-example": 0,
             "x-sequencenumber": 1,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
@@ -1347,12 +1322,9 @@
             "required": true,
             "x-ctype": "uint64_t",
             "x-sequencenumber": 4,
-            "x-default": 0,
             "x-example": 0,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           }
         ]
@@ -1369,12 +1341,11 @@
         {
           "name": "type",
           "summary": "Checksum type",
-          "description": "The return type used crc32 or sha256",
+          "description": "The type of checksum used. Use sha256 for SHA256.",
           "required": true,
           "x-ctype": "string",
           "x-sequencenumber": 1,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
             "type": "string",
             "minLength": 1,
@@ -1384,7 +1355,7 @@
         {
           "name": "name",
           "summary": "File name",
-          "description": "Full file name to access",
+          "description": "Full path of the file to access",
           "required": true,
           "x-ctype": "string",
           "x-sequencenumber": 2,
@@ -1399,27 +1370,22 @@
         {
           "name": "off",
           "summary": "File Offset",
-          "description": "Offset where to start file access",
+          "description": "Offset where to start reading from the file",
           "required": true,
           "x-ctype": "uint64_t",
           "x-sequencenumber": 3,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
-            "type": "integer",
-            "minimum": 0,
-            "maximum": 0
+            "type": "integer"
           }
         },
         {
           "name": "len",
-          "summary": "Data length",
-          "description": "Number of bytes being uploaded",
+          "summary": "Length of the file to hash",
           "required": true,
           "x-ctype": "uint64_t",
           "x-sequencenumber": 4,
           "x-default": 0,
-          "x-example": 0,
           "schema": {
             "type": "integer",
             "minimum": 0,
@@ -1442,20 +1408,17 @@
             "x-example": 0,
             "x-sequencenumber": 1,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
             "name": "type",
             "summary": "Checksum type",
-            "description": "If there is no error the return type used crc32 or sha256",
+            "description": "If there is no error, the checksum type used. sha256 for SHA256.",
             "required": true,
             "x-ctype": "string",
             "x-sequencenumber": 2,
             "x-default": 0,
-            "x-example": 0,
             "schema": {
               "type": "string",
               "minLength": 1,
@@ -1465,46 +1428,38 @@
           {
             "name": "off",
             "summary": "File Offset",
-            "description": "If there is no error offset where to start file access",
+            "description": "If there is no error, offset where to start reading from the file.",
             "required": true,
             "x-ctype": "uint64_t",
             "x-sequencenumber": 3,
             "x-default": 0,
-            "x-example": 0,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
             "name": "len",
             "summary": "Length",
-            "description": "If there is no error the file length is returned",
+            "description": "If there is no error, the length of the file data that was hashed is returned.",
             "required": true,
             "x-ctype": "uint64_t",
             "x-sequencenumber": 4,
             "x-default": 0,
-            "x-example": 0,
             "schema": {
-              "type": "integer",
-              "minimum": 0,
-              "maximum": 0
+              "type": "integer"
             }
           },
           {
             "name": "output",
-            "summary": "Byte string or numerical output",
-            "description": "This can either be a string or uint64 return type",
+            "summary": "Byte string representing the hash result",
             "required": true,
             "x-ctype": "string",
             "x-sequencenumber": 5,
             "x-default": 0,
-            "x-example": 0,
             "schema": {
               "type": "string",
-              "minimum": 0,
-              "maximum": 0
+              "minLength": 64,
+              "maxLength": 64
             }
           }
         ]
