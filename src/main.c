@@ -14,9 +14,6 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #ifdef CONFIG_LCZ_MCUMGR_WRAPPER
 #include "mcumgr_wrapper.h"
 #endif
-#ifdef CONFIG_FILE_SYSTEM_UTILITIES
-#include "file_system_utilities.h"
-#endif
 #ifdef CONFIG_LCZ_HW_KEY
 #include "lcz_hw_key.h"
 #endif
@@ -57,9 +54,6 @@ void main(void)
 	{
 		log_backend_deactivate(shell_backend_uart_get_ptr()->log_backend->backend);
 	}
-#endif
-#ifdef CONFIG_FILE_SYSTEM_UTILITIES
-	fsu_lfs_mount();
 #endif
 
 #ifdef CONFIG_LCZ_MCUMGR_WRAPPER
