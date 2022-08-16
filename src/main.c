@@ -51,7 +51,12 @@ void main(void)
 	 * Re-enable logging using the 'log go' cmd.
 	 * LCZ_SHELL_LOGIN selects SHELL_START_OBSCURED which disables log output before main().
 	 */
-	log_backend_deactivate(shell_backend_uart_get_ptr()->log_backend->backend);
+#ifdef CONFIG_ATTR
+	if (*(bool *)attr_get_quasi_static(ATTR_ID_log_on_boot) == false)
+#endif
+	{
+		log_backend_deactivate(shell_backend_uart_get_ptr()->log_backend->backend);
+	}
 #endif
 #ifdef CONFIG_FILE_SYSTEM_UTILITIES
 	fsu_lfs_mount();
