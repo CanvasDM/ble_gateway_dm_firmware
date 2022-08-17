@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "../modules/lib/laird_connect"
+		},
+		{
+			"path": "../mbedtls"
 		}
 	],
 	"settings": {
