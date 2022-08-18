@@ -11,9 +11,6 @@
 LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 #include <zephyr.h>
 #include <version.h>
-#ifdef CONFIG_LCZ_MCUMGR_WRAPPER
-#include "mcumgr_wrapper.h"
-#endif
 #ifdef CONFIG_LCZ_HW_KEY
 #include "lcz_hw_key.h"
 #endif
@@ -54,10 +51,6 @@ void main(void)
 	{
 		log_backend_deactivate(shell_backend_uart_get_ptr()->log_backend->backend);
 	}
-#endif
-
-#ifdef CONFIG_LCZ_MCUMGR_WRAPPER
-	mcumgr_wrapper_register_subsystems();
 #endif
 
 #ifdef CONFIG_ATTR
