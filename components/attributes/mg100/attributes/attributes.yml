@@ -1189,7 +1189,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: 0.0.0+0
-        x-example: 0.0.0+0
         x-lockable: false
         x-prepare: false
         x-readable: true
@@ -1205,8 +1204,7 @@ components:
           type: string
         x-ctype: string
         x-broadcast: false
-        x-default: /lfs1/enc/attr_dump.txt
-        x-example: /lfs1/enc/attr_dump.txt
+        x-default: /lfs1/attr_dump.txt
         x-lockable: false
         x-prepare: false
         x-readable: true
@@ -1223,7 +1221,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/attr_load.txt
-        x-example: /lfs1/enc/attr_load.txt
         x-lockable: false
         x-prepare: false
         x-readable: true

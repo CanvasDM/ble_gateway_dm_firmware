@@ -75,7 +75,7 @@ typedef struct rw_attribute {
 
 /* pystart - rw defaults */
 static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
-	.dump_path = "/lfs1/enc/attr_dump.txt",
+	.dump_path = "/lfs1/attr_dump.txt",
 	.load_path = "/lfs1/enc/attr_load.txt",
 	.log_on_boot = 0,
 	.lwm2m_server_url = "coap://leshan.eclipseprojects.io:5683",
