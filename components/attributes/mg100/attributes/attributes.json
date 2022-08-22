@@ -2,7 +2,8 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.0.3"
+    "version": "0.0.3",
+    "x-default-baud": 115200
   },
   "methods": [
     {
