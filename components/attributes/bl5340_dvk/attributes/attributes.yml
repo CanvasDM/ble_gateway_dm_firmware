@@ -1352,6 +1352,7 @@ components:
         x-readable: false
         x-savable: true
         x-writable: true
+        x-obscure-in-show: true
         summary: Pre-shared key
         x-id: 10
       - name: lwm2m_bootstrap
@@ -1793,6 +1794,7 @@ components:
         x-readable: false
         x-savable: true
         x-writable: true
+        x-obscure-in-show: true
         summary: Pre-shared key
         x-id: 35
       - name: lwm2m_telem_short_id

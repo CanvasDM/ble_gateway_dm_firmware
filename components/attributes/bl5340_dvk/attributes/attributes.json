@@ -1750,6 +1750,7 @@
             "x-readable": false,
             "x-savable": true,
             "x-writable": true,
+            "x-obscure-in-show": true,
             "summary": "Pre-shared key",
             "x-id": 10
           },
@@ -2262,6 +2263,7 @@
             "x-readable": false,
             "x-savable": true,
             "x-writable": true,
+            "x-obscure-in-show": true,
             "summary": "Pre-shared key",
             "x-id": 35
           },
