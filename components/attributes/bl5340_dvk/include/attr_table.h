@@ -125,11 +125,13 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_ID_fs_key_path                           44
 #define ATTR_ID_p2p_trust_path                        45
 #define ATTR_ID_p2p_key_path                          46
+#define ATTR_ID_ipv4_addr                             47
+#define ATTR_ID_gw_ipv4_addr                          48
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 47
-#define ATTR_TABLE_MAX_ID                               46
+#define ATTR_TABLE_SIZE                                 49
+#define ATTR_TABLE_MAX_ID                               48
 #define ATTR_TABLE_WRITABLE_COUNT                       39
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
@@ -169,6 +171,8 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_FS_KEY_PATH_MAX_STR_SIZE                   33
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                  33
+#define ATTR_IPV4_ADDR_MAX_STR_SIZE                     16
+#define ATTR_GW_IPV4_ADDR_MAX_STR_SIZE                  16
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                             16

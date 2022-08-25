@@ -2618,6 +2618,44 @@
             "x-writable": true,
             "summary": "The path to the key store for peer-to-peer authentication.",
             "x-id": 46
+          },
+          {
+            "name": "ipv4_addr",
+            "summary": "Internet Protocol Version 4 address",
+            "required": true,
+            "schema": {
+              "maxLength": 15,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-broadcast": true,
+            "x-default": "",
+            "x-example": "xxx.xxx.xxx.xxx",
+            "x-lockable": false,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": false,
+            "x-writable": false,
+            "x-id": 47
+          },
+          {
+            "name": "gw_ipv4_addr",
+            "summary": "Internet Protocol Version 4 address for Gateway",
+            "required": true,
+            "schema": {
+              "maxLength": 15,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-broadcast": true,
+            "x-default": "",
+            "x-example": "xxx.xxx.xxx.xxx",
+            "x-lockable": false,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": false,
+            "x-writable": false,
+            "x-id": 48
           }
         ]
       }

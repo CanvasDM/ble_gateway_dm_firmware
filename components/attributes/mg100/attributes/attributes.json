@@ -2620,6 +2620,25 @@
             "x-id": 46
           },
           {
+            "name": "ipv4_addr",
+            "summary": "Internet Protocol Version 4 address",
+            "required": true,
+            "schema": {
+              "maxLength": 15,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-broadcast": true,
+            "x-default": "",
+            "x-example": "xxx.xxx.xxx.xxx",
+            "x-lockable": false,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": false,
+            "x-writable": false,
+            "x-id": 47
+          },
+          {
             "name": "lte_imei",
             "summary": "IMEI",
             "required": true,
@@ -2635,7 +2654,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 47
+            "x-id": 48
           },
           {
             "name": "lte_iccid",
@@ -2653,7 +2672,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 48
+            "x-id": 49
           },
           {
             "name": "lte_imsi",
@@ -2672,7 +2691,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 49
+            "x-id": 50
           },
           {
             "name": "lte_sn",
@@ -2690,7 +2709,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 50
+            "x-id": 51
           },
           {
             "name": "lte_version",
@@ -2708,7 +2727,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 51
+            "x-id": 52
           },
           {
             "name": "lte_network_state",
@@ -2735,7 +2754,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 52
+            "x-id": 53
           },
           {
             "name": "lte_startup_state",
@@ -2761,7 +2780,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 53
+            "x-id": 54
           },
           {
             "name": "lte_init_error",
@@ -2786,7 +2805,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 54
+            "x-id": 55
           },
           {
             "name": "lte_apn",
@@ -2804,7 +2823,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 55
+            "x-id": 56
           },
           {
             "name": "lte_rsrp",
@@ -2821,7 +2840,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 56
+            "x-id": 57
           },
           {
             "name": "lte_sinr",
@@ -2838,7 +2857,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 57
+            "x-id": 58
           },
           {
             "name": "lte_bands",
@@ -2857,7 +2876,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 58
+            "x-id": 59
           },
           {
             "name": "lte_active_bands",
@@ -2875,7 +2894,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 59
+            "x-id": 60
           },
           {
             "name": "lte_operator_index",
@@ -2892,7 +2911,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 60
+            "x-id": 61
           },
           {
             "name": "lte_sleep_state",
@@ -2916,7 +2935,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 61
+            "x-id": 62
           },
           {
             "name": "lte_rat",
@@ -2937,7 +2956,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 62
+            "x-id": 63
           },
           {
             "name": "lte_log_lvl",
@@ -2961,7 +2980,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 63
+            "x-id": 64
           },
           {
             "name": "lte_fup_status",
@@ -2989,7 +3008,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 64
+            "x-id": 65
           }
         ]
       }

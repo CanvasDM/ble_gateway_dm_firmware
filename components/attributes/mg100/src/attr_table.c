@@ -129,6 +129,7 @@ typedef struct ro_attribute {
 	char lwm2m_fup_pkg_name[32 + 1];
 	char lwm2m_fup_pkg_ver[32 + 1];
 	char bluetooth_address[12 + 1];
+	char ipv4_addr[15 + 1];
 	char lte_imei[15 + 1];
 	char lte_iccid[20 + 1];
 	char lte_imsi[15 + 1];
@@ -160,6 +161,7 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lwm2m_fup_pkg_name = "my_firmware",
 	.lwm2m_fup_pkg_ver = "0.0.0",
 	.bluetooth_address = "0",
+	.ipv4_addr = "",
 	.lte_imei = "",
 	.lte_iccid = "",
 	.lte_imsi = "",
@@ -269,24 +271,25 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[44 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[45 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[46 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[47 ] = { RO_ATTRS(lte_imei)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[48 ] = { RO_ATTRS(lte_iccid)                           , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
-	[49 ] = { RO_ATTRS(lte_imsi)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 14        , .max.ux = 15        },
-	[50 ] = { RO_ATTRS(lte_sn)                              , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 14        },
-	[51 ] = { RO_ATTRS(lte_version)                         , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 29        },
-	[52 ] = { RO_ATTRE(lte_network_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[53 ] = { RO_ATTRE(lte_startup_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[54 ] = { RO_ATTRE(lte_init_error)                      , ATTR_TYPE_S8            , 0xa   , av_int8             , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[55 ] = { RO_ATTRS(lte_apn)                             , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 64        },
-	[56 ] = { RO_ATTRX(lte_rsrp)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[57 ] = { RO_ATTRX(lte_sinr)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[58 ] = { RO_ATTRS(lte_bands)                           , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 20        },
-	[59 ] = { RO_ATTRS(lte_active_bands)                    , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
-	[60 ] = { RO_ATTRX(lte_operator_index)                  , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[61 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[62 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[63 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[64 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         }
+	[47 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[48 ] = { RO_ATTRS(lte_imei)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[49 ] = { RO_ATTRS(lte_iccid)                           , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[50 ] = { RO_ATTRS(lte_imsi)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 14        , .max.ux = 15        },
+	[51 ] = { RO_ATTRS(lte_sn)                              , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 14        },
+	[52 ] = { RO_ATTRS(lte_version)                         , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 29        },
+	[53 ] = { RO_ATTRE(lte_network_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[54 ] = { RO_ATTRE(lte_startup_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[55 ] = { RO_ATTRE(lte_init_error)                      , ATTR_TYPE_S8            , 0xa   , av_int8             , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[56 ] = { RO_ATTRS(lte_apn)                             , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 64        },
+	[57 ] = { RO_ATTRX(lte_rsrp)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[58 ] = { RO_ATTRX(lte_sinr)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[59 ] = { RO_ATTRS(lte_bands)                           , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 20        },
+	[60 ] = { RO_ATTRS(lte_active_bands)                    , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[61 ] = { RO_ATTRX(lte_operator_index)                  , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[62 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[63 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[64 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[65 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         }
 };
 /* pyend */
 
