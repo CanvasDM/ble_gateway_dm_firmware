@@ -74,6 +74,9 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 # Enable device management
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/device_management.conf)
 
+# LwM2M Telemetry
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
+
 # Enable memfault
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/memfault.conf)
 set(MEMFAULT_SW_VER ${ver_major}.${ver_minor}.${ver_patch})
