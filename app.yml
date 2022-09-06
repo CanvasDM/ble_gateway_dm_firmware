@@ -5,6 +5,7 @@ info:
   version: 0.0.3
   x-default-baud: 115200
 methods:
+  - $ref: ./../modules/lib/laird_connect/zephyr_lib/components/attributes/os_mgmt_methods.yml
   - $ref: ./../modules/lib/laird_connect/attributes/attributes/attributes_methods.yml
   - $ref: ./../modules/lib/laird_connect/zephyr_lib/components/attributes/lcz_fs_mgmt_methods.yml
   - $ref: ./../modules/lib/laird_connect/zephyr_lib/components/attributes/shell_mgmt_methods.yml
