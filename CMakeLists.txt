@@ -4,6 +4,18 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(lcz_module_dir ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect)
 
+set(b0_DTC_OVERLAY_FILE
+    ${CMAKE_SOURCE_DIR}/boards/${BOARD}.overlay
+)
+
+set(mcuboot_DTC_OVERLAY_FILE
+    ${CMAKE_SOURCE_DIR}/boards/${BOARD}.overlay
+)
+
+set(b0_OVERLAY_CONFIG
+    ${CMAKE_SOURCE_DIR}/config/b0.${BOARD}.conf
+)
+
 set(mcuboot_CONF_FILE
     ${CMAKE_SOURCE_DIR}/config/mcuboot.${BOARD}.conf
 )
@@ -12,23 +24,10 @@ set(PM_STATIC_YML_FILE
     ${lcz_module_dir}/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
 )
 
-set(b0_OVERLAY_CONFIG
-    ${CMAKE_SOURCE_DIR}/config/b0.${BOARD}.conf
-)
-
 if((BOARD STREQUAL mg100) OR(BOARD STREQUAL pinnacle_100_dvk))
     set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/mg100)
-endif()
-
-if((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL bl5340pa_dvk_cpuapp))
+elseif((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL bl5340pa_dvk_cpuapp))
     set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/bl5340_dvk)
-
-    set(b0_DTC_OVERLAY_FILE
-        ${CMAKE_SOURCE_DIR}/boards/bl5340_dvk_cpuapp.overlay
-    )
-    set(mcuboot_DTC_OVERLAY_FILE
-        ${CMAKE_SOURCE_DIR}/boards/bl5340_dvk_cpuapp.overlay
-    )
 endif()
 
 # Generate build ID based on UTC timestamp
