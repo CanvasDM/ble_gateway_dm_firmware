@@ -92,10 +92,6 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble.conf)
 set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)
 set(FWK_APP_MSG_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_msg_codes.h)
 
-# Prepend the additional boards directory but still allow the original Zephyr
-# boards directory to be used with lower priority
-list(PREPEND BOARD_ROOT ${CMAKE_CURRENT_LIST_DIR}/../)
-
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(ble_gateway_dm_firmware)
 
