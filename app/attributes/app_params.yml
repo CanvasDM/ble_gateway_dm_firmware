@@ -12,7 +12,6 @@ attributes:
     x-broadcast: false
     x-default: 0.0.2
     x-example: 0.1.0
-    x-lockable: false
     x-prepare: false
     x-readable: true
     x-savable: false
@@ -27,7 +26,6 @@ attributes:
     x-ctype: string
     x-broadcast: false
     x-default: 0.0.0+0
-    x-lockable: false
     x-prepare: false
     x-readable: true
     x-savable: false
@@ -42,7 +40,6 @@ attributes:
     x-ctype: string
     x-broadcast: false
     x-default: /lfs1/attr_dump.txt
-    x-lockable: false
     x-prepare: false
     x-readable: true
     x-savable: true
@@ -57,7 +54,6 @@ attributes:
     x-ctype: string
     x-broadcast: false
     x-default: /lfs1/enc/attr_load.txt
-    x-lockable: false
     x-prepare: false
     x-readable: true
     x-savable: true
@@ -73,7 +69,6 @@ attributes:
     x-broadcast: false
     x-default: my_board
     x-example: pinnacle_100_dvk
-    x-lockable: false
     x-prepare: false
     x-readable: true
     x-savable: false
@@ -89,7 +84,6 @@ attributes:
     x-ctype: bool
     x-broadcast: true
     x-default: 0
-    x-lockable: true
     x-prepare: false
     x-readable: true
     x-savable: true

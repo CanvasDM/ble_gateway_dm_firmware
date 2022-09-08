@@ -137,6 +137,9 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
 #define ATTR_MAX_INT_SIZE                               4
+#define ATTR_MAX_KEY_NAME_SIZE                          23
+#define ATTR_MAX_VALUE_SIZE                             256
+#define ATTR_MAX_FILE_SIZE                              2822
 
 /* Attribute Max String Lengths */
 #define ATTR_API_VERSION_MAX_STR_SIZE                   12

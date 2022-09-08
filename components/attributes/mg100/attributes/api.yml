@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.0.3
+  version: 0.2.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -1276,9 +1276,8 @@ components:
           type: string
         x-ctype: string
         x-broadcast: false
-        x-default: 0.0.3
+        x-default: 0.2.0
         x-example: 0.1.0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1294,7 +1293,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: 0.0.0+0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1310,7 +1308,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/attr_dump.txt
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1326,7 +1323,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/attr_load.txt
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1343,7 +1339,6 @@ components:
         x-broadcast: false
         x-default: my_board
         x-example: pinnacle_100_dvk
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1361,7 +1356,6 @@ components:
         x-ctype: bool
         x-broadcast: true
         x-default: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1378,7 +1372,6 @@ components:
         x-broadcast: true
         x-default: coap://leshan.eclipseprojects.io:5683
         x-example: coaps://leshan.eclipseprojects.io:5784
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1394,7 +1387,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: my_device
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1417,7 +1409,6 @@ components:
         x-broadcast: true
         x-default: 3
         x-example: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1434,7 +1425,6 @@ components:
         x-broadcast: true
         x-default: my_device
         x-example: my_device
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1452,7 +1442,6 @@ components:
         x-array-size: 16
         x-default: '{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,
           0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f }'
-        x-lockable: true
         x-prepare: false
         x-readable: false
         x-savable: true
@@ -1470,7 +1459,6 @@ components:
         x-broadcast: true
         x-default: 0
         x-example: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1487,7 +1475,6 @@ components:
         x-broadcast: true
         x-default: 1
         x-example: 101
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1505,7 +1492,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: Laird Connectivity
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1521,7 +1507,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: model
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1537,7 +1522,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: serial_number
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1553,7 +1537,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: 0.0.0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1578,7 +1561,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1594,7 +1576,6 @@ components:
         x-ctype: int32_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1610,7 +1591,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: 0.0.0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1626,7 +1606,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: 0.0.0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1650,7 +1629,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 6
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1666,7 +1644,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: my_firmware
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1682,7 +1659,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: 0.0.0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1699,7 +1675,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: coaps://coap-proxy.salticidae.net:5684
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1716,7 +1691,6 @@ components:
         x-broadcast: false
         x-default: '0'
         x-example: '010203040506'
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -1732,7 +1706,6 @@ components:
         x-ctype: uint16_t
         x-broadcast: true
         x-default: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1752,7 +1725,6 @@ components:
         x-ctype: uint16_t
         x-broadcast: true
         x-default: 1
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1768,7 +1740,6 @@ components:
         x-ctype: uint16_t
         x-broadcast: true
         x-default: 300
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1784,7 +1755,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/factory_load.txt
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1800,7 +1770,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1820,7 +1789,6 @@ components:
         x-broadcast: true
         x-default: coap://leshan.eclipseprojects.io:5683
         x-example: coaps://leshan.eclipseprojects.io:5784
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1836,7 +1804,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: endpoint
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1859,7 +1826,6 @@ components:
         x-broadcast: true
         x-default: 3
         x-example: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1876,7 +1842,6 @@ components:
         x-broadcast: true
         x-default: my_device
         x-example: my_device
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1894,7 +1859,6 @@ components:
         x-array-size: 16
         x-default: '{ 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,
           0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f }'
-        x-lockable: true
         x-prepare: false
         x-readable: false
         x-savable: true
@@ -1912,7 +1876,6 @@ components:
         x-broadcast: true
         x-default: 2
         x-example: 101
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1930,7 +1893,6 @@ components:
         x-ctype: bool
         x-broadcast: true
         x-default: 0
-        x-lockable: true
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1946,14 +1908,12 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: zephyr
-        x-lockable: true
         x-prepare: false
         x-readable: false
         x-savable: true
         x-writable: true
         x-hide-in-show: true
         x-show-on-change: false
-        x-hide-in-dump: true
         summary: Password to login and use the shell
         x-id: 38
       - name: tel_trust_path
@@ -1965,7 +1925,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/tel/trust
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1981,7 +1940,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/tel/key
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -1997,7 +1955,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/dm/trust
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2013,7 +1970,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/dm/key
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2029,7 +1985,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/fs/trust
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2045,7 +2000,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/fs/key
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2061,7 +2015,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/p2p/trust
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2077,7 +2030,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: /lfs1/enc/p2p/key
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2094,7 +2046,6 @@ components:
         x-broadcast: true
         x-default: ''
         x-example: xxx.xxx.xxx.xxx
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2109,7 +2060,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2124,7 +2074,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2140,7 +2089,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2155,7 +2103,6 @@ components:
         x-ctype: string
         x-broadcast: false
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2170,7 +2117,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2193,7 +2139,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2215,7 +2160,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2236,7 +2180,6 @@ components:
         x-ctype: int8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2251,7 +2194,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2265,7 +2207,6 @@ components:
         x-ctype: int16_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2279,7 +2220,6 @@ components:
         x-ctype: int16_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2295,7 +2235,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2310,7 +2249,6 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2324,7 +2262,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 255
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2344,7 +2281,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2361,7 +2297,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
@@ -2381,7 +2316,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 2
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: true
@@ -2405,7 +2339,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-lockable: false
         x-prepare: false
         x-readable: true
         x-savable: false
