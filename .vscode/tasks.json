@@ -206,7 +206,7 @@
 		{
 			"label": "mcumgr shell cmd",
 			"type": "shell",
-			"command": "mcumgr -t 5 -r 2 ${input:mcumgr_cnx} shell exec ${input:shell_cmd}",
+			"command": "mcumgr -t 30 ${input:mcumgr_cnx} shell exec ${input:shell_cmd}",
 			"problemMatcher": []
 		}
 	],

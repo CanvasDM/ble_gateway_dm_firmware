@@ -18,4 +18,4 @@ pki keygen fs
 # Clear the APN to let SIM cards do the work of attaching to the network
 attr set lte_apn ""
 # Set a global band config to cover all regions and reduce SKUs
-attr set lte_bands 0000000000000809181f
+attr set lte_bands 0000000000000809181F
