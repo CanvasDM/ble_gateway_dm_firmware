@@ -108,6 +108,12 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "menuconfig bl5340 hci_rpmsg",
+			"type": "shell",
+			"command": "west build -t menuconfig -b bl5340_dvk_cpunet -d ${workspaceRoot}/build/bl5340_dvk_cpuapp/hci_rpmsg",
+			"problemMatcher": []
+		},
+		{
 			"label": "menuconfig b0",
 			"type": "shell",
 			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}/b0",

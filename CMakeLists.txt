@@ -28,6 +28,7 @@ if((BOARD STREQUAL mg100) OR(BOARD STREQUAL pinnacle_100_dvk))
     set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/mg100)
 elseif((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL bl5340pa_dvk_cpuapp))
     set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/bl5340_dvk)
+    set(hci_rpmsg_OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hci_rpmsg.bl5340_dvk_cpunet.conf)
 endif()
 
 # Generate build ID based on UTC timestamp
