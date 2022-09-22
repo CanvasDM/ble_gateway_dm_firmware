@@ -1,7 +1,7 @@
 #!/zsh
 
 # Setup DM connection basics
-attr set lwm2m_server_url coaps://lwm2m-bootstrap.stage.edgeiq.io:5684
+attr set lwm2m_server_url coaps://lwm2m-bootstrap.edgeiq.io:5684
 attr set lwm2m_security 0
 attr set lwm2m_bootstrap 1
 
