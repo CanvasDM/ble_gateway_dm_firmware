@@ -2268,6 +2268,60 @@
             "x-id": 30
           },
           {
+            "name": "smp_auth_req",
+            "required": true,
+            "schema": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "summary": "If true, SMP authentication will be required before accessing any SMP services. If false, all SMP services are available regardless of authentication status.",
+            "x-id": 31
+          },
+          {
+            "name": "gw_smp_auth_req",
+            "required": true,
+            "schema": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "summary": "If true, the gateway will require peripherals to authenticate before sending SMP messages",
+            "x-id": 32
+          },
+          {
+            "name": "smp_auth_timeout",
+            "required": true,
+            "schema": {
+              "maximum": 86400,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 300,
+            "x-prepare": false,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "summary": "SMP authentication will time out after a lapse in SMP commands lasting this number of seconds.",
+            "x-id": 33
+          },
+          {
             "name": "lwm2m_telem_server_url",
             "required": true,
             "schema": {
@@ -2285,7 +2339,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "Server URL to connect to",
-            "x-id": 31
+            "x-id": 34
           },
           {
             "name": "lwm2m_telem_endpoint",
@@ -2303,7 +2357,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "Endpoint name to identify the device",
-            "x-id": 32
+            "x-id": 35
           },
           {
             "name": "lwm2m_telem_security",
@@ -2329,7 +2383,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "LwM2M Security mode",
-            "x-id": 33
+            "x-id": 36
           },
           {
             "name": "lwm2m_telem_psk_id",
@@ -2348,7 +2402,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "PSK ID",
-            "x-id": 34
+            "x-id": 37
           },
           {
             "name": "lwm2m_telem_psk",
@@ -2368,7 +2422,7 @@
             "x-writable": true,
             "x-obscure-in-show": true,
             "summary": "Pre-shared key",
-            "x-id": 35
+            "x-id": 38
           },
           {
             "name": "lwm2m_telem_short_id",
@@ -2387,7 +2441,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "short_server_id This identifier uniquely identifies each LwM2M Server configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server Resource has a value of 'false'.",
-            "x-id": 36
+            "x-id": 39
           },
           {
             "name": "lwm2m_telem_enable",
@@ -2405,7 +2459,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "0 - disable telemetry connection, 1 - enable",
-            "x-id": 37
+            "x-id": 40
           },
           {
             "name": "shell_password",
@@ -2425,7 +2479,7 @@
             "x-hide-in-show": true,
             "x-show-on-change": false,
             "summary": "Password to login and use the shell",
-            "x-id": 38
+            "x-id": 41
           },
           {
             "name": "tel_trust_path",
@@ -2443,7 +2497,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for telemetry authentication.",
-            "x-id": 39
+            "x-id": 42
           },
           {
             "name": "tel_key_path",
@@ -2461,7 +2515,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for telemetry authentication.",
-            "x-id": 40
+            "x-id": 43
           },
           {
             "name": "dm_trust_path",
@@ -2479,7 +2533,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for DM authentication.",
-            "x-id": 41
+            "x-id": 44
           },
           {
             "name": "dm_key_path",
@@ -2497,7 +2551,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for DM authentication.",
-            "x-id": 42
+            "x-id": 45
           },
           {
             "name": "fs_trust_path",
@@ -2515,7 +2569,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for firmware and file service authentication.",
-            "x-id": 43
+            "x-id": 46
           },
           {
             "name": "fs_key_path",
@@ -2533,7 +2587,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for firmware and file service authentication.",
-            "x-id": 44
+            "x-id": 47
           },
           {
             "name": "p2p_trust_path",
@@ -2551,7 +2605,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for peer-to-peer authentication.",
-            "x-id": 45
+            "x-id": 48
           },
           {
             "name": "p2p_key_path",
@@ -2569,7 +2623,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for peer-to-peer authentication.",
-            "x-id": 46
+            "x-id": 49
           },
           {
             "name": "ipv4_addr",
@@ -2587,7 +2641,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 47
+            "x-id": 50
           },
           {
             "name": "lte_imei",
@@ -2604,7 +2658,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 48
+            "x-id": 51
           },
           {
             "name": "lte_iccid",
@@ -2621,7 +2675,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 49
+            "x-id": 52
           },
           {
             "name": "lte_imsi",
@@ -2639,7 +2693,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 50
+            "x-id": 53
           },
           {
             "name": "lte_sn",
@@ -2656,7 +2710,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 51
+            "x-id": 54
           },
           {
             "name": "lte_version",
@@ -2673,7 +2727,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 52
+            "x-id": 55
           },
           {
             "name": "lte_network_state",
@@ -2699,7 +2753,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 53
+            "x-id": 56
           },
           {
             "name": "lte_startup_state",
@@ -2724,7 +2778,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 54
+            "x-id": 57
           },
           {
             "name": "lte_init_error",
@@ -2748,7 +2802,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 55
+            "x-id": 58
           },
           {
             "name": "lte_apn",
@@ -2765,7 +2819,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 56
+            "x-id": 59
           },
           {
             "name": "lte_rsrp",
@@ -2781,7 +2835,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 57
+            "x-id": 60
           },
           {
             "name": "lte_sinr",
@@ -2797,7 +2851,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 58
+            "x-id": 61
           },
           {
             "name": "lte_bands",
@@ -2815,7 +2869,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 59
+            "x-id": 62
           },
           {
             "name": "lte_active_bands",
@@ -2832,7 +2886,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 60
+            "x-id": 63
           },
           {
             "name": "lte_operator_index",
@@ -2848,7 +2902,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 61
+            "x-id": 64
           },
           {
             "name": "lte_sleep_state",
@@ -2871,7 +2925,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 62
+            "x-id": 65
           },
           {
             "name": "lte_rat",
@@ -2891,7 +2945,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": true,
-            "x-id": 63
+            "x-id": 66
           },
           {
             "name": "lte_log_lvl",
@@ -2914,7 +2968,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 64
+            "x-id": 67
           },
           {
             "name": "lte_fup_status",
@@ -2941,7 +2995,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 65
+            "x-id": 68
           }
         ]
       }
