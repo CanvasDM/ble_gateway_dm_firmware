@@ -2107,12 +2107,8 @@ components:
           maxLength: 15
           type: string
         x-ctype: string
-        x-broadcast: false
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 51
       - name: lte_iccid
         summary: SIM ICCID
@@ -2121,12 +2117,8 @@ components:
           maxLength: 20
           type: string
         x-ctype: string
-        x-broadcast: false
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 52
       - name: lte_imsi
         summary: International Mobile Subscriber Identity
@@ -2136,12 +2128,8 @@ components:
           maxLength: 15
           type: string
         x-ctype: string
-        x-broadcast: false
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 53
       - name: lte_sn
         summary: LTE serial number
@@ -2150,12 +2138,8 @@ components:
           maxLength: 14
           type: string
         x-ctype: string
-        x-broadcast: false
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 54
       - name: lte_version
         summary: Firmware version of the LTE modem
@@ -2166,10 +2150,7 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 55
       - name: lte_network_state
         summary: Network state
@@ -2188,10 +2169,7 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 56
       - name: lte_startup_state
         summary: Modem startup state
@@ -2209,10 +2187,7 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 57
       - name: lte_init_error
         summary: Initialization status of LTE driver
@@ -2229,10 +2204,7 @@ components:
         x-ctype: int8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 58
       - name: lte_apn
         summary: The LTE network access point name
@@ -2243,9 +2215,7 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
         x-writable: true
         x-id: 59
       - name: lte_rsrp
@@ -2256,10 +2226,7 @@ components:
         x-ctype: int16_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 60
       - name: lte_sinr
         summary: Signal to Interference plus Noise Ratio (SINR) in dB
@@ -2269,10 +2236,7 @@ components:
         x-ctype: int16_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 61
       - name: lte_bands
         summary: Radio bands enabled in the LTE modem
@@ -2284,9 +2248,7 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
         x-writable: true
         x-id: 62
       - name: lte_active_bands
@@ -2298,10 +2260,7 @@ components:
         x-ctype: string
         x-broadcast: true
         x-default: ''
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 63
       - name: lte_operator_index
         summary: Operator index
@@ -2311,10 +2270,7 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 255
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 64
       - name: lte_sleep_state
         summary: Sleep state of the driver
@@ -2330,10 +2286,7 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 65
       - name: lte_rat
         summary: Radio Access Technology
@@ -2346,9 +2299,7 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
         x-writable: true
         x-id: 66
       - name: lte_log_lvl
@@ -2365,7 +2316,6 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 2
-        x-prepare: false
         x-readable: true
         x-savable: true
         x-writable: true
@@ -2388,8 +2338,55 @@ components:
         x-ctype: uint8_t
         x-broadcast: true
         x-default: 0
-        x-prepare: false
         x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 68
+      - name: lte_udp_tx
+        summary: Number of UDP TX payload bytes
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-broadcast: true
+        x-default: 0
+        x-readable: true
+        x-id: 69
+      - name: lte_udp_rx
+        summary: Number of UDP RX payload bytes
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-broadcast: true
+        x-default: 0
+        x-readable: true
+        x-id: 70
+      - name: lte_tcp_tx
+        summary: Number of TCP TX payload bytes
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-broadcast: true
+        x-default: 0
+        x-readable: true
+        x-id: 71
+      - name: lte_tcp_rx
+        summary: Number of TCP RX payload bytes
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-broadcast: true
+        x-default: 0
+        x-readable: true
+        x-id: 72
+      - name: lte_data_total
+        summary: Total number of socket (UDP and TCP) payload bytes
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-broadcast: true
+        x-default: 0
+        x-readable: true
+        x-id: 73

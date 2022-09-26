@@ -153,6 +153,11 @@ typedef struct ro_attribute {
 	enum lte_sleep_state lte_sleep_state;
 	enum lte_rat lte_rat;
 	enum lte_fup_status lte_fup_status;
+	uint32_t lte_udp_tx;
+	uint32_t lte_udp_rx;
+	uint32_t lte_tcp_tx;
+	uint32_t lte_tcp_rx;
+	uint32_t lte_data_total;
 } ro_attribute_t;
 /* pyend */
 
@@ -184,7 +189,12 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lte_operator_index = 255,
 	.lte_sleep_state = 0,
 	.lte_rat = 0,
-	.lte_fup_status = 0
+	.lte_fup_status = 0,
+	.lte_udp_tx = 0,
+	.lte_udp_rx = 0,
+	.lte_tcp_tx = 0,
+	.lte_tcp_rx = 0,
+	.lte_data_total = 0
 };
 /* pyend */
 
@@ -289,7 +299,12 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[65 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[66 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[67 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[68 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         }
+	[68 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[69 ] = { RO_ATTRX(lte_udp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[70 ] = { RO_ATTRX(lte_udp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[71 ] = { RO_ATTRX(lte_tcp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[72 ] = { RO_ATTRX(lte_tcp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[73 ] = { RO_ATTRX(lte_data_total)                      , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         }
 };
 /* pyend */
 

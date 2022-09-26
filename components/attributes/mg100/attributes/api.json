@@ -2652,12 +2652,8 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-broadcast": false,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 51
           },
           {
@@ -2669,12 +2665,8 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-broadcast": false,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 52
           },
           {
@@ -2687,12 +2679,8 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-broadcast": false,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 53
           },
           {
@@ -2704,12 +2692,8 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-broadcast": false,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 54
           },
           {
@@ -2723,10 +2707,7 @@
             "x-ctype": "string",
             "x-broadcast": true,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 55
           },
           {
@@ -2749,10 +2730,7 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 56
           },
           {
@@ -2774,10 +2752,7 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 57
           },
           {
@@ -2798,10 +2773,7 @@
             "x-ctype": "int8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 58
           },
           {
@@ -2815,9 +2787,7 @@
             "x-ctype": "string",
             "x-broadcast": true,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
             "x-writable": true,
             "x-id": 59
           },
@@ -2831,10 +2801,7 @@
             "x-ctype": "int16_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 60
           },
           {
@@ -2847,10 +2814,7 @@
             "x-ctype": "int16_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 61
           },
           {
@@ -2865,9 +2829,7 @@
             "x-ctype": "string",
             "x-broadcast": true,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
             "x-writable": true,
             "x-id": 62
           },
@@ -2882,10 +2844,7 @@
             "x-ctype": "string",
             "x-broadcast": true,
             "x-default": "",
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 63
           },
           {
@@ -2898,10 +2857,7 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 255,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 64
           },
           {
@@ -2921,10 +2877,7 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 65
           },
           {
@@ -2941,9 +2894,7 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
             "x-writable": true,
             "x-id": 66
           },
@@ -2964,7 +2915,6 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 2,
-            "x-prepare": false,
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
@@ -2991,11 +2941,73 @@
             "x-ctype": "uint8_t",
             "x-broadcast": true,
             "x-default": 0,
-            "x-prepare": false,
             "x-readable": true,
-            "x-savable": false,
-            "x-writable": false,
             "x-id": 68
+          },
+          {
+            "name": "lte_udp_tx",
+            "summary": "Number of UDP TX payload bytes",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-readable": true,
+            "x-id": 69
+          },
+          {
+            "name": "lte_udp_rx",
+            "summary": "Number of UDP RX payload bytes",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-readable": true,
+            "x-id": 70
+          },
+          {
+            "name": "lte_tcp_tx",
+            "summary": "Number of TCP TX payload bytes",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-readable": true,
+            "x-id": 71
+          },
+          {
+            "name": "lte_tcp_rx",
+            "summary": "Number of TCP RX payload bytes",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-readable": true,
+            "x-id": 72
+          },
+          {
+            "name": "lte_data_total",
+            "summary": "Total number of socket (UDP and TCP) payload bytes",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-broadcast": true,
+            "x-default": 0,
+            "x-readable": true,
+            "x-id": 73
           }
         ]
       }

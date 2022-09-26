@@ -217,11 +217,16 @@ BUILD_ASSERT(sizeof(enum lte_fup_status) == ATTR_SIZE_U8);
 #define ATTR_ID_lte_rat                               66
 #define ATTR_ID_lte_log_lvl                           67
 #define ATTR_ID_lte_fup_status                        68
+#define ATTR_ID_lte_udp_tx                            69
+#define ATTR_ID_lte_udp_rx                            70
+#define ATTR_ID_lte_tcp_tx                            71
+#define ATTR_ID_lte_tcp_rx                            72
+#define ATTR_ID_lte_data_total                        73
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 69
-#define ATTR_TABLE_MAX_ID                               68
+#define ATTR_TABLE_SIZE                                 74
+#define ATTR_TABLE_MAX_ID                               73
 #define ATTR_TABLE_WRITABLE_COUNT                       46
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
@@ -229,7 +234,8 @@ BUILD_ASSERT(sizeof(enum lte_fup_status) == ATTR_SIZE_U8);
 #define ATTR_MAX_INT_SIZE                               4
 #define ATTR_MAX_KEY_NAME_SIZE                          23
 #define ATTR_MAX_VALUE_SIZE                             256
-#define ATTR_MAX_FILE_SIZE                              3327
+#define ATTR_MAX_FILE_SIZE                              3441
+#define ATTR_ENABLE_FPU_CHECK                           0
 
 /* Attribute Max String Lengths */
 #define ATTR_API_VERSION_MAX_STR_SIZE                   12

@@ -11,7 +11,7 @@ The BLE gateway and the BLE end nodes can be managed via LwM2M.
 
 ## Generating attributes
 
-[app.yml](app.yml) is the base input file to generate all attributes for the app and all of its components.
+[app.yml](app.yml) is the base input file to generate the API (methods and attributes) for the app and all of its components.
 
 When updating attributes use the following command to regenerate code:
 
@@ -21,8 +21,8 @@ When updating attributes use the following command to regenerate code:
 # From the ble_gateway_dm_firmware directory
 
 # Linux and macOS
-python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py ${PWD} {project}
+python3 ../modules/lib/laird_connect/attributes/generator/api.py ${PWD} {project}
 
 # Windows
-python3 ../modules/lib/laird_connect/attributes/generator/attribute_generator.py %CD% {project}
+python3 ../modules/lib/laird_connect/attributes/generator/api.py %CD% {project}
 ```
