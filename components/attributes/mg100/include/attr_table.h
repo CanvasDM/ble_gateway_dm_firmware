@@ -13,12 +13,11 @@
 /**************************************************************************************************/
 /* Includes                                                                                       */
 /**************************************************************************************************/
-/* pystart - headers */
 #include <zephyr.h>
-#include "attr_defs.h"
-/* pyend */
 #include <zephyr/types.h>
 #include <stddef.h>
+
+#include "attr_defs.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -148,85 +147,86 @@ BUILD_ASSERT(sizeof(enum lte_fup_status) == ATTR_SIZE_U8);
 /* Global Data Definitions                                                                        */
 /**************************************************************************************************/
 /* pystart - attribute ids */
-#define ATTR_ID_api_version                           0
-#define ATTR_ID_firmware_version                      1
-#define ATTR_ID_dump_path                             2
-#define ATTR_ID_load_path                             3
-#define ATTR_ID_board                                 4
-#define ATTR_ID_log_on_boot                           5
-#define ATTR_ID_lwm2m_server_url                      6
-#define ATTR_ID_lwm2m_endpoint                        7
-#define ATTR_ID_lwm2m_security                        8
-#define ATTR_ID_lwm2m_psk_id                          9
-#define ATTR_ID_lwm2m_psk                             10
-#define ATTR_ID_lwm2m_bootstrap                       11
-#define ATTR_ID_lwm2m_short_id                        12
-#define ATTR_ID_lwm2m_mfg                             13
-#define ATTR_ID_lwm2m_mn                              14
-#define ATTR_ID_lwm2m_sn                              15
-#define ATTR_ID_lwm2m_fw_ver                          16
-#define ATTR_ID_lwm2m_pwr_src                         17
-#define ATTR_ID_lwm2m_pwr_src_volt                    18
-#define ATTR_ID_lwm2m_sw_ver                          19
-#define ATTR_ID_lwm2m_hw_ver                          20
-#define ATTR_ID_lwm2m_batt_stat                       21
-#define ATTR_ID_lwm2m_fup_pkg_name                    22
-#define ATTR_ID_lwm2m_fup_pkg_ver                     23
-#define ATTR_ID_lwm2m_fup_proxy_srv                   24
-#define ATTR_ID_bluetooth_address                     25
-#define ATTR_ID_dm_cnx_delay                          26
-#define ATTR_ID_dm_cnx_delay_min                      27
-#define ATTR_ID_dm_cnx_delay_max                      28
-#define ATTR_ID_factory_load_path                     29
-#define ATTR_ID_device_id                             30
-#define ATTR_ID_smp_auth_req                          31
-#define ATTR_ID_gw_smp_auth_req                       32
-#define ATTR_ID_smp_auth_timeout                      33
-#define ATTR_ID_lwm2m_telem_server_url                34
-#define ATTR_ID_lwm2m_telem_endpoint                  35
-#define ATTR_ID_lwm2m_telem_security                  36
-#define ATTR_ID_lwm2m_telem_psk_id                    37
-#define ATTR_ID_lwm2m_telem_psk                       38
-#define ATTR_ID_lwm2m_telem_short_id                  39
-#define ATTR_ID_lwm2m_telem_enable                    40
-#define ATTR_ID_shell_password                        41
-#define ATTR_ID_tel_trust_path                        42
-#define ATTR_ID_tel_key_path                          43
-#define ATTR_ID_dm_trust_path                         44
-#define ATTR_ID_dm_key_path                           45
-#define ATTR_ID_fs_trust_path                         46
-#define ATTR_ID_fs_key_path                           47
-#define ATTR_ID_p2p_trust_path                        48
-#define ATTR_ID_p2p_key_path                          49
-#define ATTR_ID_ipv4_addr                             50
-#define ATTR_ID_lte_imei                              51
-#define ATTR_ID_lte_iccid                             52
-#define ATTR_ID_lte_imsi                              53
-#define ATTR_ID_lte_sn                                54
-#define ATTR_ID_lte_version                           55
-#define ATTR_ID_lte_network_state                     56
-#define ATTR_ID_lte_startup_state                     57
-#define ATTR_ID_lte_init_error                        58
-#define ATTR_ID_lte_apn                               59
-#define ATTR_ID_lte_rsrp                              60
-#define ATTR_ID_lte_sinr                              61
-#define ATTR_ID_lte_bands                             62
-#define ATTR_ID_lte_active_bands                      63
-#define ATTR_ID_lte_operator_index                    64
-#define ATTR_ID_lte_sleep_state                       65
-#define ATTR_ID_lte_rat                               66
-#define ATTR_ID_lte_log_lvl                           67
-#define ATTR_ID_lte_fup_status                        68
-#define ATTR_ID_lte_udp_tx                            69
-#define ATTR_ID_lte_udp_rx                            70
-#define ATTR_ID_lte_tcp_tx                            71
-#define ATTR_ID_lte_tcp_rx                            72
-#define ATTR_ID_lte_data_total                        73
+#define ATTR_ID_reserved0                             0
+#define ATTR_ID_api_version                           1
+#define ATTR_ID_firmware_version                      2
+#define ATTR_ID_dump_path                             3
+#define ATTR_ID_load_path                             4
+#define ATTR_ID_board                                 5
+#define ATTR_ID_log_on_boot                           6
+#define ATTR_ID_lwm2m_server_url                      7
+#define ATTR_ID_lwm2m_endpoint                        8
+#define ATTR_ID_lwm2m_security                        9
+#define ATTR_ID_lwm2m_psk_id                          10
+#define ATTR_ID_lwm2m_psk                             11
+#define ATTR_ID_lwm2m_bootstrap                       12
+#define ATTR_ID_lwm2m_short_id                        13
+#define ATTR_ID_lwm2m_mfg                             14
+#define ATTR_ID_lwm2m_mn                              15
+#define ATTR_ID_lwm2m_sn                              16
+#define ATTR_ID_lwm2m_fw_ver                          17
+#define ATTR_ID_lwm2m_pwr_src                         18
+#define ATTR_ID_lwm2m_pwr_src_volt                    19
+#define ATTR_ID_lwm2m_sw_ver                          20
+#define ATTR_ID_lwm2m_hw_ver                          21
+#define ATTR_ID_lwm2m_batt_stat                       22
+#define ATTR_ID_lwm2m_fup_pkg_name                    23
+#define ATTR_ID_lwm2m_fup_pkg_ver                     24
+#define ATTR_ID_lwm2m_fup_proxy_srv                   25
+#define ATTR_ID_bluetooth_address                     26
+#define ATTR_ID_dm_cnx_delay                          27
+#define ATTR_ID_dm_cnx_delay_min                      28
+#define ATTR_ID_dm_cnx_delay_max                      29
+#define ATTR_ID_factory_load_path                     30
+#define ATTR_ID_device_id                             31
+#define ATTR_ID_smp_auth_req                          32
+#define ATTR_ID_gw_smp_auth_req                       33
+#define ATTR_ID_smp_auth_timeout                      34
+#define ATTR_ID_lwm2m_telem_server_url                35
+#define ATTR_ID_lwm2m_telem_endpoint                  36
+#define ATTR_ID_lwm2m_telem_security                  37
+#define ATTR_ID_lwm2m_telem_psk_id                    38
+#define ATTR_ID_lwm2m_telem_psk                       39
+#define ATTR_ID_lwm2m_telem_short_id                  40
+#define ATTR_ID_lwm2m_telem_enable                    41
+#define ATTR_ID_shell_password                        42
+#define ATTR_ID_tel_trust_path                        43
+#define ATTR_ID_tel_key_path                          44
+#define ATTR_ID_dm_trust_path                         45
+#define ATTR_ID_dm_key_path                           46
+#define ATTR_ID_fs_trust_path                         47
+#define ATTR_ID_fs_key_path                           48
+#define ATTR_ID_p2p_trust_path                        49
+#define ATTR_ID_p2p_key_path                          50
+#define ATTR_ID_ipv4_addr                             51
+#define ATTR_ID_lte_imei                              52
+#define ATTR_ID_lte_iccid                             53
+#define ATTR_ID_lte_imsi                              54
+#define ATTR_ID_lte_sn                                55
+#define ATTR_ID_lte_version                           56
+#define ATTR_ID_lte_network_state                     57
+#define ATTR_ID_lte_startup_state                     58
+#define ATTR_ID_lte_init_error                        59
+#define ATTR_ID_lte_apn                               60
+#define ATTR_ID_lte_rsrp                              61
+#define ATTR_ID_lte_sinr                              62
+#define ATTR_ID_lte_bands                             63
+#define ATTR_ID_lte_active_bands                      64
+#define ATTR_ID_lte_operator_index                    65
+#define ATTR_ID_lte_sleep_state                       66
+#define ATTR_ID_lte_rat                               67
+#define ATTR_ID_lte_log_lvl                           68
+#define ATTR_ID_lte_fup_status                        69
+#define ATTR_ID_lte_udp_tx                            70
+#define ATTR_ID_lte_udp_rx                            71
+#define ATTR_ID_lte_tcp_tx                            72
+#define ATTR_ID_lte_tcp_rx                            73
+#define ATTR_ID_lte_data_total                        74
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 74
-#define ATTR_TABLE_MAX_ID                               73
+#define ATTR_TABLE_SIZE                                 75
+#define ATTR_TABLE_MAX_ID                               74
 #define ATTR_TABLE_WRITABLE_COUNT                       46
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
@@ -234,7 +234,7 @@ BUILD_ASSERT(sizeof(enum lte_fup_status) == ATTR_SIZE_U8);
 #define ATTR_MAX_INT_SIZE                               4
 #define ATTR_MAX_KEY_NAME_SIZE                          23
 #define ATTR_MAX_VALUE_SIZE                             256
-#define ATTR_MAX_FILE_SIZE                              3441
+#define ATTR_MAX_FILE_SIZE                              3462
 #define ATTR_ENABLE_FPU_CHECK                           0
 
 /* Attribute Max String Lengths */

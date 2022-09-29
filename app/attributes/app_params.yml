@@ -2,6 +2,13 @@
 info:
   title: ble_gateway_dm_firmware_attributes
 attributes:
+  - name: reserved0
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-default: 0
+    summary: Required by attribute system
   - name: api_version
     required: true
     schema:
@@ -9,13 +16,9 @@ attributes:
       minLength: 6
       type: string
     x-ctype: string
-    x-broadcast: false
-    x-default: 0.0.2
+    x-default: 0.0.0
     x-example: 0.1.0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
     summary: The API version that the firmware supports
   - name: firmware_version
     required: true
@@ -24,12 +27,8 @@ attributes:
       minLength: 5
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: 0.0.0+0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
     summary: "Firmware Version. Format = Major.Minor.Fix+build"
   - name: dump_path
     required: true
@@ -38,9 +37,7 @@ attributes:
       minLength: 1
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: /lfs1/attr_dump.txt
-    x-prepare: false
     x-readable: true
     x-savable: true
     x-writable: true
@@ -52,9 +49,7 @@ attributes:
       minLength: 1
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: /lfs1/enc/attr_load.txt
-    x-prepare: false
     x-readable: true
     x-savable: true
     x-writable: true
@@ -66,13 +61,9 @@ attributes:
       minLength: 1
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: my_board
     x-example: pinnacle_100_dvk
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
     summary: "Zephyr board the firmware is built for."
   - name: log_on_boot
     description: "When set to false, logging output will be disabled when the firmware starts."
@@ -84,7 +75,6 @@ attributes:
     x-ctype: bool
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
     x-savable: true
     x-writable: true
