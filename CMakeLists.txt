@@ -75,8 +75,15 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 # Enable device management
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/device_management.conf)
 
-# LwM2M Telemetry
-list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
+if(TELEMETRY STREQUAL lwm2m)
+    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
+    message("Configured for LwM2M Telemetry")
+elseif(TELEMETRY STREQUAL mqtt)
+    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/mqtt_telemetry.conf)
+    message("Configured for MQTT Telemetry")
+else()
+    message("Configured without Telemetry")
+endif()
 
 # Enable memfault
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/memfault.conf)
