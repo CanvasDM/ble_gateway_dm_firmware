@@ -20,6 +20,11 @@
 			block-cycles = <512>;
 		};
 	};
+
+	aliases {
+		mcuboot-button0 = &button1;
+		mcuboot-led0 = &led2;
+	};
 };
 
 &mx25r64 {
