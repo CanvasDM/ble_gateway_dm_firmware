@@ -4,6 +4,15 @@ cmake_minimum_required(VERSION 3.20.0)
 
 set(lcz_module_dir ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect)
 
+# Set model number based on board
+if(BOARD STREQUAL mg100)
+    set(MODEL_NAME mg100)
+elseif(BOARD STREQUAL pinnacle_100_dvk)
+    set(MODEL_NAME p100)
+elseif(BOARD STREQUAL bl5340_dvk_cpuapp)
+    set(MODEL_NAME bl5340)
+endif()
+
 set(b0_DTC_OVERLAY_FILE
     ${CMAKE_SOURCE_DIR}/boards/${BOARD}.overlay
 )
@@ -24,10 +33,7 @@ set(PM_STATIC_YML_FILE
     ${lcz_module_dir}/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
 )
 
-if((BOARD STREQUAL mg100) OR(BOARD STREQUAL pinnacle_100_dvk))
-    set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/mg100)
-elseif((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL bl5340pa_dvk_cpuapp))
-    set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/bl5340_dvk)
+if(BOARD STREQUAL bl5340_dvk_cpuapp)
     set(hci_rpmsg_OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hci_rpmsg.bl5340_dvk_cpunet.conf)
 endif()
 
@@ -72,18 +78,11 @@ list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hardware_key.conf)
 # Enable networking support
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/networking.conf)
 
+# Enable BLE
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble.conf)
+
 # Enable device management
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/device_management.conf)
-
-if(TELEMETRY STREQUAL lwm2m)
-    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
-    message("Configured for LwM2M Telemetry")
-elseif(TELEMETRY STREQUAL mqtt)
-    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/mqtt_telemetry.conf)
-    message("Configured for MQTT Telemetry")
-else()
-    message("Configured without Telemetry")
-endif()
 
 # Enable memfault
 list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/memfault.conf)
@@ -95,8 +94,20 @@ set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
 # No need to append to OVERLAY_CONFIG
 configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
 
-# Enable BLE
-list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble.conf)
+# App configuration
+if(APP_TYPE STREQUAL lwm2m)
+    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
+    message("Device Management with LwM2M Telemetry")
+elseif(APP_TYPE STREQUAL mqtt)
+    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/mqtt_telemetry.conf)
+    message("Device Management with MQTT Telemetry")
+elseif(APP_TYPE STREQUAL none)
+    message("Device Management without Telemetry")
+else()
+    message(FATAL_ERROR "Unknown app type ${APP_TYPE}")
+endif()
+set(API_NAME ${MODEL_NAME}_${APP_TYPE})
+set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/${API_NAME})
 
 # Add framework ID and msgcode files prior to Zephyr package init
 set(FWK_APP_ID_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_ids.h)
@@ -105,10 +116,26 @@ set(FWK_APP_MSG_FILE_LIST ${CMAKE_SOURCE_DIR}/src/framework_config/fwk_msg_codes
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 project(ble_gateway_dm_firmware)
 
+# Build the API
+execute_process(
+    COMMAND
+    ${PYTHON_EXECUTABLE}
+    ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect/attributes/generator/api.py
+    ${CMAKE_SOURCE_DIR}
+    ${API_NAME}
+    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    RESULT_VARIABLE api_result
+)
+
+if(NOT "${api_result}" STREQUAL 0)
+    message(FATAL_ERROR "Failed to build API")
+endif()
+
+# Include Memfault configs
 if(CONFIG_LCZ_MEMFAULT)
     if((BOARD STREQUAL mg100) OR(BOARD STREQUAL pinnacle_100_dvk))
         zephyr_include_directories(${CMAKE_SOURCE_DIR}/memfault/mg100)
-    elseif((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL bl5340pa_dvk_cpuapp))
+    elseif(BOARD STREQUAL bl5340_dvk_cpuapp)
         zephyr_include_directories(${CMAKE_SOURCE_DIR}/memfault/bl5340)
     endif()
 endif()

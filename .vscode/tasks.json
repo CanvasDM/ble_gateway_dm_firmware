@@ -25,7 +25,7 @@
 			// Use this task to build an initial firmware image with custom private/public keys
 			"label": "build with custom keys",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} -DCONFIG_SB_PUBLIC_KEY_FILES=\\\"${workspaceRoot}/${input:public_keys}\\\" '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
+			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} -DCONFIG_SB_PUBLIC_KEY_FILES=\\\"${workspaceRoot}/${input:public_keys}\\\" '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -35,7 +35,7 @@
 			// Use this task as a second step after 'build with custom keys', to build firmware with new keys to test key revocation
 			"label": "build with NEW key",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
+			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -44,7 +44,7 @@
 		{
 			"label": "re-build",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DTELEMETRY=${input:telemetry}",
+			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry}",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -213,6 +213,12 @@
 			"label": "mcumgr shell cmd",
 			"type": "shell",
 			"command": "mcumgr -t 30 ${input:mcumgr_cnx} shell exec ${input:shell_cmd}",
+			"problemMatcher": []
+		},
+		{
+			"label": "Build all APIs",
+			"type": "shell",
+			"command": "python3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} mg100_none mg100_lwm2m mg100_mqtt bl5340_dvk_none bl5340_dvk_lwm2m bl5340_dvk_mqtt",
 			"problemMatcher": []
 		}
 	],
