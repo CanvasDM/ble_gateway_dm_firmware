@@ -218,7 +218,10 @@
 		{
 			"label": "Build all APIs",
 			"type": "shell",
-			"command": "python3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} mg100_none mg100_lwm2m mg100_mqtt bl5340_dvk_none bl5340_dvk_lwm2m bl5340_dvk_mqtt",
+			"command": "python3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
+			"windows": {
+				"command": "py -3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
+			},
 			"problemMatcher": []
 		}
 	],

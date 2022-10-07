@@ -106,6 +106,7 @@ elseif(APP_TYPE STREQUAL none)
 else()
     message(FATAL_ERROR "Unknown app type ${APP_TYPE}")
 endif()
+set(API_KEYS ${MODEL_NAME}+${APP_TYPE})
 set(API_NAME ${MODEL_NAME}_${APP_TYPE})
 set(ATTR_CUSTOM_PATH_BASE ${CMAKE_SOURCE_DIR}/components/attributes/${API_NAME})
 
@@ -122,7 +123,7 @@ execute_process(
     ${PYTHON_EXECUTABLE}
     ${CMAKE_SOURCE_DIR}/../modules/lib/laird_connect/attributes/generator/api.py
     ${CMAKE_SOURCE_DIR}
-    ${API_NAME}
+    ${API_KEYS}
     WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
     RESULT_VARIABLE api_result
 )

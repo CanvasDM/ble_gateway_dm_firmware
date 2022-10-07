@@ -20,12 +20,15 @@ To update the API manually if changes are made, use the following command to reg
 
 **NOTE:** replace `{project}` in the following commands with:
 
-- mg100_none - Pinnacle 100 DVK/MG100 device management without a telemetry connection
-- mg100_lwm2m - Pinnacle 100 DVK/MG100 device management with a LwM2M telemetry connection
-- mg100_mqtt - Pinnacle 100 DVK/MG100 device management with an MQTT telemetry connection
-- bl5340_none - BL5340 DVK device management without a telemetry connection
-- bl5340_lwm2m - BL5340 DVK device management with a LwM2M telemetry connection
-- bl5340_mqtt - BL5340 DVK device management with an MQTT telemetry connection
+- p100+none - Pinnacle 100 DVK device management without a telemetry connection
+- p100+lwm2m - Pinnacle 100 DVK device management with a LwM2M telemetry connection
+- p100+mqtt - Pinnacle 100 DVK device management with an MQTT telemetry connection
+- mg100+none - MG100 device management without a telemetry connection
+- mg100+lwm2m - MG100 device management with a LwM2M telemetry connection
+- mg100+mqtt - MG100 device management with an MQTT telemetry connection
+- bl5340+none - BL5340 DVK device management without a telemetry connection
+- bl5340+lwm2m - BL5340 DVK device management with a LwM2M telemetry connection
+- bl5340+mqtt - BL5340 DVK device management with an MQTT telemetry connection
 
 ```
 # From the ble_gateway_dm_firmware directory
@@ -34,5 +37,5 @@ To update the API manually if changes are made, use the following command to reg
 python3 ../modules/lib/laird_connect/attributes/generator/api.py ${PWD} {project}
 
 # Windows
-python3 ../modules/lib/laird_connect/attributes/generator/api.py %CD% {project}
+py -3 ../modules/lib/laird_connect/attributes/generator/api.py %CD% {project}
 ```
