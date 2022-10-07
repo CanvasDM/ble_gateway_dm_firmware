@@ -64,6 +64,25 @@ typedef struct rw_attribute {
 	char fs_key_path[32 + 1];
 	char p2p_trust_path[32 + 1];
 	char p2p_key_path[32 + 1];
+	char mqtt_user_name[127 + 1];
+	char mqtt_password[127 + 1];
+	char mqtt_endpoint[127 + 1];
+	char mqtt_port[4 + 1];
+	char mqtt_id[127 + 1];
+	uint32_t mqtt_watchdog;
+	uint8_t mqtt_publish_qos;
+	enum mqtt_peer_verify mqtt_peer_verify;
+	uint8_t mqtt_subscribe_qos;
+	bool mqtt_use_credentials;
+	bool mqtt_connect_on_request;
+	bool mqtt_id_randomize;
+	bool mqtt_ble_enable;
+	char mqtt_ble_topic[255 + 1];
+	char mqtt_ble_prefix[63 + 1];
+	char mqtt_ble_delimiter[1 + 1];
+	char mqtt_ble_postfix[15 + 1];
+	bool mqtt_ble_quote;
+	uint16_t mqtt_ble_network_id_filter;
 } rw_attribute_t;
 /* pyend */
 
@@ -103,6 +122,25 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.fs_key_path = "/lfs1/enc/fs/key",
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
+	.mqtt_user_name = "",
+	.mqtt_password = "",
+	.mqtt_endpoint = "",
+	.mqtt_port = "8883",
+	.mqtt_id = "",
+	.mqtt_watchdog = 0,
+	.mqtt_publish_qos = 1,
+	.mqtt_peer_verify = 2,
+	.mqtt_subscribe_qos = 1,
+	.mqtt_use_credentials = 1,
+	.mqtt_connect_on_request = 1,
+	.mqtt_id_randomize = 0,
+	.mqtt_ble_enable = 0,
+	.mqtt_ble_topic = "",
+	.mqtt_ble_prefix = "",
+	.mqtt_ble_delimiter = "",
+	.mqtt_ble_postfix = "",
+	.mqtt_ble_quote = 0,
+	.mqtt_ble_network_id_filter = 0,
 };
 /* pyend */
 
@@ -119,6 +157,8 @@ typedef struct ro_attribute {
 	char lwm2m_fup_pkg_ver[32 + 1];
 	char bluetooth_address[12 + 1];
 	char ipv4_addr[15 + 1];
+	char mqtt_id_random[145 + 1];
+	char gw_ipv4_addr[15 + 1];
 } ro_attribute_t;
 /* pyend */
 
@@ -134,7 +174,9 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lwm2m_fup_pkg_name = "my_firmware",
 	.lwm2m_fup_pkg_ver = "0.0.0",
 	.bluetooth_address = "0",
-	.ipv4_addr = ""
+	.ipv4_addr = "",
+	.mqtt_id_random = "",
+	.gw_ipv4_addr = ""
 };
 /* pyend */
 
@@ -212,7 +254,28 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[41 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[42 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[43 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        }
+	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[45 ] = { RW_ATTRS(mqtt_user_name)                      , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[46 ] = { RW_ATTRS(mqtt_password)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[47 ] = { RW_ATTRS(mqtt_endpoint)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[48 ] = { RW_ATTRS(mqtt_port)                           , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 3         , .max.ux = 4         },
+	[49 ] = { RW_ATTRS(mqtt_id)                             , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[50 ] = { RW_ATTRX(mqtt_watchdog)                       , ATTR_TYPE_U32           , 0x13  , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[51 ] = { RW_ATTRX(mqtt_publish_qos)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[52 ] = { RW_ATTRE(mqtt_peer_verify)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[53 ] = { RW_ATTRX(mqtt_subscribe_qos)                  , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[54 ] = { RW_ATTRX(mqtt_use_credentials)                , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[55 ] = { RW_ATTRX(mqtt_connect_on_request)             , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[56 ] = { RW_ATTRX(mqtt_id_randomize)                   , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[57 ] = { RO_ATTRS(mqtt_id_random)                      , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 145       },
+	[58 ] = { RW_ATTRX(mqtt_ble_enable)                     , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[59 ] = { RW_ATTRS(mqtt_ble_topic)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       },
+	[60 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
+	[61 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
+	[62 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[63 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[64 ] = { RW_ATTRX(mqtt_ble_network_id_filter)          , ATTR_TYPE_U16           , 0x13  , av_uint16           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[65 ] = { RO_ATTRS(gw_ipv4_addr)                        , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        }
 };
 /* pyend */
 
@@ -257,6 +320,17 @@ const char *const attr_get_string_lwm2m_batt_stat(int value)
 		case 4:           return "Low";
 		case 5:           return "Not Inst";
 		case 6:           return "Unknown";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_mqtt_peer_verify(int value)
+{
+	switch (value) {
+		case 0:           return "None";
+		case 1:           return "Optional";
+		case 2:           return "Required";
+		case 3:           return "Unset";
 		default:          return "?";
 	}
 }

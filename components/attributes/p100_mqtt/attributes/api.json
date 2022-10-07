@@ -2862,6 +2862,301 @@
             "x-default": 0,
             "x-readable": true,
             "x-id": 67
+          },
+          {
+            "name": "mqtt_user_name",
+            "summary": "Client user name in connect request. Not used if empty.",
+            "required": true,
+            "schema": {
+              "maxLength": 127,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 68
+          },
+          {
+            "name": "mqtt_password",
+            "summary": "Client password. Not used if empty.",
+            "required": true,
+            "schema": {
+              "maxLength": 127,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 69
+          },
+          {
+            "name": "mqtt_endpoint",
+            "summary": "Server host name",
+            "required": true,
+            "schema": {
+              "maxLength": 127,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-example": "a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com",
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 70
+          },
+          {
+            "name": "mqtt_port",
+            "summary": "Server host port",
+            "required": true,
+            "schema": {
+              "minLength": 3,
+              "maxLength": 4,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "8883",
+            "x-example": "443",
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 71
+          },
+          {
+            "name": "mqtt_id",
+            "summary": "Client ID used in MQTT connect. Base client ID if randomize is enabled.",
+            "required": true,
+            "schema": {
+              "maxLength": 127,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 72
+          },
+          {
+            "name": "mqtt_watchdog",
+            "summary": "Maximum time in seconds between successful MQTT publishes. Disabled when 0.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint32_t",
+            "x-default": 0,
+            "x-readable": true,
+            "x-writable": true,
+            "x-savable": true,
+            "x-id": 73
+          },
+          {
+            "name": "mqtt_publish_qos",
+            "summary": "Quality of service",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 1,
+            "x-readable": true,
+            "x-writable": true,
+            "x-savable": true,
+            "x-id": 74
+          },
+          {
+            "name": "mqtt_peer_verify",
+            "summary": "Verify server",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "enum": {
+                "NONE": 0,
+                "OPTIONAL": 1,
+                "REQUIRED": 2,
+                "UNSET": 3
+              }
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 2,
+            "x-readable": true,
+            "x-writable": true,
+            "x-savable": true,
+            "x-id": 75
+          },
+          {
+            "name": "mqtt_subscribe_qos",
+            "summary": "Subscription quality of service",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 1,
+            "x-readable": true,
+            "x-writable": true,
+            "x-savable": true,
+            "x-id": 76
+          },
+          {
+            "name": "mqtt_use_credentials",
+            "summary": "Load credentials (once) before trying to connect.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 77
+          },
+          {
+            "name": "mqtt_connect_on_request",
+            "summary": "Try to load certs, resolve server, and connect when pub/sub is requested",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 78
+          },
+          {
+            "name": "mqtt_id_randomize",
+            "summary": "Add suffix with random number to client ID on each connection.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 79
+          },
+          {
+            "name": "mqtt_id_random",
+            "summary": "Current client ID",
+            "required": false,
+            "schema": {
+              "maxLength": 145,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-readable": true,
+            "x-id": 80
+          },
+          {
+            "name": "mqtt_ble_enable",
+            "summary": "Allow module to process advertisements and publishes. When going from disabled-to-enabled, credentials are loaded.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 81
+          },
+          {
+            "name": "mqtt_ble_topic",
+            "summary": "Topic for publishing BLE advertisement data",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 82
+          },
+          {
+            "name": "mqtt_ble_prefix",
+            "summary": "Prefix to publish string For example, add prefix to format data for an AWS Shadow (JSON).",
+            "required": true,
+            "schema": {
+              "maxLength": 63,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-example": "{\"state\":{\"reported\":{\"ads\":[",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 83
+          },
+          {
+            "name": "mqtt_ble_delimiter",
+            "summary": "String placed between data items",
+            "required": true,
+            "schema": {
+              "maxLength": 1,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-example": ",",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 84
+          },
+          {
+            "name": "mqtt_ble_postfix",
+            "summary": "Postfix to advertisement string",
+            "required": true,
+            "schema": {
+              "maxLength": 15,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-example": "]}}}",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 85
+          },
+          {
+            "name": "mqtt_ble_quote",
+            "summary": "Add quote characters around the advertisement data Allows JSON array of strings to be generated.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 86
+          },
+          {
+            "name": "mqtt_ble_network_id_filter",
+            "summary": "If nonzero, then filter advertisements based on network ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint16_t",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 87
           }
         ]
       }

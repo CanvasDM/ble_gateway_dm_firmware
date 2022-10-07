@@ -31,6 +31,9 @@ components:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
       x-mg100_mqtt:
         - $ref: ../modules/lib/laird_connect/modem_hl7800/attributes/params.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_client_random.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_ble.yml
       x-p100_none:
         - $ref: ../modules/lib/laird_connect/modem_hl7800/attributes/params.yml
       x-p100_lwm2m:
@@ -38,10 +41,16 @@ components:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
       x-p100_mqtt:
         - $ref: ../modules/lib/laird_connect/modem_hl7800/attributes/params.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_client_random.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_ble.yml
       x-bl5340_none:
         - $ref: ../modules/lib/laird_connect/network_monitor/attributes/params.gw_ipv4.yml
       x-bl5340_lwm2m:
         - $ref: ../modules/lib/laird_connect/network_monitor/attributes/params.gw_ipv4.yml
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
       x-bl5340_mqtt:
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_client_random.yml
+        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_ble.yml
         - $ref: ../modules/lib/laird_connect/network_monitor/attributes/params.gw_ipv4.yml
