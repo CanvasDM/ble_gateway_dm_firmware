@@ -1,5 +1,9 @@
 # Version History
 
+## v0.3.1
+- Fix artifact naming for BL5340
+- Enable Read back protection and disable flash patch for nRF52840
+
 ## v0.3.0
 - Engineering release candidate
 - LED indication when in bootloader
