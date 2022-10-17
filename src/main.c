@@ -32,8 +32,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_DBG);
 /* Local Constant, Macro and Type Definitions                                                     */
 /**************************************************************************************************/
 #define DEFAULT_HW_VERSION "0"
-#define PKG_NAME_PREFIX "BLE_GW_DM"
-#define PKG_NAME PKG_NAME_PREFIX "[" CONFIG_BOARD "]"
+#define PKG_NAME CONFIG_MEMFAULT_NCS_FW_TYPE "-" CONFIG_BOARD "-"
 
 /**************************************************************************************************/
 /* Global Function Definitions                                                                    */
