@@ -103,3 +103,7 @@
 		};
 	};
 };
+
+&uart0 {
+	hw-flow-control;
+};
