@@ -121,27 +121,27 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_ID_p2p_trust_path                        42
 #define ATTR_ID_p2p_key_path                          43
 #define ATTR_ID_ipv4_addr                             44
-#define ATTR_ID_mqtt_user_name                        45
-#define ATTR_ID_mqtt_password                         46
-#define ATTR_ID_mqtt_endpoint                         47
-#define ATTR_ID_mqtt_port                             48
-#define ATTR_ID_mqtt_id                               49
-#define ATTR_ID_mqtt_watchdog                         50
-#define ATTR_ID_mqtt_publish_qos                      51
-#define ATTR_ID_mqtt_peer_verify                      52
-#define ATTR_ID_mqtt_subscribe_qos                    53
-#define ATTR_ID_mqtt_use_credentials                  54
-#define ATTR_ID_mqtt_connect_on_request               55
-#define ATTR_ID_mqtt_id_randomize                     56
-#define ATTR_ID_mqtt_id_random                        57
-#define ATTR_ID_mqtt_ble_enable                       58
-#define ATTR_ID_mqtt_ble_topic                        59
-#define ATTR_ID_mqtt_ble_prefix                       60
-#define ATTR_ID_mqtt_ble_delimiter                    61
-#define ATTR_ID_mqtt_ble_postfix                      62
-#define ATTR_ID_mqtt_ble_quote                        63
-#define ATTR_ID_mqtt_ble_network_id_filter            64
-#define ATTR_ID_gw_ipv4_addr                          65
+#define ATTR_ID_gw_ipv4_addr                          45
+#define ATTR_ID_mqtt_user_name                        46
+#define ATTR_ID_mqtt_password                         47
+#define ATTR_ID_mqtt_endpoint                         48
+#define ATTR_ID_mqtt_port                             49
+#define ATTR_ID_mqtt_id                               50
+#define ATTR_ID_mqtt_watchdog                         51
+#define ATTR_ID_mqtt_publish_qos                      52
+#define ATTR_ID_mqtt_peer_verify                      53
+#define ATTR_ID_mqtt_subscribe_qos                    54
+#define ATTR_ID_mqtt_use_credentials                  55
+#define ATTR_ID_mqtt_connect_on_request               56
+#define ATTR_ID_mqtt_id_randomize                     57
+#define ATTR_ID_mqtt_id_random                        58
+#define ATTR_ID_mqtt_ble_enable                       59
+#define ATTR_ID_mqtt_ble_topic                        60
+#define ATTR_ID_mqtt_ble_prefix                       61
+#define ATTR_ID_mqtt_ble_delimiter                    62
+#define ATTR_ID_mqtt_ble_postfix                      63
+#define ATTR_ID_mqtt_ble_quote                        64
+#define ATTR_ID_mqtt_ble_network_id_filter            65
 /* pyend */
 
 /* pystart - attribute constants */
@@ -188,6 +188,7 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                    33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                      33
 #define ATTR_IPV4_ADDR_MAX_STR_SIZE                         16
+#define ATTR_GW_IPV4_ADDR_MAX_STR_SIZE                      16
 #define ATTR_MQTT_USER_NAME_MAX_STR_SIZE                    128
 #define ATTR_MQTT_PASSWORD_MAX_STR_SIZE                     128
 #define ATTR_MQTT_ENDPOINT_MAX_STR_SIZE                     128
@@ -198,7 +199,6 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_MQTT_BLE_PREFIX_MAX_STR_SIZE                   64
 #define ATTR_MQTT_BLE_DELIMITER_MAX_STR_SIZE                2
 #define ATTR_MQTT_BLE_POSTFIX_MAX_STR_SIZE                  16
-#define ATTR_GW_IPV4_ADDR_MAX_STR_SIZE                      16
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                                 16

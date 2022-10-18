@@ -1970,6 +1970,21 @@ components:
         x-savable: false
         x-writable: false
         x-id: 44
+      - name: gw_ipv4_addr
+        summary: Internet Protocol Version 4 address for Gateway
+        required: true
+        schema:
+          maxLength: 15
+          type: string
+        x-ctype: string
+        x-broadcast: true
+        x-default: ''
+        x-example: xxx.xxx.xxx.xxx
+        x-prepare: false
+        x-readable: true
+        x-savable: false
+        x-writable: false
+        x-id: 45
       - name: mqtt_user_name
         summary: Client user name in connect request. Not used if empty.
         required: true
@@ -1980,7 +1995,7 @@ components:
         x-default: ''
         x-savable: true
         x-writable: true
-        x-id: 45
+        x-id: 46
       - name: mqtt_password
         summary: Client password. Not used if empty.
         required: true
@@ -1991,7 +2006,7 @@ components:
         x-default: ''
         x-savable: true
         x-writable: true
-        x-id: 46
+        x-id: 47
       - name: mqtt_endpoint
         summary: Server host name
         required: true
@@ -2003,7 +2018,7 @@ components:
         x-example: a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com
         x-savable: true
         x-writable: true
-        x-id: 47
+        x-id: 48
       - name: mqtt_port
         summary: Server host port
         required: true
@@ -2016,7 +2031,7 @@ components:
         x-example: '443'
         x-savable: true
         x-writable: true
-        x-id: 48
+        x-id: 49
       - name: mqtt_id
         summary: Client ID used in MQTT connect. Base client ID if randomize is enabled.
         required: true
@@ -2027,7 +2042,7 @@ components:
         x-default: ''
         x-savable: true
         x-writable: true
-        x-id: 49
+        x-id: 50
       - name: mqtt_watchdog
         summary: Maximum time in seconds between successful MQTT publishes. Disabled
           when 0.
@@ -2039,7 +2054,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 50
+        x-id: 51
       - name: mqtt_publish_qos
         summary: Quality of service
         required: true
@@ -2050,7 +2065,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 51
+        x-id: 52
       - name: mqtt_peer_verify
         summary: Verify server
         required: true
@@ -2066,7 +2081,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 52
+        x-id: 53
       - name: mqtt_subscribe_qos
         summary: Subscription quality of service
         required: true
@@ -2077,7 +2092,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 53
+        x-id: 54
       - name: mqtt_use_credentials
         summary: Load credentials (once) before trying to connect.
         required: true
@@ -2088,7 +2103,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 54
+        x-id: 55
       - name: mqtt_connect_on_request
         summary: Try to load certs, resolve server, and connect when pub/sub is requested
         required: true
@@ -2099,7 +2114,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 55
+        x-id: 56
       - name: mqtt_id_randomize
         summary: Add suffix with random number to client ID on each connection.
         required: true
@@ -2110,7 +2125,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 56
+        x-id: 57
       - name: mqtt_id_random
         summary: Current client ID
         required: false
@@ -2120,7 +2135,7 @@ components:
         x-ctype: string
         x-default: ''
         x-readable: true
-        x-id: 57
+        x-id: 58
       - name: mqtt_ble_enable
         summary: Allow module to process advertisements and publishes. When going
           from disabled-to-enabled, credentials are loaded.
@@ -2132,7 +2147,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 58
+        x-id: 59
       - name: mqtt_ble_topic
         summary: Topic for publishing BLE advertisement data
         required: true
@@ -2144,7 +2159,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 59
+        x-id: 60
       - name: mqtt_ble_prefix
         summary: Prefix to publish string For example, add prefix to format data for
           an AWS Shadow (JSON).
@@ -2158,7 +2173,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 60
+        x-id: 61
       - name: mqtt_ble_delimiter
         summary: String placed between data items
         required: true
@@ -2171,7 +2186,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 61
+        x-id: 62
       - name: mqtt_ble_postfix
         summary: Postfix to advertisement string
         required: true
@@ -2184,7 +2199,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 62
+        x-id: 63
       - name: mqtt_ble_quote
         summary: Add quote characters around the advertisement data Allows JSON array
           of strings to be generated.
@@ -2196,7 +2211,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 63
+        x-id: 64
       - name: mqtt_ble_network_id_filter
         summary: If nonzero, then filter advertisements based on network ID
         required: true
@@ -2207,19 +2222,4 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 64
-      - name: gw_ipv4_addr
-        summary: Internet Protocol Version 4 address for Gateway
-        required: true
-        schema:
-          maxLength: 15
-          type: string
-        x-ctype: string
-        x-broadcast: true
-        x-default: ''
-        x-example: xxx.xxx.xxx.xxx
-        x-prepare: false
-        x-readable: true
-        x-savable: false
-        x-writable: false
         x-id: 65

@@ -1970,3 +1970,18 @@ components:
         x-savable: false
         x-writable: false
         x-id: 44
+      - name: gw_ipv4_addr
+        summary: Internet Protocol Version 4 address for Gateway
+        required: true
+        schema:
+          maxLength: 15
+          type: string
+        x-ctype: string
+        x-broadcast: true
+        x-default: ''
+        x-example: xxx.xxx.xxx.xxx
+        x-prepare: false
+        x-readable: true
+        x-savable: false
+        x-writable: false
+        x-id: 45

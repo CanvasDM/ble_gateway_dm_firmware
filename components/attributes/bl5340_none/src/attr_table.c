@@ -119,6 +119,7 @@ typedef struct ro_attribute {
 	char lwm2m_fup_pkg_ver[32 + 1];
 	char bluetooth_address[12 + 1];
 	char ipv4_addr[15 + 1];
+	char gw_ipv4_addr[15 + 1];
 } ro_attribute_t;
 /* pyend */
 
@@ -134,7 +135,8 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lwm2m_fup_pkg_name = "my_firmware",
 	.lwm2m_fup_pkg_ver = "0.0.0",
 	.bluetooth_address = "0",
-	.ipv4_addr = ""
+	.ipv4_addr = "",
+	.gw_ipv4_addr = ""
 };
 /* pyend */
 
@@ -212,7 +214,8 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[41 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[42 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[43 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        }
+	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[45 ] = { RO_ATTRS(gw_ipv4_addr)                        , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        }
 };
 /* pyend */
 

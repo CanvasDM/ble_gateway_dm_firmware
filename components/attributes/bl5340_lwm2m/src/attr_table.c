@@ -64,6 +64,13 @@ typedef struct rw_attribute {
 	char fs_key_path[32 + 1];
 	char p2p_trust_path[32 + 1];
 	char p2p_key_path[32 + 1];
+	char lwm2m_telem_server_url[255 + 1];
+	char lwm2m_telem_endpoint[64 + 1];
+	enum lwm2m_telem_security lwm2m_telem_security;
+	char lwm2m_telem_psk_id[64 + 1];
+	uint8_t lwm2m_telem_psk[16];
+	uint16_t lwm2m_telem_short_id;
+	bool lwm2m_telem_enable;
 } rw_attribute_t;
 /* pyend */
 
@@ -103,6 +110,13 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.fs_key_path = "/lfs1/enc/fs/key",
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
+	.lwm2m_telem_server_url = "coap://leshan.eclipseprojects.io:5683",
+	.lwm2m_telem_endpoint = "endpoint",
+	.lwm2m_telem_security = 3,
+	.lwm2m_telem_psk_id = "my_device",
+	.lwm2m_telem_psk = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f },
+	.lwm2m_telem_short_id = 2,
+	.lwm2m_telem_enable = 0
 };
 /* pyend */
 
@@ -119,6 +133,7 @@ typedef struct ro_attribute {
 	char lwm2m_fup_pkg_ver[32 + 1];
 	char bluetooth_address[12 + 1];
 	char ipv4_addr[15 + 1];
+	char gw_ipv4_addr[15 + 1];
 } ro_attribute_t;
 /* pyend */
 
@@ -134,7 +149,8 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.lwm2m_fup_pkg_name = "my_firmware",
 	.lwm2m_fup_pkg_ver = "0.0.0",
 	.bluetooth_address = "0",
-	.ipv4_addr = ""
+	.ipv4_addr = "",
+	.gw_ipv4_addr = "",
 };
 /* pyend */
 
@@ -212,7 +228,15 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[41 ] = { RW_ATTRS(fs_key_path)                         , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[42 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[43 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
-	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        }
+	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[45 ] = { RO_ATTRS(gw_ipv4_addr)                        , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[46 ] = { RW_ATTRS(lwm2m_telem_server_url)              , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 11        , .max.ux = 255       },
+	[47 ] = { RW_ATTRS(lwm2m_telem_endpoint)                , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
+	[48 ] = { RW_ATTRE(lwm2m_telem_security)                , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 4         },
+	[49 ] = { RW_ATTRS(lwm2m_telem_psk_id)                  , ATTR_TYPE_STRING        , 0x1b  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 64        },
+	[50 ] = { RW_ATTRX(lwm2m_telem_psk)                     , ATTR_TYPE_BYTE_ARRAY    , 0x59  , av_array            , NULL                                , .min.ux = 16        , .max.ux = 16        },
+	[51 ] = { RW_ATTRX(lwm2m_telem_short_id)                , ATTR_TYPE_U16           , 0x1b  , av_uint16           , NULL                                , .min.ux = 1         , .max.ux = 65534     },
+	[52 ] = { RW_ATTRX(lwm2m_telem_enable)                  , ATTR_TYPE_BOOL          , 0x1b  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         }
 };
 /* pyend */
 
@@ -257,6 +281,18 @@ const char *const attr_get_string_lwm2m_batt_stat(int value)
 		case 4:           return "Low";
 		case 5:           return "Not Inst";
 		case 6:           return "Unknown";
+		default:          return "?";
+	}
+}
+
+const char *const attr_get_string_lwm2m_telem_security(int value)
+{
+	switch (value) {
+		case 0:           return "PSK";
+		case 1:           return "RPK";
+		case 2:           return "Cert";
+		case 3:           return "No Sec";
+		case 4:           return "Cert Est";
 		default:          return "?";
 	}
 }
