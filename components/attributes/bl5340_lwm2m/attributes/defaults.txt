@@ -44,6 +44,7 @@ fs_key_path=/lfs1/enc/fs/key
 p2p_trust_path=/lfs1/p2p/trust
 p2p_key_path=/lfs1/enc/p2p/key
 ipv4_addr=""
+network_id_filter=0
 gw_ipv4_addr=""
 lwm2m_telem_server_url=coap://leshan.eclipseprojects.io:5683
 lwm2m_telem_endpoint=endpoint

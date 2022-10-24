@@ -44,6 +44,7 @@ fs_key_path=/lfs1/enc/fs/key
 p2p_trust_path=/lfs1/p2p/trust
 p2p_key_path=/lfs1/enc/p2p/key
 ipv4_addr=""
+network_id_filter=0
 lte_imei=""
 lte_iccid=""
 lte_imsi=""

@@ -64,6 +64,7 @@ typedef struct rw_attribute {
 	char fs_key_path[32 + 1];
 	char p2p_trust_path[32 + 1];
 	char p2p_key_path[32 + 1];
+	uint16_t network_id_filter;
 	enum lte_log_lvl lte_log_lvl;
 	char mqtt_user_name[127 + 1];
 	char mqtt_password[127 + 1];
@@ -74,8 +75,10 @@ typedef struct rw_attribute {
 	uint8_t mqtt_publish_qos;
 	enum mqtt_peer_verify mqtt_peer_verify;
 	uint8_t mqtt_subscribe_qos;
-	bool mqtt_use_credentials;
 	bool mqtt_connect_on_request;
+	bool mqtt_transport_secure;
+	bool mqtt_root_only;
+	bool mqtt_clean_session;
 	bool mqtt_id_randomize;
 	bool mqtt_ble_enable;
 	char mqtt_ble_topic[255 + 1];
@@ -83,7 +86,6 @@ typedef struct rw_attribute {
 	char mqtt_ble_delimiter[1 + 1];
 	char mqtt_ble_postfix[15 + 1];
 	bool mqtt_ble_quote;
-	uint16_t mqtt_ble_network_id_filter;
 } rw_attribute_t;
 /* pyend */
 
@@ -123,6 +125,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.fs_key_path = "/lfs1/enc/fs/key",
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
+	.network_id_filter = 0,
 	.lte_log_lvl = 2,
 	.mqtt_user_name = "",
 	.mqtt_password = "",
@@ -133,16 +136,17 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.mqtt_publish_qos = 1,
 	.mqtt_peer_verify = 2,
 	.mqtt_subscribe_qos = 1,
-	.mqtt_use_credentials = 1,
 	.mqtt_connect_on_request = 1,
+	.mqtt_transport_secure = 1,
+	.mqtt_root_only = 0,
+	.mqtt_clean_session = 1,
 	.mqtt_id_randomize = 0,
 	.mqtt_ble_enable = 0,
 	.mqtt_ble_topic = "",
 	.mqtt_ble_prefix = "",
 	.mqtt_ble_delimiter = "",
 	.mqtt_ble_postfix = "",
-	.mqtt_ble_quote = 0,
-	.mqtt_ble_network_id_filter = 0
+	.mqtt_ble_quote = 0
 };
 /* pyend */
 
@@ -299,49 +303,51 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[42 ] = { RW_ATTRS(p2p_trust_path)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[43 ] = { RW_ATTRS(p2p_key_path)                        , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 1         , .max.ux = 32        },
 	[44 ] = { RO_ATTRS(ipv4_addr)                           , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[45 ] = { RO_ATTRS(lte_imei)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[46 ] = { RO_ATTRS(lte_iccid)                           , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
-	[47 ] = { RO_ATTRS(lte_imsi)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 14        , .max.ux = 15        },
-	[48 ] = { RO_ATTRS(lte_sn)                              , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 14        },
-	[49 ] = { RO_ATTRS(lte_version)                         , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 29        },
-	[50 ] = { RO_ATTRE(lte_network_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[51 ] = { RO_ATTRE(lte_startup_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[52 ] = { RO_ATTRE(lte_init_error)                      , ATTR_TYPE_S8            , 0xa   , av_int8             , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[53 ] = { RO_ATTRS(lte_apn)                             , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 64        },
-	[54 ] = { RO_ATTRX(lte_rsrp)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[55 ] = { RO_ATTRX(lte_sinr)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
-	[56 ] = { RO_ATTRS(lte_bands)                           , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 20        },
-	[57 ] = { RO_ATTRS(lte_active_bands)                    , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
-	[58 ] = { RO_ATTRX(lte_operator_index)                  , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[59 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[60 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[61 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[62 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[63 ] = { RO_ATTRX(lte_udp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[64 ] = { RO_ATTRX(lte_udp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[65 ] = { RO_ATTRX(lte_tcp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[66 ] = { RO_ATTRX(lte_tcp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[67 ] = { RO_ATTRX(lte_data_total)                      , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[68 ] = { RW_ATTRS(mqtt_user_name)                      , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[69 ] = { RW_ATTRS(mqtt_password)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[70 ] = { RW_ATTRS(mqtt_endpoint)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[71 ] = { RW_ATTRS(mqtt_port)                           , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 3         , .max.ux = 4         },
-	[72 ] = { RW_ATTRS(mqtt_id)                             , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[73 ] = { RW_ATTRX(mqtt_watchdog)                       , ATTR_TYPE_U32           , 0x13  , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[74 ] = { RW_ATTRX(mqtt_publish_qos)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[75 ] = { RW_ATTRE(mqtt_peer_verify)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[76 ] = { RW_ATTRX(mqtt_subscribe_qos)                  , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[77 ] = { RW_ATTRX(mqtt_use_credentials)                , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[45 ] = { RW_ATTRX(network_id_filter)                   , ATTR_TYPE_U16           , 0x13  , av_uint16           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[46 ] = { RO_ATTRS(lte_imei)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[47 ] = { RO_ATTRS(lte_iccid)                           , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[48 ] = { RO_ATTRS(lte_imsi)                            , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 14        , .max.ux = 15        },
+	[49 ] = { RO_ATTRS(lte_sn)                              , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 14        },
+	[50 ] = { RO_ATTRS(lte_version)                         , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 29        },
+	[51 ] = { RO_ATTRE(lte_network_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[52 ] = { RO_ATTRE(lte_startup_state)                   , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[53 ] = { RO_ATTRE(lte_init_error)                      , ATTR_TYPE_S8            , 0xa   , av_int8             , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[54 ] = { RO_ATTRS(lte_apn)                             , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 64        },
+	[55 ] = { RO_ATTRX(lte_rsrp)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[56 ] = { RO_ATTRX(lte_sinr)                            , ATTR_TYPE_S16           , 0xa   , av_int16            , NULL                                , .min.sx = 0         , .max.sx = 0         },
+	[57 ] = { RO_ATTRS(lte_bands)                           , ATTR_TYPE_STRING        , 0xb   , av_string           , NULL                                , .min.ux = 1         , .max.ux = 20        },
+	[58 ] = { RO_ATTRS(lte_active_bands)                    , ATTR_TYPE_STRING        , 0xa   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 20        },
+	[59 ] = { RO_ATTRX(lte_operator_index)                  , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[60 ] = { RO_ATTRE(lte_sleep_state)                     , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[61 ] = { RO_ATTRE(lte_rat)                             , ATTR_TYPE_U8            , 0xb   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[62 ] = { RW_ATTRE(lte_log_lvl)                         , ATTR_TYPE_U8            , 0x1b  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[63 ] = { RO_ATTRE(lte_fup_status)                      , ATTR_TYPE_U8            , 0xa   , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[64 ] = { RO_ATTRX(lte_udp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[65 ] = { RO_ATTRX(lte_udp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[66 ] = { RO_ATTRX(lte_tcp_tx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[67 ] = { RO_ATTRX(lte_tcp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[68 ] = { RO_ATTRX(lte_data_total)                      , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[69 ] = { RW_ATTRS(mqtt_user_name)                      , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[70 ] = { RW_ATTRS(mqtt_password)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[71 ] = { RW_ATTRS(mqtt_endpoint)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[72 ] = { RW_ATTRS(mqtt_port)                           , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 3         , .max.ux = 4         },
+	[73 ] = { RW_ATTRS(mqtt_id)                             , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[74 ] = { RW_ATTRX(mqtt_watchdog)                       , ATTR_TYPE_U32           , 0x13  , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[75 ] = { RW_ATTRX(mqtt_publish_qos)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[76 ] = { RW_ATTRE(mqtt_peer_verify)                    , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[77 ] = { RW_ATTRX(mqtt_subscribe_qos)                  , ATTR_TYPE_U8            , 0x13  , av_uint8            , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[78 ] = { RW_ATTRX(mqtt_connect_on_request)             , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[79 ] = { RW_ATTRX(mqtt_id_randomize)                   , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[80 ] = { RO_ATTRS(mqtt_id_random)                      , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 145       },
-	[81 ] = { RW_ATTRX(mqtt_ble_enable)                     , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[82 ] = { RW_ATTRS(mqtt_ble_topic)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       },
-	[83 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
-	[84 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
-	[85 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[86 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[87 ] = { RW_ATTRX(mqtt_ble_network_id_filter)          , ATTR_TYPE_U16           , 0x13  , av_uint16           , NULL                                , .min.ux = 0         , .max.ux = 0         }
+	[79 ] = { RW_ATTRX(mqtt_transport_secure)               , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[80 ] = { RW_ATTRX(mqtt_root_only)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[81 ] = { RW_ATTRX(mqtt_clean_session)                  , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[82 ] = { RW_ATTRX(mqtt_id_randomize)                   , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[83 ] = { RO_ATTRS(mqtt_id_random)                      , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 145       },
+	[84 ] = { RW_ATTRX(mqtt_ble_enable)                     , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[85 ] = { RW_ATTRS(mqtt_ble_topic)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       },
+	[86 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
+	[87 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
+	[88 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[89 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         }
 };
 /* pyend */
 

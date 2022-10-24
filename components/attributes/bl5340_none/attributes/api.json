@@ -2498,6 +2498,20 @@
             "x-id": 44
           },
           {
+            "name": "network_id_filter",
+            "summary": "If nonzero, then filter advertisements based on network ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint16_t",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 45
+          },
+          {
             "name": "gw_ipv4_addr",
             "summary": "Internet Protocol Version 4 address for Gateway",
             "required": true,
@@ -2513,7 +2527,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 45
+            "x-id": 46
           }
         ]
       }

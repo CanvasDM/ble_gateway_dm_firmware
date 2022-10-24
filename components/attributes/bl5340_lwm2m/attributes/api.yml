@@ -1970,6 +1970,17 @@ components:
         x-savable: false
         x-writable: false
         x-id: 44
+      - name: network_id_filter
+        summary: If nonzero, then filter advertisements based on network ID
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint16_t
+        x-default: 0
+        x-savable: true
+        x-writable: true
+        x-readable: true
+        x-id: 45
       - name: gw_ipv4_addr
         summary: Internet Protocol Version 4 address for Gateway
         required: true
@@ -1984,7 +1995,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 45
+        x-id: 46
       - name: lwm2m_telem_server_url
         required: true
         schema:
@@ -2001,7 +2012,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Server URL to connect to
-        x-id: 46
+        x-id: 47
       - name: lwm2m_telem_endpoint
         required: true
         schema:
@@ -2016,7 +2027,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Endpoint name to identify the device
-        x-id: 47
+        x-id: 48
       - name: lwm2m_telem_security
         required: true
         schema:
@@ -2038,7 +2049,7 @@ components:
         x-savable: true
         x-writable: true
         summary: LwM2M Security mode
-        x-id: 48
+        x-id: 49
       - name: lwm2m_telem_psk_id
         required: true
         schema:
@@ -2054,7 +2065,7 @@ components:
         x-savable: true
         x-writable: true
         summary: PSK ID
-        x-id: 49
+        x-id: 50
       - name: lwm2m_telem_psk
         required: true
         schema:
@@ -2072,7 +2083,7 @@ components:
         x-writable: true
         x-obscure-in-show: true
         summary: Pre-shared key
-        x-id: 50
+        x-id: 51
       - name: lwm2m_telem_short_id
         required: true
         schema:
@@ -2090,7 +2101,7 @@ components:
         summary: short_server_id This identifier uniquely identifies each LwM2M Server
           configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server
           Resource has a value of 'false'.
-        x-id: 51
+        x-id: 52
       - name: lwm2m_telem_enable
         required: true
         schema:
@@ -2105,4 +2116,4 @@ components:
         x-savable: true
         x-writable: true
         summary: 0 - disable telemetry connection, 1 - enable
-        x-id: 52
+        x-id: 53

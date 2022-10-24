@@ -2498,6 +2498,20 @@
             "x-id": 44
           },
           {
+            "name": "network_id_filter",
+            "summary": "If nonzero, then filter advertisements based on network ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint16_t",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 45
+          },
+          {
             "name": "gw_ipv4_addr",
             "summary": "Internet Protocol Version 4 address for Gateway",
             "required": true,
@@ -2513,7 +2527,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 45
+            "x-id": 46
           },
           {
             "name": "mqtt_user_name",
@@ -2527,7 +2541,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 46
+            "x-id": 47
           },
           {
             "name": "mqtt_password",
@@ -2541,7 +2555,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 47
+            "x-id": 48
           },
           {
             "name": "mqtt_endpoint",
@@ -2556,7 +2570,7 @@
             "x-example": "a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 48
+            "x-id": 49
           },
           {
             "name": "mqtt_port",
@@ -2569,14 +2583,15 @@
             },
             "x-ctype": "string",
             "x-default": "8883",
-            "x-example": "443",
+            "x-example": "1883",
+            "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 49
+            "x-id": 50
           },
           {
             "name": "mqtt_id",
-            "summary": "Client ID used in MQTT connect. Base client ID if randomize is enabled.",
+            "summary": "Client ID used in MQTT connect. Server may limit this to 23 alpha-numeric characters.",
             "required": true,
             "schema": {
               "maxLength": 127,
@@ -2584,9 +2599,10 @@
             },
             "x-ctype": "string",
             "x-default": "",
+            "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 50
+            "x-id": 51
           },
           {
             "name": "mqtt_watchdog",
@@ -2600,7 +2616,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 51
+            "x-id": 52
           },
           {
             "name": "mqtt_publish_qos",
@@ -2614,7 +2630,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 52
+            "x-id": 53
           },
           {
             "name": "mqtt_peer_verify",
@@ -2634,7 +2650,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 53
+            "x-id": 54
           },
           {
             "name": "mqtt_subscribe_qos",
@@ -2648,20 +2664,6 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 54
-          },
-          {
-            "name": "mqtt_use_credentials",
-            "summary": "Load credentials (once) before trying to connect.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "bool",
-            "x-default": 1,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
             "x-id": 55
           },
           {
@@ -2679,6 +2681,48 @@
             "x-id": 56
           },
           {
+            "name": "mqtt_transport_secure",
+            "summary": "If possible (CONFIG_MQTT_LIB_TLS defined), use TLS for transport",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 57
+          },
+          {
+            "name": "mqtt_root_only",
+            "summary": "Only load root certificate",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 58
+          },
+          {
+            "name": "mqtt_clean_session",
+            "summary": "If false, then allow persistent sessions. Not supported by all brokers.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 59
+          },
+          {
             "name": "mqtt_id_randomize",
             "summary": "Add suffix with random number to client ID on each connection.",
             "required": true,
@@ -2690,7 +2734,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 57
+            "x-id": 60
           },
           {
             "name": "mqtt_id_random",
@@ -2703,7 +2747,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 58
+            "x-id": 61
           },
           {
             "name": "mqtt_ble_enable",
@@ -2717,7 +2761,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 59
+            "x-id": 62
           },
           {
             "name": "mqtt_ble_topic",
@@ -2732,7 +2776,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 60
+            "x-id": 63
           },
           {
             "name": "mqtt_ble_prefix",
@@ -2748,7 +2792,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 61
+            "x-id": 64
           },
           {
             "name": "mqtt_ble_delimiter",
@@ -2764,7 +2808,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 62
+            "x-id": 65
           },
           {
             "name": "mqtt_ble_postfix",
@@ -2780,7 +2824,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 63
+            "x-id": 66
           },
           {
             "name": "mqtt_ble_quote",
@@ -2794,21 +2838,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 64
-          },
-          {
-            "name": "mqtt_ble_network_id_filter",
-            "summary": "If nonzero, then filter advertisements based on network ID",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "uint16_t",
-            "x-default": 0,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
-            "x-id": 65
+            "x-id": 67
           }
         ]
       }

@@ -2498,6 +2498,20 @@
             "x-id": 44
           },
           {
+            "name": "network_id_filter",
+            "summary": "If nonzero, then filter advertisements based on network ID",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "uint16_t",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 45
+          },
+          {
             "name": "lte_imei",
             "summary": "IMEI",
             "required": true,
@@ -2508,7 +2522,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 45
+            "x-id": 46
           },
           {
             "name": "lte_iccid",
@@ -2521,7 +2535,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 46
+            "x-id": 47
           },
           {
             "name": "lte_imsi",
@@ -2535,7 +2549,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 47
+            "x-id": 48
           },
           {
             "name": "lte_sn",
@@ -2548,7 +2562,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 48
+            "x-id": 49
           },
           {
             "name": "lte_version",
@@ -2562,7 +2576,7 @@
             "x-broadcast": true,
             "x-default": "",
             "x-readable": true,
-            "x-id": 49
+            "x-id": 50
           },
           {
             "name": "lte_network_state",
@@ -2585,7 +2599,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 50
+            "x-id": 51
           },
           {
             "name": "lte_startup_state",
@@ -2607,7 +2621,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 51
+            "x-id": 52
           },
           {
             "name": "lte_init_error",
@@ -2628,7 +2642,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 52
+            "x-id": 53
           },
           {
             "name": "lte_apn",
@@ -2643,7 +2657,7 @@
             "x-default": "",
             "x-readable": true,
             "x-writable": true,
-            "x-id": 53
+            "x-id": 54
           },
           {
             "name": "lte_rsrp",
@@ -2656,7 +2670,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 54
+            "x-id": 55
           },
           {
             "name": "lte_sinr",
@@ -2669,7 +2683,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 55
+            "x-id": 56
           },
           {
             "name": "lte_bands",
@@ -2685,7 +2699,7 @@
             "x-default": "",
             "x-readable": true,
             "x-writable": true,
-            "x-id": 56
+            "x-id": 57
           },
           {
             "name": "lte_active_bands",
@@ -2699,7 +2713,7 @@
             "x-broadcast": true,
             "x-default": "",
             "x-readable": true,
-            "x-id": 57
+            "x-id": 58
           },
           {
             "name": "lte_operator_index",
@@ -2712,7 +2726,7 @@
             "x-broadcast": true,
             "x-default": 255,
             "x-readable": true,
-            "x-id": 58
+            "x-id": 59
           },
           {
             "name": "lte_sleep_state",
@@ -2732,7 +2746,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 59
+            "x-id": 60
           },
           {
             "name": "lte_rat",
@@ -2750,7 +2764,7 @@
             "x-default": 0,
             "x-readable": true,
             "x-writable": true,
-            "x-id": 60
+            "x-id": 61
           },
           {
             "name": "lte_log_lvl",
@@ -2772,7 +2786,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 61
+            "x-id": 62
           },
           {
             "name": "lte_fup_status",
@@ -2796,7 +2810,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 62
+            "x-id": 63
           },
           {
             "name": "lte_udp_tx",
@@ -2809,7 +2823,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 63
+            "x-id": 64
           },
           {
             "name": "lte_udp_rx",
@@ -2822,7 +2836,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 64
+            "x-id": 65
           },
           {
             "name": "lte_tcp_tx",
@@ -2835,7 +2849,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 65
+            "x-id": 66
           },
           {
             "name": "lte_tcp_rx",
@@ -2848,7 +2862,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 66
+            "x-id": 67
           },
           {
             "name": "lte_data_total",
@@ -2861,7 +2875,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 67
+            "x-id": 68
           },
           {
             "name": "mqtt_user_name",
@@ -2875,7 +2889,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 68
+            "x-id": 69
           },
           {
             "name": "mqtt_password",
@@ -2889,7 +2903,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 69
+            "x-id": 70
           },
           {
             "name": "mqtt_endpoint",
@@ -2904,7 +2918,7 @@
             "x-example": "a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 70
+            "x-id": 71
           },
           {
             "name": "mqtt_port",
@@ -2917,14 +2931,15 @@
             },
             "x-ctype": "string",
             "x-default": "8883",
-            "x-example": "443",
+            "x-example": "1883",
+            "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 71
+            "x-id": 72
           },
           {
             "name": "mqtt_id",
-            "summary": "Client ID used in MQTT connect. Base client ID if randomize is enabled.",
+            "summary": "Client ID used in MQTT connect. Server may limit this to 23 alpha-numeric characters.",
             "required": true,
             "schema": {
               "maxLength": 127,
@@ -2932,9 +2947,10 @@
             },
             "x-ctype": "string",
             "x-default": "",
+            "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 72
+            "x-id": 73
           },
           {
             "name": "mqtt_watchdog",
@@ -2948,7 +2964,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 73
+            "x-id": 74
           },
           {
             "name": "mqtt_publish_qos",
@@ -2962,7 +2978,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 74
+            "x-id": 75
           },
           {
             "name": "mqtt_peer_verify",
@@ -2982,7 +2998,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 75
+            "x-id": 76
           },
           {
             "name": "mqtt_subscribe_qos",
@@ -2996,20 +3012,6 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 76
-          },
-          {
-            "name": "mqtt_use_credentials",
-            "summary": "Load credentials (once) before trying to connect.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "bool",
-            "x-default": 1,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
             "x-id": 77
           },
           {
@@ -3027,6 +3029,48 @@
             "x-id": 78
           },
           {
+            "name": "mqtt_transport_secure",
+            "summary": "If possible (CONFIG_MQTT_LIB_TLS defined), use TLS for transport",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 79
+          },
+          {
+            "name": "mqtt_root_only",
+            "summary": "Only load root certificate",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 80
+          },
+          {
+            "name": "mqtt_clean_session",
+            "summary": "If false, then allow persistent sessions. Not supported by all brokers.",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 1,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 81
+          },
+          {
             "name": "mqtt_id_randomize",
             "summary": "Add suffix with random number to client ID on each connection.",
             "required": true,
@@ -3038,7 +3082,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 79
+            "x-id": 82
           },
           {
             "name": "mqtt_id_random",
@@ -3051,7 +3095,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 80
+            "x-id": 83
           },
           {
             "name": "mqtt_ble_enable",
@@ -3065,7 +3109,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 81
+            "x-id": 84
           },
           {
             "name": "mqtt_ble_topic",
@@ -3080,7 +3124,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 82
+            "x-id": 85
           },
           {
             "name": "mqtt_ble_prefix",
@@ -3096,7 +3140,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 83
+            "x-id": 86
           },
           {
             "name": "mqtt_ble_delimiter",
@@ -3112,7 +3156,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 84
+            "x-id": 87
           },
           {
             "name": "mqtt_ble_postfix",
@@ -3128,7 +3172,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 85
+            "x-id": 88
           },
           {
             "name": "mqtt_ble_quote",
@@ -3142,21 +3186,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 86
-          },
-          {
-            "name": "mqtt_ble_network_id_filter",
-            "summary": "If nonzero, then filter advertisements based on network ID",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "uint16_t",
-            "x-default": 0,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
-            "x-id": 87
+            "x-id": 89
           }
         ]
       }

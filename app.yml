@@ -24,6 +24,7 @@ components:
         - $ref: ../modules/lib/laird_connect/shell_login/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/pki_auth/attributes/params.yml
         - $ref: ../modules/lib/laird_connect/network_monitor/attributes/params.ipv4.yml
+        - $ref: ../modules/lib/laird_connect/lcz_sensor_telemetry_app/attributes/lcz_sensor_app.yml
       x-mg100:
         - $ref: ../modules/lib/laird_connect/modem_hl7800/attributes/params.yml
       x-p100:
@@ -35,4 +36,4 @@ components:
       x-mqtt:
         - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt.yml
         - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_client_random.yml
-        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_ble.yml
+        - $ref: ../modules/lib/laird_connect/lcz_sensor_telemetry_app/attributes/lcz_sensor_app_mqtt.yml

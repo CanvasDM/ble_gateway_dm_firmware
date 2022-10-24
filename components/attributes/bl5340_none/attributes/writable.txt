@@ -34,3 +34,4 @@ fs_trust_path=/lfs1/fs/trust
 fs_key_path=/lfs1/enc/fs/key
 p2p_trust_path=/lfs1/p2p/trust
 p2p_key_path=/lfs1/enc/p2p/key
+network_id_filter=0

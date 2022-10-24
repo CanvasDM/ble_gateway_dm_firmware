@@ -113,20 +113,22 @@ BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
 #define ATTR_ID_p2p_trust_path                        42
 #define ATTR_ID_p2p_key_path                          43
 #define ATTR_ID_ipv4_addr                             44
-#define ATTR_ID_gw_ipv4_addr                          45
+#define ATTR_ID_network_id_filter                     45
+#define ATTR_ID_gw_ipv4_addr                          46
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                              46
-#define ATTR_TABLE_MAX_ID                            45
-#define ATTR_TABLE_WRITABLE_COUNT                    35
+#define ATTR_TABLE_SIZE                              47
+#define ATTR_TABLE_MAX_ID                            46
+#define ATTR_TABLE_WRITABLE_COUNT                    36
+#define ATTR_TABLE_CRC_OF_NAMES                      0x5910367f
 #define ATTR_MAX_STR_LENGTH                          255
 #define ATTR_MAX_STR_SIZE                            256
 #define ATTR_MAX_BIN_SIZE                            16
 #define ATTR_MAX_INT_SIZE                            4
 #define ATTR_MAX_KEY_NAME_SIZE                       20
 #define ATTR_MAX_VALUE_SIZE                          256
-#define ATTR_MAX_FILE_SIZE                           2333
+#define ATTR_MAX_FILE_SIZE                           2357
 #define ATTR_ENABLE_FPU_CHECK                        0
 
 /* Attribute Max String Lengths */
