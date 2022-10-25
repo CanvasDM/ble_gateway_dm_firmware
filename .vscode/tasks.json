@@ -15,7 +15,7 @@
 		{
 			"label": "build",
 			"type": "shell",
-			"command": "west build -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -25,7 +25,7 @@
 			// Use this task to build an initial firmware image with custom private/public keys
 			"label": "build with custom keys",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} -DCONFIG_SB_PUBLIC_KEY_FILES=\\\"${workspaceRoot}/${input:public_keys}\\\" '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
+			"command": "west build -p -b ${input:board} -d ${workspaceFolder}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceFolder}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} -DCONFIG_SB_PUBLIC_KEY_FILES=\\\"${workspaceFolder}/${input:public_keys}\\\" '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceFolder}/${input:mcuboot_signing_key}\\\"'",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -35,7 +35,7 @@
 			// Use this task as a second step after 'build with custom keys', to build firmware with new keys to test key revocation
 			"label": "build with NEW key",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceRoot}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceRoot}/${input:mcuboot_signing_key}\\\"'",
+			"command": "west build -p -b ${input:board} -d ${workspaceFolder}/build/${input:board} -- -DAPP_TYPE=${input:telemetry} -DCONFIG_SB_SIGNING_KEY_FILE=\\\"${workspaceFolder}/${input:sb_signing_key}\\\" -Dmcuboot_CONFIG_FW_INFO_FIRMWARE_VERSION=${input:mcuboot_version} '-Dmcuboot_CONFIG_BOOT_SIGNATURE_KEY_FILE=\\\"${workspaceFolder}/${input:mcuboot_signing_key}\\\"'",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -44,7 +44,7 @@
 		{
 			"label": "re-build",
 			"type": "shell",
-			"command": "west build -p -b ${input:board} -d ${workspaceRoot}/build/${input:board} -- -DAPP_TYPE=${input:telemetry}",
+			"command": "west build -p -b ${input:board} -d ${workspaceFolder}/build/${input:board} -- -DAPP_TYPE=${input:telemetry}",
 			"problemMatcher": {
 				"base": "$gcc",
 				"fileLocation": "absolute"
@@ -53,100 +53,100 @@
 		{
 			"label": "flash app",
 			"type": "shell",
-			"command": "west flash -d ${workspaceRoot}/build/${input:board}",
+			"command": "west flash -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "flash mcuboot image",
 			"type": "shell",
-			"command": "west flash -d ${workspaceRoot}/build/${input:board} --hex-file ${workspaceRoot}/build/${input:board}/zephyr/${input:mcuboot_image}",
+			"command": "west flash -d ${workspaceFolder}/build/${input:board} --hex-file ${workspaceFolder}/build/${input:board}/zephyr/${input:mcuboot_image}",
 			"problemMatcher": []
 		},
 		{
 			"label": "clean",
 			"type": "shell",
-			"command": "west build -t pristine -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -t pristine -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "delete build dir",
 			"type": "shell",
-			"command": "rm -rf ${workspaceRoot}/build/${input:board}",
+			"command": "rm -rf ${workspaceFolder}/build/${input:board}",
 			"windows": {
-				"command": "del ${workspaceRoot}/build/${input:board}"
+				"command": "del ${workspaceFolder}/build/${input:board}"
 			},
 			"problemMatcher": []
 		},
 		{
 			"label": "run all tests",
 			"type": "shell",
-			"command": "${workspaceRoot}/../zephyr/scripts/twister -v -v -v -T ${workspaceRoot}",
+			"command": "${workspaceFolder}/../zephyr/scripts/twister -v -v -v -T ${workspaceFolder}",
 			"problemMatcher": []
 		},
 		{
 			"label": "Run QEMU",
 			"type": "shell",
-			"command": "west build -t run -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -t run -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "PM report",
 			"type": "shell",
-			"command": "west build -t partition_manager_report -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -t partition_manager_report -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "menuconfig",
 			"type": "shell",
-			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "menuconfig mcuboot",
 			"type": "shell",
-			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}/bootloader",
+			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceFolder}/build/${input:board}/bootloader",
 			"problemMatcher": []
 		},
 		{
 			"label": "menuconfig bl5340 hci_rpmsg",
 			"type": "shell",
-			"command": "west build -t menuconfig -b bl5340_dvk_cpunet -d ${workspaceRoot}/build/bl5340_dvk_cpuapp/hci_rpmsg",
+			"command": "west build -t menuconfig -b bl5340_dvk_cpunet -d ${workspaceFolder}/build/bl5340_dvk_cpuapp/hci_rpmsg",
 			"problemMatcher": []
 		},
 		{
 			"label": "menuconfig b0",
 			"type": "shell",
-			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceRoot}/build/${input:board}/b0",
+			"command": "west build -t menuconfig -b ${input:board} -d ${workspaceFolder}/build/${input:board}/b0",
 			"problemMatcher": []
 		},
 		{
 			"label": "ram_report",
 			"type": "shell",
-			"command": "west build -b ${input:board} -d ${workspaceRoot}/build/${input:board} --target ram_report > ${workspaceRoot}/build/${input:board}/ram_report.txt",
+			"command": "west build -b ${input:board} -d ${workspaceFolder}/build/${input:board} --target ram_report > ${workspaceFolder}/build/${input:board}/ram_report.txt",
 			"problemMatcher": []
 		},
 		{
 			"label": "rom_report",
 			"type": "shell",
-			"command": "west build -b ${input:board} -d ${workspaceRoot}/build/${input:board} --target rom_report > ${workspaceRoot}/build/${input:board}/rom_report.txt",
+			"command": "west build -b ${input:board} -d ${workspaceFolder}/build/${input:board} --target rom_report > ${workspaceFolder}/build/${input:board}/rom_report.txt",
 			"problemMatcher": []
 		},
 		{
 			"label": "puncover",
 			"type": "shell",
-			"command": "west build -t puncover -b ${input:board} -d ${workspaceRoot}/build/${input:board}",
+			"command": "west build -t puncover -b ${input:board} -d ${workspaceFolder}/build/${input:board}",
 			"problemMatcher": []
 		},
 		{
 			"label": "mcumgr image upload app",
 			"type": "shell",
-			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceRoot}/build/${input:board}/zephyr/app_update.bin",
+			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceFolder}/build/${input:board}/zephyr/app_update.bin",
 			"problemMatcher": []
 		},
 		{
 			"label": "mcumgr image upload mcuboot",
 			"type": "shell",
-			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceRoot}/build/${input:board}/zephyr/signed_by_mcuboot_and_b0_s1_image_update.bin",
+			"command": "mcumgr -t 20 -r 2 ${input:mcumgr_cnx} image upload ${workspaceFolder}/build/${input:board}/zephyr/signed_by_mcuboot_and_b0_s1_image_update.bin",
 			"problemMatcher": []
 		},
 		{
@@ -206,7 +206,7 @@
 		{
 			"label": "get build id (memfault)",
 			"type": "shell",
-			"command": "arm-none-eabi-readelf -n ${workspaceRoot}/build/${input:board}/zephyr/zephyr.elf",
+			"command": "arm-none-eabi-readelf -n ${workspaceFolder}/build/${input:board}/zephyr/zephyr.elf",
 			"problemMatcher": []
 		},
 		{
@@ -218,9 +218,9 @@
 		{
 			"label": "Build all APIs",
 			"type": "shell",
-			"command": "python3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
+			"command": "python3 ${workspaceFolder}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceFolder} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
 			"windows": {
-				"command": "py -3 ${workspaceRoot}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceRoot} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
+				"command": "py -3 ${workspaceFolder}/../modules/lib/laird_connect/attributes/generator/api.py ${workspaceFolder} p100+none p100+lwm2m p100+mqtt mg100+none mg100+lwm2m mg100+mqtt bl5340+none bl5340+lwm2m bl5340+mqtt",
 			},
 			"problemMatcher": []
 		}

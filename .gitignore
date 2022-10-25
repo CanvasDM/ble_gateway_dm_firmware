@@ -3,3 +3,5 @@ build/
 twister-out*
 src/version/app_version.h
 *attr_hash.c
+
+.vscode/.cortex-debug.registers.state.json

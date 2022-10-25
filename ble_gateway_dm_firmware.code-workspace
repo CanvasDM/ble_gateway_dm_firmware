@@ -4,30 +4,29 @@
 			"path": "."
 		},
 		{
+			"path": "../ble_gateway_dm_firmware_public_manifest"
+		},
+		{
 			"path": "../ble_gateway_dm_firmware_manifest"
-		},
-		{
-			"path": "../zephyr"
-		},
-		{
-			"path": "../nrf"
-		},
-		{
-			"path": "../bootloader/mcuboot"
 		},
 		{
 			"path": "../modules/lib/laird_connect"
 		},
 		{
-			"path": "../mbedtls"
+			"path": "../nrf"
+		},
+		{
+			"path": "../zephyr"
 		}
 	],
 	"settings": {
 		"files.associations": {
-			"*h.in": "c",
 			"*.in": "c"
 		},
 		"C_Cpp.errorSquiggles": "Disabled",
-		"C_Cpp.dimInactiveRegions": false
+		"C_Cpp.dimInactiveRegions": false,
+		"nrf-connect.applications": [
+			"${workspaceFolder}"
+		]
 	}
 }
