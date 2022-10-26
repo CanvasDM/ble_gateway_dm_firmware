@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.4.0
+  version: 0.5.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -1283,7 +1283,7 @@ components:
           minLength: 6
           type: string
         x-ctype: string
-        x-default: 0.4.0
+        x-default: 0.5.0
         x-example: 0.1.0
         x-readable: true
         summary: The API version that the firmware supports
@@ -1835,6 +1835,20 @@ components:
         x-show-on-change: false
         summary: Password to login and use the shell
         x-id: 35
+      - name: shell_session_timeout
+        summary: Time before a login session will expire (in minutes). Set to 0 to
+          disable.
+        required: true
+        schema:
+          minimum: 0
+          maximum: 255
+          type: integer
+        x-ctype: uint8_t
+        x-default: 1
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 36
       - name: tel_trust_path
         required: true
         schema:
@@ -1849,7 +1863,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for telemetry authentication.
-        x-id: 36
+        x-id: 37
       - name: tel_key_path
         required: true
         schema:
@@ -1864,7 +1878,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for telemetry authentication.
-        x-id: 37
+        x-id: 38
       - name: dm_trust_path
         required: true
         schema:
@@ -1879,7 +1893,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for DM authentication.
-        x-id: 38
+        x-id: 39
       - name: dm_key_path
         required: true
         schema:
@@ -1894,7 +1908,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for DM authentication.
-        x-id: 39
+        x-id: 40
       - name: fs_trust_path
         required: true
         schema:
@@ -1909,7 +1923,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for firmware and file service authentication.
-        x-id: 40
+        x-id: 41
       - name: fs_key_path
         required: true
         schema:
@@ -1924,7 +1938,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for firmware and file service authentication.
-        x-id: 41
+        x-id: 42
       - name: p2p_trust_path
         required: true
         schema:
@@ -1939,7 +1953,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for peer-to-peer authentication.
-        x-id: 42
+        x-id: 43
       - name: p2p_key_path
         required: true
         schema:
@@ -1954,7 +1968,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for peer-to-peer authentication.
-        x-id: 43
+        x-id: 44
       - name: ipv4_addr
         summary: Internet Protocol Version 4 address
         required: true
@@ -1969,7 +1983,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 44
+        x-id: 45
       - name: network_id_filter
         summary: If nonzero, then filter advertisements based on network ID
         required: true
@@ -1980,7 +1994,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 45
+        x-id: 46
       - name: gw_ipv4_addr
         summary: Internet Protocol Version 4 address for Gateway
         required: true
@@ -1995,4 +2009,4 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 46
+        x-id: 47

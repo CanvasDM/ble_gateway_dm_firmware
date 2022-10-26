@@ -1,6 +1,6 @@
 # Default Values for Attributes 
 reserved0=0
-api_version=0.4.0
+api_version=0.5.0
 firmware_version=0.0.0+0
 dump_path=/lfs1/attr_dump.txt
 load_path=/lfs1/enc/attr_load.txt
@@ -35,6 +35,7 @@ smp_auth_req=0
 gw_smp_auth_req=0
 smp_auth_timeout=300
 shell_password=zephyr
+shell_session_timeout=1
 tel_trust_path=/lfs1/tel/trust
 tel_key_path=/lfs1/enc/tel/key
 dm_trust_path=/lfs1/dm/trust

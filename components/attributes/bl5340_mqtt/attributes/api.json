@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.4.0",
+    "version": "0.5.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1689,7 +1689,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "0.4.0",
+            "x-default": "0.5.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2336,6 +2336,22 @@
             "x-id": 35
           },
           {
+            "name": "shell_session_timeout",
+            "summary": "Time before a login session will expire (in minutes). Set to 0 to disable.",
+            "required": true,
+            "schema": {
+              "minimum": 0,
+              "maximum": 255,
+              "type": "integer"
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 1,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 36
+          },
+          {
             "name": "tel_trust_path",
             "required": true,
             "schema": {
@@ -2351,7 +2367,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for telemetry authentication.",
-            "x-id": 36
+            "x-id": 37
           },
           {
             "name": "tel_key_path",
@@ -2369,7 +2385,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for telemetry authentication.",
-            "x-id": 37
+            "x-id": 38
           },
           {
             "name": "dm_trust_path",
@@ -2387,7 +2403,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for DM authentication.",
-            "x-id": 38
+            "x-id": 39
           },
           {
             "name": "dm_key_path",
@@ -2405,7 +2421,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for DM authentication.",
-            "x-id": 39
+            "x-id": 40
           },
           {
             "name": "fs_trust_path",
@@ -2423,7 +2439,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for firmware and file service authentication.",
-            "x-id": 40
+            "x-id": 41
           },
           {
             "name": "fs_key_path",
@@ -2441,7 +2457,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for firmware and file service authentication.",
-            "x-id": 41
+            "x-id": 42
           },
           {
             "name": "p2p_trust_path",
@@ -2459,7 +2475,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for peer-to-peer authentication.",
-            "x-id": 42
+            "x-id": 43
           },
           {
             "name": "p2p_key_path",
@@ -2477,7 +2493,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for peer-to-peer authentication.",
-            "x-id": 43
+            "x-id": 44
           },
           {
             "name": "ipv4_addr",
@@ -2495,7 +2511,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 44
+            "x-id": 45
           },
           {
             "name": "network_id_filter",
@@ -2509,7 +2525,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 45
+            "x-id": 46
           },
           {
             "name": "gw_ipv4_addr",
@@ -2527,7 +2543,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 46
+            "x-id": 47
           },
           {
             "name": "mqtt_user_name",
@@ -2541,7 +2557,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 47
+            "x-id": 48
           },
           {
             "name": "mqtt_password",
@@ -2555,7 +2571,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 48
+            "x-id": 49
           },
           {
             "name": "mqtt_endpoint",
@@ -2570,7 +2586,7 @@
             "x-example": "a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com",
             "x-savable": true,
             "x-writable": true,
-            "x-id": 49
+            "x-id": 50
           },
           {
             "name": "mqtt_port",
@@ -2587,7 +2603,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 50
+            "x-id": 51
           },
           {
             "name": "mqtt_id",
@@ -2602,7 +2618,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 51
+            "x-id": 52
           },
           {
             "name": "mqtt_watchdog",
@@ -2616,7 +2632,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 52
+            "x-id": 53
           },
           {
             "name": "mqtt_publish_qos",
@@ -2630,7 +2646,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 53
+            "x-id": 54
           },
           {
             "name": "mqtt_peer_verify",
@@ -2650,7 +2666,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 54
+            "x-id": 55
           },
           {
             "name": "mqtt_subscribe_qos",
@@ -2664,7 +2680,7 @@
             "x-readable": true,
             "x-writable": true,
             "x-savable": true,
-            "x-id": 55
+            "x-id": 56
           },
           {
             "name": "mqtt_connect_on_request",
@@ -2678,7 +2694,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 56
+            "x-id": 57
           },
           {
             "name": "mqtt_transport_secure",
@@ -2692,7 +2708,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 57
+            "x-id": 58
           },
           {
             "name": "mqtt_root_only",
@@ -2706,7 +2722,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 58
+            "x-id": 59
           },
           {
             "name": "mqtt_clean_session",
@@ -2720,7 +2736,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 59
+            "x-id": 60
           },
           {
             "name": "mqtt_id_randomize",
@@ -2734,7 +2750,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 60
+            "x-id": 61
           },
           {
             "name": "mqtt_id_random",
@@ -2747,7 +2763,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 61
+            "x-id": 62
           },
           {
             "name": "mqtt_ble_enable",
@@ -2761,7 +2777,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 62
+            "x-id": 63
           },
           {
             "name": "mqtt_ble_topic",
@@ -2776,7 +2792,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 63
+            "x-id": 64
           },
           {
             "name": "mqtt_ble_prefix",
@@ -2792,7 +2808,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 64
+            "x-id": 65
           },
           {
             "name": "mqtt_ble_delimiter",
@@ -2808,7 +2824,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 65
+            "x-id": 66
           },
           {
             "name": "mqtt_ble_postfix",
@@ -2824,7 +2840,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 66
+            "x-id": 67
           },
           {
             "name": "mqtt_ble_quote",
@@ -2838,7 +2854,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 67
+            "x-id": 68
           }
         ]
       }
