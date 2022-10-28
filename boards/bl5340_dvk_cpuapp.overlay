@@ -105,5 +105,5 @@
 };
 
 &uart0 {
-	hw-flow-control;
+	compatible = "nordic,nrf-uarte";
 };
