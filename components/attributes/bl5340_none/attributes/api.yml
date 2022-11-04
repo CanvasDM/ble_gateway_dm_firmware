@@ -504,438 +504,6 @@ methods:
         type: integer
         minimum: 0
         maximum: 0
-- name: check_lock_status
-  summary: Check lock status of module
-  x-management-option: Read
-  x-id: 9
-  x-group_id: 65
-  params:
-  - name: p1
-    summary: Dummy
-    description: Dummy
-    required: false
-    x-ctype: uint8_t
-    x-sequencenumber: 1
-    x-default: 0
-    x-example: 0
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 0
-  result:
-    name: check_lock_status_result
-    schema:
-      type: array
-    x-result:
-    - name: r
-      summary: Result
-      description: Negative error code, 0 on success
-      required: true
-      x-ctype: int32_t
-      x-example: '0'
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-    - name: r1
-      summary: Lock Setup
-      description: True if the lock has been setup, false otherwise
-      required: true
-      x-ctype: bool
-      x-sequencenumber: 2
-      x-default: 0
-      x-example: 1
-      schema:
-        type: bool
-        minimum: 0
-        maximum: 1
-    - name: r2
-      summary: Lock Currently Enabled
-      description: True if the lock is currently engaged, false otherwise
-      required: true
-      x-ctype: bool
-      x-sequencenumber: 3
-      x-default: 0
-      x-example: 1
-      schema:
-        type: bool
-        minimum: 0
-        maximum: 1
-- name: set_lock_code
-  summary: Set lock code of module
-  description: If successful, will update the lock code and the lock will engage when
-    the UART/BLE device disconnects
-  x-management-option: Write
-  x-id: 10
-  x-group_id: 65
-  params:
-  - name: p1
-    summary: Lock code
-    description: Lock Code
-    required: true
-    x-ctype: uint32_t
-    x-sequencenumber: 1
-    x-default: null
-    x-example: 1
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 999999
-  result:
-    name: set_lock_code_result
-    schema:
-      type: array
-    x-result:
-    - name: r
-      summary: Result
-      description: Negative error code, 0 on success
-      required: true
-      x-ctype: int32_t
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-- name: lock
-  summary: Lock module configuration
-  x-management-option: Write
-  x-id: 11
-  x-group_id: 65
-  params:
-  - name: p1
-    summary: Dummy Parameter
-    description: Dummy Parameter
-    required: false
-    x-ctype: uint8_t
-    x-default: 0
-    x-example: 1
-    x-sequencenumber: 1
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 0
-  result:
-    name: lock_result
-    schema:
-      type: array
-    x-result:
-    - name: r
-      summary: Result
-      description: Negative error code, 0 on success
-      required: true
-      x-ctype: int32_t
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-- name: unlock
-  summary: Unlock module configuration
-  x-management-option: Write
-  x-id: 12
-  x-group_id: 65
-  params:
-  - name: p1
-    summary: Unlock code
-    required: true
-    x-ctype: uint32_t
-    x-sequencenumber: 1
-    x-default: null
-    x-example: 1
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 999999
-  - name: p2
-    summary: Disable lock
-    description: If set to true, will clear the lock entirely until it is manually
-      re-enabled
-    required: true
-    x-ctype: bool
-    x-sequencenumber: 2
-    x-default: null
-    x-example: 1
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 1
-  result:
-    name: unlock_result
-    schema:
-      type: array
-    x-result:
-    - name: r
-      summary: Result
-      description: Negative error code, 0 on success
-      required: true
-      x-ctype: int32_t
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-- name: get_unlock_error_code
-  summary: Check last error code umlock error code (clears last error on read)
-  x-management-option: Read
-  x-id: 13
-  x-group_id: 65
-  params:
-  - name: p1
-    summary: Dummy
-    description: Dummy
-    required: false
-    x-ctype: uint8_t
-    x-sequencenumber: 1
-    x-default: 0
-    x-example: 0
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 0
-  result:
-    name: get_unlock_error_result
-    schema:
-      type: array
-    x-result:
-    - name: r
-      summary: Result
-      description: Negative error code, 0 on success
-      required: true
-      x-ctype: int32_t
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-    - name: r1
-      summary: Unlock error code
-      description: Error code from last unlock attempt, 0 = no error, 1 = valid code,
-        2 = invalid code. Reset to 0 on read
-      required: true
-      x-ctype: int8_t
-      x-sequencenumber: 2
-      x-default: null
-      x-example: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 2
-- name: get_api_version
-  summary: Return the current version of api document parameter
-  x-management-option: Read
-  x-id: 14
-  x-group_id: 65
-  params: []
-  result:
-    name: get_api_version_result
-    schema:
-      type: array
-    x-result:
-    - name: api_version
-      summary: Result
-      description: Return api version stored in memory
-      required: true
-      x-ctype: string
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: string
-        minLength: 6
-        maxLength: 11
-- name: get_indices
-  summary: Return info on the attribute table size
-  x-management-option: Read
-  x-id: 15
-  x-group_id: 65
-  params: []
-  result:
-    name: get_api_version_result
-    schema:
-      type: array
-    x-result:
-    - name: table_size
-      summary: Result
-      description: Returns total number items in attribute table
-      required: true
-      x-ctype: uint32_t
-      x-example: 172
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: min_id
-      summary: Result
-      description: Returns number of the id first item in the table (should be zero)
-      required: true
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 2
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: max_id
-      summary: result
-      description: returns number of the id last item in the table
-      required: true
-      x-ctype: uint32_t
-      x-example: 58
-      x-sequencenumber: 3
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-- name: get_entry_details
-  summary: Return the current version of api document parameter
-  x-management-option: Read
-  x-id: 16
-  x-group_id: 65
-  params:
-  - name: method
-    summary: Transversal method
-    description: index = 0, first = 1, last = 2, next = 3, previous = 4
-    required: true
-    x-ctype: uint8_t
-    x-sequencenumber: 1
-    x-default: 0
-    x-example: 3
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 4
-  - name: index
-    summary: Attribute index
-    description: Attribute index
-    required: false
-    x-ctype: uint32_t
-    x-sequencenumber: 2
-    x-default: 0
-    x-example: 35
-    schema:
-      type: integer
-      minimum: 0
-      maximum: 999999
-  result:
-    name: get_entry_details_result
-    schema:
-      type: array
-    x-result:
-    - name: index
-      summary: Attribute index
-      description: Attribute index
-      required: true
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 1
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: res
-      summary: Result code
-      description: Result code
-      required: true
-      x-ctype: int32_t
-      x-example: 0
-      x-sequencenumber: 2
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 0
-    - name: id
-      summary: Attribute ID
-      description: Attribute ID
-      required: false
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 3
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: name
-      summary: Attribute name
-      description: Attribute name
-      required: false
-      x-ctype: string
-      x-example: 0
-      x-sequencenumber: 4
-      schema:
-        type: string
-        minLength: 0
-        maxLength: 0
-    - name: size
-      summary: Attribute size (bytes)
-      description: Attribute size (bytes)
-      required: false
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 5
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: type
-      summary: Attribute type
-      description: Attribute type
-      required: false
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 6
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: flags
-      summary: Attribute flags
-      description: Attribute flags
-      required: false
-      x-ctype: uint32_t
-      x-example: 0
-      x-sequencenumber: 7
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 999999
-    - name: prepared
-      summary: Attribute prepared read
-      description: Attribute prepared read
-      required: false
-      x-ctype: bool
-      x-example: 0
-      x-sequencenumber: 8
-      schema:
-        type: integer
-        minimum: 0
-        maximum: 1
-    - name: min
-      summary: Attribute minimum value
-      description: Actual type sent depends on the parameter itself
-      required: false
-      x-ctype: string
-      x-example: 0
-      x-sequencenumber: 9
-      schema:
-        type: string
-        minLength: 0
-        maxLength: 0
-    - name: max
-      summary: Attribute maximum value
-      description: Actual type sent depends on the parameter itself
-      required: false
-      x-ctype: string
-      x-example: 0
-      x-sequencenumber: 10
-      schema:
-        type: string
-        minLength: 0
-        maxLength: 0
 - name: file_download
   summary: File Download
   description: Request to download file from Zephyr file system.
@@ -1352,6 +920,32 @@ components:
         x-savable: true
         x-writable: true
         x-id: 6
+      - name: disable_flow_control
+        description: When true flow control is disabled on the console UART. Requires
+          a reboot to take effect
+        required: true
+        schema:
+          maximum: 1
+          minimum: 0
+          type: integer
+        x-ctype: bool
+        x-default: 0
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 7
+      - name: baud_rate
+        description: Baud rate for console uart. Changes require a reboot to take
+          effect.
+        required: true
+        schema:
+          type: integer
+        x-ctype: uint32_t
+        x-default: 115200
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 8
       - name: lwm2m_server_url
         required: true
         schema:
@@ -1368,7 +962,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Server URL to connect to
-        x-id: 7
+        x-id: 9
       - name: lwm2m_endpoint
         required: true
         schema:
@@ -1383,7 +977,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Endpoint name to identify the device
-        x-id: 8
+        x-id: 10
       - name: lwm2m_security
         required: true
         schema:
@@ -1405,7 +999,7 @@ components:
         x-savable: true
         x-writable: true
         summary: LwM2M Security mode
-        x-id: 9
+        x-id: 11
       - name: lwm2m_psk_id
         required: true
         schema:
@@ -1421,7 +1015,7 @@ components:
         x-savable: true
         x-writable: true
         summary: PSK ID
-        x-id: 10
+        x-id: 12
       - name: lwm2m_psk
         required: true
         schema:
@@ -1439,7 +1033,7 @@ components:
         x-writable: true
         x-obscure-in-show: true
         summary: Pre-shared key
-        x-id: 11
+        x-id: 13
       - name: lwm2m_bootstrap
         required: true
         schema:
@@ -1455,7 +1049,7 @@ components:
         x-savable: true
         x-writable: true
         summary: 0 - disabled bootstrap, 1 - enabled
-        x-id: 12
+        x-id: 14
       - name: lwm2m_short_id
         required: true
         schema:
@@ -1473,7 +1067,7 @@ components:
         summary: short_server_id This identifier uniquely identifies each LwM2M Server
           configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server
           Resource has a value of 'false'.
-        x-id: 13
+        x-id: 15
       - name: lwm2m_mfg
         required: false
         schema:
@@ -1488,7 +1082,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device manufacturer
-        x-id: 14
+        x-id: 16
       - name: lwm2m_mn
         required: false
         schema:
@@ -1503,7 +1097,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device model number
-        x-id: 15
+        x-id: 17
       - name: lwm2m_sn
         required: false
         schema:
@@ -1518,7 +1112,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device serial number
-        x-id: 16
+        x-id: 18
       - name: lwm2m_fw_ver
         required: false
         schema:
@@ -1533,7 +1127,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device firmware version
-        x-id: 17
+        x-id: 19
       - name: lwm2m_pwr_src
         required: false
         schema:
@@ -1557,7 +1151,7 @@ components:
         x-savable: false
         x-writable: true
         summary: Device power source. This attribute maps to LwM2M path 3/0/6/0.
-        x-id: 18
+        x-id: 20
       - name: lwm2m_pwr_src_volt
         required: false
         schema:
@@ -1572,7 +1166,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Device power source voltage. This attribute maps to LwM2M path 3/0/7/0.
-        x-id: 19
+        x-id: 21
       - name: lwm2m_sw_ver
         required: false
         schema:
@@ -1587,7 +1181,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device software version
-        x-id: 20
+        x-id: 22
       - name: lwm2m_hw_ver
         required: false
         schema:
@@ -1602,7 +1196,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Device hardware version
-        x-id: 21
+        x-id: 23
       - name: lwm2m_batt_stat
         required: false
         schema:
@@ -1625,7 +1219,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Device battery status
-        x-id: 22
+        x-id: 24
       - name: lwm2m_fup_pkg_name
         required: true
         schema:
@@ -1640,7 +1234,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Firmware update firmware package name
-        x-id: 23
+        x-id: 25
       - name: lwm2m_fup_pkg_ver
         required: true
         schema:
@@ -1655,7 +1249,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Firmware update package version
-        x-id: 24
+        x-id: 26
       - name: lwm2m_fup_proxy_srv
         required: true
         schema:
@@ -1671,7 +1265,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Firmware update proxy server
-        x-id: 25
+        x-id: 27
       - name: bluetooth_address
         required: true
         schema:
@@ -1687,7 +1281,7 @@ components:
         x-savable: false
         x-writable: false
         summary: Bluetooth address
-        x-id: 26
+        x-id: 28
       - name: dm_cnx_delay
         required: true
         schema:
@@ -1706,7 +1300,7 @@ components:
         description: 'Write: Control point - Write 0 to generate new randomized delay
           with value between (mdm_cnx_delay_minin, dm_cnx_delay_max). Read: time in
           seconds to delay before connecting.'
-        x-id: 27
+        x-id: 29
       - name: dm_cnx_delay_min
         required: true
         schema:
@@ -1721,7 +1315,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Min delay (in seconds) before connecting to DM server.
-        x-id: 28
+        x-id: 30
       - name: dm_cnx_delay_max
         required: true
         schema:
@@ -1736,7 +1330,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Max delay (in seconds) before connecting to DM server.
-        x-id: 29
+        x-id: 31
       - name: factory_load_path
         required: true
         schema:
@@ -1751,7 +1345,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Path for factory settings that can be restored with attribute load
-        x-id: 30
+        x-id: 32
       - name: device_id
         required: true
         schema:
@@ -1768,7 +1362,7 @@ components:
         summary: Unique identifier for the device. When firmware boots, if the value
           is blank (the default value), the firmware will set a unique value for the
           device using BLE MAC address, IMEI, or some similar value.
-        x-id: 31
+        x-id: 33
       - name: smp_auth_req
         required: true
         schema:
@@ -1785,7 +1379,7 @@ components:
         summary: If true, SMP authentication will be required before accessing any
           SMP services. If false, all SMP services are available regardless of authentication
           status.
-        x-id: 32
+        x-id: 34
       - name: gw_smp_auth_req
         required: true
         schema:
@@ -1801,7 +1395,7 @@ components:
         x-writable: true
         summary: If true, the gateway will require peripherals to authenticate before
           sending SMP messages
-        x-id: 33
+        x-id: 35
       - name: smp_auth_timeout
         required: true
         schema:
@@ -1817,7 +1411,7 @@ components:
         x-writable: true
         summary: SMP authentication will time out after a lapse in SMP commands lasting
           this number of seconds.
-        x-id: 34
+        x-id: 36
       - name: shell_password
         required: true
         schema:
@@ -1834,7 +1428,7 @@ components:
         x-hide-in-show: true
         x-show-on-change: false
         summary: Password to login and use the shell
-        x-id: 35
+        x-id: 37
       - name: shell_session_timeout
         summary: Time before a login session will expire (in minutes). Set to 0 to
           disable.
@@ -1848,7 +1442,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 36
+        x-id: 38
       - name: tel_trust_path
         required: true
         schema:
@@ -1863,7 +1457,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for telemetry authentication.
-        x-id: 37
+        x-id: 39
       - name: tel_key_path
         required: true
         schema:
@@ -1878,7 +1472,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for telemetry authentication.
-        x-id: 38
+        x-id: 40
       - name: dm_trust_path
         required: true
         schema:
@@ -1893,7 +1487,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for DM authentication.
-        x-id: 39
+        x-id: 41
       - name: dm_key_path
         required: true
         schema:
@@ -1908,7 +1502,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for DM authentication.
-        x-id: 40
+        x-id: 42
       - name: fs_trust_path
         required: true
         schema:
@@ -1923,7 +1517,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for firmware and file service authentication.
-        x-id: 41
+        x-id: 43
       - name: fs_key_path
         required: true
         schema:
@@ -1938,7 +1532,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for firmware and file service authentication.
-        x-id: 42
+        x-id: 44
       - name: p2p_trust_path
         required: true
         schema:
@@ -1953,7 +1547,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for peer-to-peer authentication.
-        x-id: 43
+        x-id: 45
       - name: p2p_key_path
         required: true
         schema:
@@ -1968,7 +1562,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for peer-to-peer authentication.
-        x-id: 44
+        x-id: 46
       - name: ipv4_addr
         summary: Internet Protocol Version 4 address
         required: true
@@ -1983,7 +1577,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 45
+        x-id: 47
       - name: network_id_filter
         summary: If nonzero, then filter advertisements based on network ID
         required: true
@@ -1994,7 +1588,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 46
+        x-id: 48
       - name: gw_ipv4_addr
         summary: Internet Protocol Version 4 address for Gateway
         required: true
@@ -2009,4 +1603,4 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 47
+        x-id: 49

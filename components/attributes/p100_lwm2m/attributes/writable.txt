@@ -2,6 +2,8 @@
 dump_path=/lfs1/attr_dump.txt
 load_path=/lfs1/enc/attr_load.txt
 log_on_boot=0
+disable_flow_control=0
+baud_rate=115200
 lwm2m_server_url=coap://leshan.eclipseprojects.io:5683
 lwm2m_endpoint=my_device
 lwm2m_security=3
