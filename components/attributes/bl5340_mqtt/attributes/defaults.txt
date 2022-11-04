@@ -1,6 +1,6 @@
 # Default Values for Attributes 
 reserved0=0
-api_version=0.5.0
+api_version=0.6.0
 firmware_version=0.0.0+0
 dump_path=/lfs1/attr_dump.txt
 load_path=/lfs1/enc/attr_load.txt
@@ -62,8 +62,6 @@ mqtt_connect_on_request=1
 mqtt_transport_secure=1
 mqtt_root_only=0
 mqtt_clean_session=1
-mqtt_id_randomize=0
-mqtt_id_random=""
 mqtt_ble_enable=0
 mqtt_ble_topic=""
 mqtt_ble_prefix=""

@@ -81,7 +81,6 @@ typedef struct rw_attribute {
 	bool mqtt_transport_secure;
 	bool mqtt_root_only;
 	bool mqtt_clean_session;
-	bool mqtt_id_randomize;
 	bool mqtt_ble_enable;
 	char mqtt_ble_topic[255 + 1];
 	char mqtt_ble_prefix[63 + 1];
@@ -144,7 +143,6 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.mqtt_transport_secure = 1,
 	.mqtt_root_only = 0,
 	.mqtt_clean_session = 1,
-	.mqtt_id_randomize = 0,
 	.mqtt_ble_enable = 0,
 	.mqtt_ble_topic = "",
 	.mqtt_ble_prefix = "",
@@ -168,14 +166,13 @@ typedef struct ro_attribute {
 	char bluetooth_address[12 + 1];
 	char ipv4_addr[15 + 1];
 	char gw_ipv4_addr[15 + 1];
-	char mqtt_id_random[145 + 1];
 } ro_attribute_t;
 /* pyend */
 
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.reserved0 = 0,
-	.api_version = "0.5.0",
+	.api_version = "0.6.0",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
@@ -186,7 +183,6 @@ static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.bluetooth_address = "0",
 	.ipv4_addr = "",
 	.gw_ipv4_addr = "",
-	.mqtt_id_random = "",
 };
 /* pyend */
 
@@ -283,14 +279,12 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[60 ] = { RW_ATTRX(mqtt_transport_secure)               , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[61 ] = { RW_ATTRX(mqtt_root_only)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[62 ] = { RW_ATTRX(mqtt_clean_session)                  , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[63 ] = { RW_ATTRX(mqtt_id_randomize)                   , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[64 ] = { RO_ATTRS(mqtt_id_random)                      , ATTR_TYPE_STRING        , 0x2   , av_string           , NULL                                , .min.ux = 0         , .max.ux = 145       },
-	[65 ] = { RW_ATTRX(mqtt_ble_enable)                     , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
-	[66 ] = { RW_ATTRS(mqtt_ble_topic)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       },
-	[67 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
-	[68 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
-	[69 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[70 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         }
+	[63 ] = { RW_ATTRX(mqtt_ble_enable)                     , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[64 ] = { RW_ATTRS(mqtt_ble_topic)                      , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       },
+	[65 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
+	[66 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
+	[67 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
+	[68 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         }
 };
 /* pyend */
 

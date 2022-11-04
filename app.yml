@@ -2,7 +2,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.5.0
+  version: 0.6.0
   x-default-baud: 115200
 methods:
   - $ref: ./../modules/lib/laird_connect/zephyr_lib/components/attributes/os_mgmt_methods.yml
@@ -35,5 +35,4 @@ components:
         - $ref: ../modules/lib/laird_connect/ble_gateway_device_manager/attributes/params_lwm2m_telem.yml
       x-mqtt:
         - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt.yml
-        - $ref: ../modules/lib/laird_connect/lcz_mqtt/attributes/lcz_mqtt_client_random.yml
         - $ref: ../modules/lib/laird_connect/lcz_sensor_telemetry_app/attributes/lcz_sensor_app_mqtt.yml

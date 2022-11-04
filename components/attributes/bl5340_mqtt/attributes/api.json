@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "0.5.0",
+            "x-default": "0.6.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2204,33 +2204,6 @@
             "x-id": 62
           },
           {
-            "name": "mqtt_id_randomize",
-            "summary": "Add suffix with random number to client ID on each connection.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "bool",
-            "x-default": 0,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
-            "x-id": 63
-          },
-          {
-            "name": "mqtt_id_random",
-            "summary": "Current client ID",
-            "required": false,
-            "schema": {
-              "maxLength": 145,
-              "type": "string"
-            },
-            "x-ctype": "string",
-            "x-default": "",
-            "x-readable": true,
-            "x-id": 64
-          },
-          {
             "name": "mqtt_ble_enable",
             "summary": "Allow module to process advertisements and publishes. When going from disabled-to-enabled, credentials are loaded.",
             "required": true,
@@ -2242,7 +2215,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 65
+            "x-id": 63
           },
           {
             "name": "mqtt_ble_topic",
@@ -2257,7 +2230,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 66
+            "x-id": 64
           },
           {
             "name": "mqtt_ble_prefix",
@@ -2273,7 +2246,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 67
+            "x-id": 65
           },
           {
             "name": "mqtt_ble_delimiter",
@@ -2289,7 +2262,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 68
+            "x-id": 66
           },
           {
             "name": "mqtt_ble_postfix",
@@ -2305,7 +2278,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 69
+            "x-id": 67
           },
           {
             "name": "mqtt_ble_quote",
@@ -2319,7 +2292,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 70
+            "x-id": 68
           }
         ]
       }

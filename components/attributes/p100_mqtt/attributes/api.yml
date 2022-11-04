@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.5.0
+  version: 0.6.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -851,7 +851,7 @@ components:
           minLength: 6
           type: string
         x-ctype: string
-        x-default: 0.5.0
+        x-default: 0.6.0
         x-example: 0.1.0
         x-readable: true
         summary: The API version that the firmware supports
@@ -1613,7 +1613,6 @@ components:
         summary: International Mobile Subscriber Identity
         required: true
         schema:
-          minLength: 14
           maxLength: 15
           type: string
         x-ctype: string
@@ -2034,27 +2033,6 @@ components:
         x-writable: true
         x-readable: true
         x-id: 84
-      - name: mqtt_id_randomize
-        summary: Add suffix with random number to client ID on each connection.
-        required: true
-        schema:
-          type: integer
-        x-ctype: bool
-        x-default: 0
-        x-savable: true
-        x-writable: true
-        x-readable: true
-        x-id: 85
-      - name: mqtt_id_random
-        summary: Current client ID
-        required: false
-        schema:
-          maxLength: 145
-          type: string
-        x-ctype: string
-        x-default: ''
-        x-readable: true
-        x-id: 86
       - name: mqtt_ble_enable
         summary: Allow module to process advertisements and publishes. When going
           from disabled-to-enabled, credentials are loaded.
@@ -2066,7 +2044,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 87
+        x-id: 85
       - name: mqtt_ble_topic
         summary: Topic for publishing BLE advertisement data
         required: true
@@ -2078,7 +2056,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 88
+        x-id: 86
       - name: mqtt_ble_prefix
         summary: Prefix to publish string For example, add prefix to format data for
           an AWS Shadow (JSON).
@@ -2092,7 +2070,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 89
+        x-id: 87
       - name: mqtt_ble_delimiter
         summary: String placed between data items
         required: true
@@ -2105,7 +2083,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 90
+        x-id: 88
       - name: mqtt_ble_postfix
         summary: Postfix to advertisement string
         required: true
@@ -2118,7 +2096,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 91
+        x-id: 89
       - name: mqtt_ble_quote
         summary: Add quote characters around the advertisement data Allows JSON array
           of strings to be generated.
@@ -2130,4 +2108,4 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 92
+        x-id: 90

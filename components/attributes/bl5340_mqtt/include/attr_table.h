@@ -139,28 +139,26 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_ID_mqtt_transport_secure                 60
 #define ATTR_ID_mqtt_root_only                        61
 #define ATTR_ID_mqtt_clean_session                    62
-#define ATTR_ID_mqtt_id_randomize                     63
-#define ATTR_ID_mqtt_id_random                        64
-#define ATTR_ID_mqtt_ble_enable                       65
-#define ATTR_ID_mqtt_ble_topic                        66
-#define ATTR_ID_mqtt_ble_prefix                       67
-#define ATTR_ID_mqtt_ble_delimiter                    68
-#define ATTR_ID_mqtt_ble_postfix                      69
-#define ATTR_ID_mqtt_ble_quote                        70
+#define ATTR_ID_mqtt_ble_enable                       63
+#define ATTR_ID_mqtt_ble_topic                        64
+#define ATTR_ID_mqtt_ble_prefix                       65
+#define ATTR_ID_mqtt_ble_delimiter                    66
+#define ATTR_ID_mqtt_ble_postfix                      67
+#define ATTR_ID_mqtt_ble_quote                        68
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                  71
-#define ATTR_TABLE_MAX_ID                                70
-#define ATTR_TABLE_WRITABLE_COUNT                        59
-#define ATTR_TABLE_CRC_OF_NAMES                          0xe30bdf86
+#define ATTR_TABLE_SIZE                                  69
+#define ATTR_TABLE_MAX_ID                                68
+#define ATTR_TABLE_WRITABLE_COUNT                        58
+#define ATTR_TABLE_CRC_OF_NAMES                          0x24103d02
 #define ATTR_MAX_STR_LENGTH                              255
 #define ATTR_MAX_STR_SIZE                                256
 #define ATTR_MAX_BIN_SIZE                                16
 #define ATTR_MAX_INT_SIZE                                4
 #define ATTR_MAX_KEY_NAME_SIZE                           24
 #define ATTR_MAX_VALUE_SIZE                              256
-#define ATTR_MAX_FILE_SIZE                               3804
+#define ATTR_MAX_FILE_SIZE                               3623
 #define ATTR_ENABLE_FPU_CHECK                            0
 
 /* Attribute Max String Lengths */
@@ -200,7 +198,6 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_MQTT_ENDPOINT_MAX_STR_SIZE                  128
 #define ATTR_MQTT_PORT_MAX_STR_SIZE                      5
 #define ATTR_MQTT_ID_MAX_STR_SIZE                        128
-#define ATTR_MQTT_ID_RANDOM_MAX_STR_SIZE                 146
 #define ATTR_MQTT_BLE_TOPIC_MAX_STR_SIZE                 256
 #define ATTR_MQTT_BLE_PREFIX_MAX_STR_SIZE                64
 #define ATTR_MQTT_BLE_DELIMITER_MAX_STR_SIZE             2

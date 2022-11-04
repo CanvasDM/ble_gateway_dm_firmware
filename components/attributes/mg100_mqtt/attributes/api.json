@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.5.0",
+    "version": "0.6.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "0.5.0",
+            "x-default": "0.6.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2023,7 +2023,6 @@
             "summary": "International Mobile Subscriber Identity",
             "required": true,
             "schema": {
-              "minLength": 14,
               "maxLength": 15,
               "type": "string"
             },
@@ -2552,33 +2551,6 @@
             "x-id": 84
           },
           {
-            "name": "mqtt_id_randomize",
-            "summary": "Add suffix with random number to client ID on each connection.",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "x-ctype": "bool",
-            "x-default": 0,
-            "x-savable": true,
-            "x-writable": true,
-            "x-readable": true,
-            "x-id": 85
-          },
-          {
-            "name": "mqtt_id_random",
-            "summary": "Current client ID",
-            "required": false,
-            "schema": {
-              "maxLength": 145,
-              "type": "string"
-            },
-            "x-ctype": "string",
-            "x-default": "",
-            "x-readable": true,
-            "x-id": 86
-          },
-          {
             "name": "mqtt_ble_enable",
             "summary": "Allow module to process advertisements and publishes. When going from disabled-to-enabled, credentials are loaded.",
             "required": true,
@@ -2590,7 +2562,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 87
+            "x-id": 85
           },
           {
             "name": "mqtt_ble_topic",
@@ -2605,7 +2577,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 88
+            "x-id": 86
           },
           {
             "name": "mqtt_ble_prefix",
@@ -2621,7 +2593,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 89
+            "x-id": 87
           },
           {
             "name": "mqtt_ble_delimiter",
@@ -2637,7 +2609,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 90
+            "x-id": 88
           },
           {
             "name": "mqtt_ble_postfix",
@@ -2653,7 +2625,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 91
+            "x-id": 89
           },
           {
             "name": "mqtt_ble_quote",
@@ -2667,7 +2639,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 92
+            "x-id": 90
           }
         ]
       }
