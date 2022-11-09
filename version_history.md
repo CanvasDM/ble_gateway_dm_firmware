@@ -1,5 +1,11 @@
 # Version History
 
+## v0.4.0
+- Enable flow control on the console UART
+- Reduce boot time
+- Fix object 9 resource observations
+- Move to in-tree Zephyr LwM2M stack
+
 ## v0.3.1
 - Fix artifact naming for BL5340
 - Enable Read back protection and disable flash patch for nRF52840
