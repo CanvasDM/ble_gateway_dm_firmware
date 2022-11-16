@@ -141,6 +141,8 @@ if(CONFIG_LCZ_MEMFAULT)
     endif()
 endif()
 
+zephyr_include_directories(${CMAKE_SOURCE_DIR}/config/include)
+
 target_include_directories(app PRIVATE ${gen_dir})
 
 target_sources(app PRIVATE src/main.c)
