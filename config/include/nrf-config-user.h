@@ -12,8 +12,8 @@
 #include <lcz_mqtt_mbedtls_config.h>
 #endif
 
-/* 16 BT610 devices (CONFIG_LWM2M_GATEWAY_MAX_INSTANCES) * 4 keys per session + 6 overhead slots */
-#define PSA_KEY_SLOT_COUNT 70
+/* 4 BT610 devices (CONFIG_LWM2M_GATEWAY_MAX_INSTANCES) * 4 keys per session + 6 overhead slots */
+#define PSA_KEY_SLOT_COUNT 20
 #ifdef MBEDTLS_PSA_KEY_SLOT_COUNT
 #undef MBEDTLS_PSA_KEY_SLOT_COUNT
 #define MBEDTLS_PSA_KEY_SLOT_COUNT PSA_KEY_SLOT_COUNT
