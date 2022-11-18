@@ -1,5 +1,13 @@
 # Version History
 
+## v0.4.1
+- Fix crashes related to BLE
+- Fix excessive error logging
+- Support up to 4 BLE sensors
+- Add LED activity for device management
+- Fix SMP communication issues
+- MQTT app: Post Memfault data over MQTT
+
 ## v0.4.0
 - Enable flow control on the console UART
 - Reduce boot time
