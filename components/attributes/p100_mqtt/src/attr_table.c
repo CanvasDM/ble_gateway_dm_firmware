@@ -88,6 +88,8 @@ typedef struct rw_attribute {
 	char mqtt_ble_delimiter[1 + 1];
 	char mqtt_ble_postfix[15 + 1];
 	bool mqtt_ble_quote;
+	bool mqtt_memfault_enable;
+	char mqtt_memfault_topic[255 + 1];
 } rw_attribute_t;
 /* pyend */
 
@@ -150,7 +152,9 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.mqtt_ble_prefix = "",
 	.mqtt_ble_delimiter = "",
 	.mqtt_ble_postfix = "",
-	.mqtt_ble_quote = 0
+	.mqtt_ble_quote = 0,
+	.mqtt_memfault_enable = 0,
+	.mqtt_memfault_topic = ""
 };
 /* pyend */
 
@@ -195,7 +199,7 @@ typedef struct ro_attribute {
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.reserved0 = 0,
-	.api_version = "0.6.0",
+	.api_version = "0.7.0",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
@@ -350,7 +354,9 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[87 ] = { RW_ATTRS(mqtt_ble_prefix)                     , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 63        },
 	[88 ] = { RW_ATTRS(mqtt_ble_delimiter)                  , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 1         },
 	[89 ] = { RW_ATTRS(mqtt_ble_postfix)                    , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 15        },
-	[90 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         }
+	[90 ] = { RW_ATTRX(mqtt_ble_quote)                      , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 0         },
+	[91 ] = { RW_ATTRX(mqtt_memfault_enable)                , ATTR_TYPE_BOOL          , 0x13  , av_bool             , NULL                                , .min.ux = 0         , .max.ux = 1         },
+	[92 ] = { RW_ATTRS(mqtt_memfault_topic)                 , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 255       }
 };
 /* pyend */
 

@@ -237,20 +237,22 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_ID_mqtt_ble_delimiter                    88
 #define ATTR_ID_mqtt_ble_postfix                      89
 #define ATTR_ID_mqtt_ble_quote                        90
+#define ATTR_ID_mqtt_memfault_enable                  91
+#define ATTR_ID_mqtt_memfault_topic                   92
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                  91
-#define ATTR_TABLE_MAX_ID                                90
-#define ATTR_TABLE_WRITABLE_COUNT                        62
-#define ATTR_TABLE_CRC_OF_NAMES                          0x34f558db
+#define ATTR_TABLE_SIZE                                  93
+#define ATTR_TABLE_MAX_ID                                92
+#define ATTR_TABLE_WRITABLE_COUNT                        64
+#define ATTR_TABLE_CRC_OF_NAMES                          0xfdaeb7a3
 #define ATTR_MAX_STR_LENGTH                              255
 #define ATTR_MAX_STR_SIZE                                256
 #define ATTR_MAX_BIN_SIZE                                16
 #define ATTR_MAX_INT_SIZE                                4
 #define ATTR_MAX_KEY_NAME_SIZE                           24
 #define ATTR_MAX_VALUE_SIZE                              256
-#define ATTR_MAX_FILE_SIZE                               4181
+#define ATTR_MAX_FILE_SIZE                               4480
 #define ATTR_ENABLE_FPU_CHECK                            0
 
 /* Attribute Max String Lengths */
@@ -301,6 +303,7 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_MQTT_BLE_PREFIX_MAX_STR_SIZE                64
 #define ATTR_MQTT_BLE_DELIMITER_MAX_STR_SIZE             2
 #define ATTR_MQTT_BLE_POSTFIX_MAX_STR_SIZE               16
+#define ATTR_MQTT_MEMFAULT_TOPIC_MAX_STR_SIZE            256
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                              16

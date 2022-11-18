@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "0.6.0",
+            "x-default": "0.7.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2640,6 +2640,37 @@
             "x-writable": true,
             "x-readable": true,
             "x-id": 90
+          },
+          {
+            "name": "mqtt_memfault_enable",
+            "summary": "Publish Memfault data using MQTT (so that it can be forwarded)",
+            "required": true,
+            "schema": {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 91
+          },
+          {
+            "name": "mqtt_memfault_topic",
+            "summary": "Topic for publishing Memfault data",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 92
           }
         ]
       }
