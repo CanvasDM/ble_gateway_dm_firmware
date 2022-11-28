@@ -1,5 +1,8 @@
 # Version History
 
+## v0.4.3
+- Fix crash when running factory init script in manufacturing
+
 ## v0.4.2
 - Fix attr_load API to return 0 for WBx3 compatibility
 
