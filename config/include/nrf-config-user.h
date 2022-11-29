@@ -8,7 +8,7 @@
 #ifndef __APP_MBED_TLS_CONFIG_H__
 #define __APP_MBED_TLS_CONFIG_H__
 
-#ifdef CONFIG_LCZ_MQTT
+#ifdef CONFIG_LCZ_MQTT_AZURE
 #include <lcz_mqtt_mbedtls_config.h>
 #endif
 
