@@ -102,7 +102,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.gw_smp_auth_req = 0,
 	.smp_auth_timeout = 300,
 	.shell_password = "zephyr",
-	.shell_session_timeout = 1,
+	.shell_session_timeout = 5,
 	.tel_trust_path = "/lfs1/tel/trust",
 	.tel_key_path = "/lfs1/enc/tel/key",
 	.dm_trust_path = "/lfs1/dm/trust",
@@ -157,7 +157,7 @@ typedef struct ro_attribute {
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.reserved0 = 0,
-	.api_version = "0.7.0",
+	.api_version = "0.8.0",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
