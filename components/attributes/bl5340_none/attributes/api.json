@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "0.8.0",
+    "version": "1.0.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "0.8.0",
+            "x-default": "1.0.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -1781,6 +1781,57 @@
             "x-id": 36
           },
           {
+            "name": "dm_cnx_retries",
+            "summary": "Failed connection retries",
+            "description": "The number of times to retry a failed DM connection before going into backoff mode.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 255
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 3,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 37
+          },
+          {
+            "name": "dm_cnx_backoff_multi",
+            "summary": "Connection backoff multiplier",
+            "description": "When in backoff mode, this multiplier will be applied to dm_cnx_delay for each connection retry.",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "minimum": 1.0,
+              "maximum": 50.0
+            },
+            "x-ctype": "float",
+            "x-default": 2.0,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 38
+          },
+          {
+            "name": "dm_cnx_backoff_retries",
+            "summary": "Connection backoff retries",
+            "description": "The number of times to retry a failed DM connection in backoff mode.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 255
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 5,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 39
+          },
+          {
             "name": "shell_password",
             "required": true,
             "schema": {
@@ -1798,7 +1849,7 @@
             "x-hide-in-show": true,
             "x-show-on-change": false,
             "summary": "Password to login and use the shell",
-            "x-id": 37
+            "x-id": 40
           },
           {
             "name": "shell_session_timeout",
@@ -1814,7 +1865,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 38
+            "x-id": 41
           },
           {
             "name": "tel_trust_path",
@@ -1832,7 +1883,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for telemetry authentication.",
-            "x-id": 39
+            "x-id": 42
           },
           {
             "name": "tel_key_path",
@@ -1850,7 +1901,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for telemetry authentication.",
-            "x-id": 40
+            "x-id": 43
           },
           {
             "name": "dm_trust_path",
@@ -1868,7 +1919,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for DM authentication.",
-            "x-id": 41
+            "x-id": 44
           },
           {
             "name": "dm_key_path",
@@ -1886,7 +1937,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for DM authentication.",
-            "x-id": 42
+            "x-id": 45
           },
           {
             "name": "fs_trust_path",
@@ -1904,7 +1955,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for firmware and file service authentication.",
-            "x-id": 43
+            "x-id": 46
           },
           {
             "name": "fs_key_path",
@@ -1922,7 +1973,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for firmware and file service authentication.",
-            "x-id": 44
+            "x-id": 47
           },
           {
             "name": "p2p_trust_path",
@@ -1940,7 +1991,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the trust store for peer-to-peer authentication.",
-            "x-id": 45
+            "x-id": 48
           },
           {
             "name": "p2p_key_path",
@@ -1958,7 +2009,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "The path to the key store for peer-to-peer authentication.",
-            "x-id": 46
+            "x-id": 49
           },
           {
             "name": "ipv4_addr",
@@ -1976,7 +2027,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 47
+            "x-id": 50
           },
           {
             "name": "network_id_filter",
@@ -1990,7 +2041,7 @@
             "x-savable": true,
             "x-writable": true,
             "x-readable": true,
-            "x-id": 48
+            "x-id": 51
           },
           {
             "name": "gw_ipv4_addr",
@@ -2008,7 +2059,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 49
+            "x-id": 52
           }
         ]
       }

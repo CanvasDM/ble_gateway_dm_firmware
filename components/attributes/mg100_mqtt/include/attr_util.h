@@ -111,6 +111,9 @@ extern "C" {
 #define _ATTRX90 _YYYY,
 #define _ATTRX91 _YYYY,
 #define _ATTRX92 _YYYY,
+#define _ATTRX93 _YYYY,
+#define _ATTRX94 _YYYY,
+#define _ATTRX95 _YYYY,
 /* pyend */
 
 #ifdef __cplusplus

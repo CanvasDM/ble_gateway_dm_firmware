@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 0.8.0
+  version: 1.0.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -851,7 +851,7 @@ components:
           minLength: 6
           type: string
         x-ctype: string
-        x-default: 0.8.0
+        x-default: 1.0.0
         x-example: 0.1.0
         x-readable: true
         summary: The API version that the firmware supports
@@ -1412,6 +1412,51 @@ components:
         summary: SMP authentication will time out after a lapse in SMP commands lasting
           this number of seconds.
         x-id: 36
+      - name: dm_cnx_retries
+        summary: Failed connection retries
+        description: The number of times to retry a failed DM connection before going
+          into backoff mode.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 255
+        x-ctype: uint8_t
+        x-default: 3
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 37
+      - name: dm_cnx_backoff_multi
+        summary: Connection backoff multiplier
+        description: When in backoff mode, this multiplier will be applied to dm_cnx_delay
+          for each connection retry.
+        required: true
+        schema:
+          type: number
+          minimum: 1.0
+          maximum: 50.0
+        x-ctype: float
+        x-default: 2.0
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 38
+      - name: dm_cnx_backoff_retries
+        summary: Connection backoff retries
+        description: The number of times to retry a failed DM connection in backoff
+          mode.
+        required: true
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 255
+        x-ctype: uint8_t
+        x-default: 5
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 39
       - name: shell_password
         required: true
         schema:
@@ -1428,7 +1473,7 @@ components:
         x-hide-in-show: true
         x-show-on-change: false
         summary: Password to login and use the shell
-        x-id: 37
+        x-id: 40
       - name: shell_session_timeout
         summary: Time before a login session will expire (in minutes). Set to 0 to
           disable.
@@ -1442,7 +1487,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 38
+        x-id: 41
       - name: tel_trust_path
         required: true
         schema:
@@ -1457,7 +1502,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for telemetry authentication.
-        x-id: 39
+        x-id: 42
       - name: tel_key_path
         required: true
         schema:
@@ -1472,7 +1517,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for telemetry authentication.
-        x-id: 40
+        x-id: 43
       - name: dm_trust_path
         required: true
         schema:
@@ -1487,7 +1532,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for DM authentication.
-        x-id: 41
+        x-id: 44
       - name: dm_key_path
         required: true
         schema:
@@ -1502,7 +1547,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for DM authentication.
-        x-id: 42
+        x-id: 45
       - name: fs_trust_path
         required: true
         schema:
@@ -1517,7 +1562,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for firmware and file service authentication.
-        x-id: 43
+        x-id: 46
       - name: fs_key_path
         required: true
         schema:
@@ -1532,7 +1577,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for firmware and file service authentication.
-        x-id: 44
+        x-id: 47
       - name: p2p_trust_path
         required: true
         schema:
@@ -1547,7 +1592,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for peer-to-peer authentication.
-        x-id: 45
+        x-id: 48
       - name: p2p_key_path
         required: true
         schema:
@@ -1562,7 +1607,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for peer-to-peer authentication.
-        x-id: 46
+        x-id: 49
       - name: ipv4_addr
         summary: Internet Protocol Version 4 address
         required: true
@@ -1577,7 +1622,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 47
+        x-id: 50
       - name: network_id_filter
         summary: If nonzero, then filter advertisements based on network ID
         required: true
@@ -1588,7 +1633,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 48
+        x-id: 51
       - name: gw_ipv4_addr
         summary: Internet Protocol Version 4 address for Gateway
         required: true
@@ -1603,7 +1648,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 49
+        x-id: 52
       - name: mqtt_user_name
         summary: Client user name in connect request. Not used if empty.
         required: true
@@ -1614,7 +1659,7 @@ components:
         x-default: ''
         x-savable: true
         x-writable: true
-        x-id: 50
+        x-id: 53
       - name: mqtt_password
         summary: Client password. Not used if empty.
         required: true
@@ -1625,7 +1670,7 @@ components:
         x-default: ''
         x-savable: true
         x-writable: true
-        x-id: 51
+        x-id: 54
       - name: mqtt_endpoint
         summary: Server host name
         required: true
@@ -1637,7 +1682,7 @@ components:
         x-example: a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com
         x-savable: true
         x-writable: true
-        x-id: 52
+        x-id: 55
       - name: mqtt_port
         summary: Server host port
         required: true
@@ -1651,7 +1696,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 53
+        x-id: 56
       - name: mqtt_id
         summary: Client ID used in MQTT connect. Server may limit this to 23 alpha-numeric
           characters.
@@ -1664,7 +1709,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 54
+        x-id: 57
       - name: mqtt_watchdog
         summary: Maximum time in seconds between successful MQTT publishes. Disabled
           when 0.
@@ -1676,7 +1721,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 55
+        x-id: 58
       - name: mqtt_publish_qos
         summary: Quality of service
         required: true
@@ -1687,7 +1732,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 56
+        x-id: 59
       - name: mqtt_peer_verify
         summary: Verify server
         required: true
@@ -1703,7 +1748,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 57
+        x-id: 60
       - name: mqtt_subscribe_qos
         summary: Subscription quality of service
         required: true
@@ -1714,7 +1759,7 @@ components:
         x-readable: true
         x-writable: true
         x-savable: true
-        x-id: 58
+        x-id: 61
       - name: mqtt_connect_on_request
         summary: Try to load certs, resolve server, and connect when pub/sub is requested
         required: true
@@ -1725,7 +1770,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 59
+        x-id: 62
       - name: mqtt_transport_secure
         summary: If possible (CONFIG_MQTT_LIB_TLS defined), use TLS for transport
         required: true
@@ -1736,7 +1781,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 60
+        x-id: 63
       - name: mqtt_root_only
         summary: Only load root certificate
         required: true
@@ -1747,7 +1792,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 61
+        x-id: 64
       - name: mqtt_clean_session
         summary: If false, then allow persistent sessions. Not supported by all brokers.
         required: true
@@ -1758,7 +1803,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 62
+        x-id: 65
       - name: mqtt_ble_enable
         summary: Allow module to process advertisements and publishes. When going
           from disabled-to-enabled, credentials are loaded.
@@ -1770,7 +1815,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 63
+        x-id: 66
       - name: mqtt_ble_topic
         summary: Topic for publishing BLE advertisement data
         required: true
@@ -1782,7 +1827,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 64
+        x-id: 67
       - name: mqtt_ble_prefix
         summary: Prefix to publish string For example, add prefix to format data for
           an AWS Shadow (JSON).
@@ -1796,7 +1841,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 65
+        x-id: 68
       - name: mqtt_ble_delimiter
         summary: String placed between data items
         required: true
@@ -1809,7 +1854,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 66
+        x-id: 69
       - name: mqtt_ble_postfix
         summary: Postfix to advertisement string
         required: true
@@ -1822,7 +1867,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 67
+        x-id: 70
       - name: mqtt_ble_quote
         summary: Add quote characters around the advertisement data Allows JSON array
           of strings to be generated.
@@ -1834,7 +1879,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 68
+        x-id: 71
       - name: mqtt_memfault_enable
         summary: Publish Memfault data using MQTT (so that it can be forwarded)
         required: true
@@ -1847,7 +1892,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 69
+        x-id: 72
       - name: mqtt_memfault_topic
         summary: Topic for publishing Memfault data
         required: true
@@ -1859,4 +1904,4 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 70
+        x-id: 73
