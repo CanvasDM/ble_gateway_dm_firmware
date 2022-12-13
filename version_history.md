@@ -1,5 +1,14 @@
 # Version History
 
+## v1.0.0
+
+- Initial production release
+- Add DM connection retry backoff
+- Change default shell session timeout
+- Fix filesystem file read for files less than the block size
+- Fix duplicate LwM2M responses when talking to sensor
+- Fix set LTE bands and RAT
+
 ## v0.4.4
 
 - Factory init scripts for QA and production
