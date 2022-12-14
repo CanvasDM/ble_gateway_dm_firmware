@@ -234,7 +234,8 @@
 			"options": [
 				"pinnacle_100_dvk",
 				"mg100",
-				"bl5340_dvk_cpuapp"
+				"bl5340_dvk_cpuapp",
+				"nrf7002dk_nrf5340_cpuapp"
 			]
 		},
 		{

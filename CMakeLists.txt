@@ -11,6 +11,8 @@ elseif(BOARD STREQUAL pinnacle_100_dvk)
     set(MODEL_NAME p100)
 elseif(BOARD STREQUAL bl5340_dvk_cpuapp)
     set(MODEL_NAME bl5340)
+elseif(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp)
+    set(MODEL_NAME bl5340)
 endif()
 
 set(b0_DTC_OVERLAY_FILE
@@ -33,8 +35,15 @@ set(PM_STATIC_YML_FILE
     ${lcz_module_dir}/zephyr_lib/mcuboot_config/pm_static.sb.${BOARD}.yml
 )
 
-if(BOARD STREQUAL bl5340_dvk_cpuapp)
+if((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp))
     set(hci_rpmsg_OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/hci_rpmsg.bl5340_dvk_cpunet.conf)
+endif()
+
+if(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp)
+    set(WIFI_NRF_DRV_BASE ${WEST_TOPDIR}/nrf/drivers/wifi/nrf700x)
+    if(CONFIG_WPA_SUPP)
+        set(WPA_SUPP_BASE ${WEST_TOPDIR}/modules/lib/hostap)
+    endif()
 endif()
 
 # Generate build ID based on UTC timestamp
@@ -94,6 +103,11 @@ set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
 # No need to append to OVERLAY_CONFIG
 configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
 
+# WiFi configuration
+if(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp)
+    list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/wifi.conf)
+endif()
+
 # App configuration
 if(APP_TYPE STREQUAL lwm2m)
     list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/lwm2m_telemetry.conf)
@@ -136,7 +150,7 @@ endif()
 if(CONFIG_LCZ_MEMFAULT)
     if((BOARD STREQUAL mg100) OR(BOARD STREQUAL pinnacle_100_dvk))
         zephyr_include_directories(${CMAKE_SOURCE_DIR}/memfault/mg100)
-    elseif(BOARD STREQUAL bl5340_dvk_cpuapp)
+    elseif((BOARD STREQUAL bl5340_dvk_cpuapp) OR(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp))
         zephyr_include_directories(${CMAKE_SOURCE_DIR}/memfault/bl5340)
     endif()
 endif()
