@@ -3,7 +3,7 @@
 This firmware acts as a BLE gateway that bridges BLE end nodes to the cloud.
 The BLE gateway and the BLE end nodes can be managed via LwM2M.
 
-[Version History](version_history)
+[Version History](version_history.md)
 
 ## Boards supported by this firmware
 
