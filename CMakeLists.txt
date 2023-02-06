@@ -103,6 +103,9 @@ set(memfault_info_conf ${CMAKE_BINARY_DIR}/generated_memfault_info.conf)
 # No need to append to OVERLAY_CONFIG
 configure_file(${CMAKE_SOURCE_DIR}/src/version/memfault_info.conf.in ${memfault_info_conf})
 
+# Enable Laird Connectivity BLE sensor scanning
+list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/ble_sensors.conf)
+
 # WiFi configuration
 if(BOARD STREQUAL nrf7002dk_nrf5340_cpuapp)
     list(APPEND OVERLAY_CONFIG ${CMAKE_SOURCE_DIR}/config/wifi.conf)
