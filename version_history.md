@@ -1,5 +1,12 @@
 # Version History
 
+## v1.1.0
+
+- Fix LTE SINR not working (Object 4)
+- Fix BT610 FOTA crashing the gateway
+- Fix LwM2M non-secure connection not working
+- Allow non-telemetry firmware to scan for BT610 Canvas devices. 
+
 ## v1.0.0
 
 - Initial production release
