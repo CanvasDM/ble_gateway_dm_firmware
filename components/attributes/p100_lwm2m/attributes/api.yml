@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 1.0.0
+  version: 1.1.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -851,7 +851,7 @@ components:
           minLength: 6
           type: string
         x-ctype: string
-        x-default: 1.0.0
+        x-default: 1.1.0
         x-example: 0.1.0
         x-readable: true
         summary: The API version that the firmware supports
@@ -1634,6 +1634,61 @@ components:
         x-writable: true
         x-readable: true
         x-id: 51
+      - name: memfault_transport
+        summary: Publish Memfault data using selected transport (so that it can be
+          forwarded)
+        required: true
+        schema:
+          maximum: 3
+          minimum: 0
+          type: integer
+          enum:
+            NONE: 0
+            HTTP: 1
+            MQTT: 2
+            COAP: 3
+        x-ctype: uint8_t
+        x-default: 0
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        x-id: 52
+      - name: mqtt_memfault_topic
+        summary: Topic for publishing Memfault data
+        required: true
+        schema:
+          maxLength: 255
+          type: string
+        x-ctype: string
+        x-default: ''
+        x-savable: true
+        x-writable: true
+        x-readable: true
+        x-id: 53
+      - name: coap_mflt_proxy_route
+        summary: Route used when publishing Memfault data to CoAP proxy
+        required: true
+        schema:
+          maxLength: 32
+          type: string
+        x-ctype: string
+        x-default: mflt
+        x-savable: true
+        x-writable: true
+        x-readable: true
+        x-id: 54
+      - name: store_memfault_data
+        summary: Flag to indicate whether memfault data should be stored to file or
+          posted
+        required: true
+        schema:
+          type: integer
+        x-ctype: bool
+        x-default: 0
+        x-savable: true
+        x-writable: true
+        x-readable: true
+        x-id: 55
       - name: lte_imei
         summary: IMEI
         required: true
@@ -1643,7 +1698,7 @@ components:
         x-ctype: string
         x-default: ''
         x-readable: true
-        x-id: 52
+        x-id: 56
       - name: lte_iccid
         summary: SIM ICCID
         required: true
@@ -1653,7 +1708,7 @@ components:
         x-ctype: string
         x-default: ''
         x-readable: true
-        x-id: 53
+        x-id: 57
       - name: lte_imsi
         summary: International Mobile Subscriber Identity
         required: true
@@ -1663,7 +1718,7 @@ components:
         x-ctype: string
         x-default: ''
         x-readable: true
-        x-id: 54
+        x-id: 58
       - name: lte_sn
         summary: LTE serial number
         required: true
@@ -1673,7 +1728,7 @@ components:
         x-ctype: string
         x-default: ''
         x-readable: true
-        x-id: 55
+        x-id: 59
       - name: lte_version
         summary: Firmware version of the LTE modem
         required: true
@@ -1684,7 +1739,7 @@ components:
         x-broadcast: true
         x-default: ''
         x-readable: true
-        x-id: 56
+        x-id: 60
       - name: lte_network_state
         summary: Network state
         required: true
@@ -1703,7 +1758,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 57
+        x-id: 61
       - name: lte_startup_state
         summary: Modem startup state
         required: true
@@ -1721,7 +1776,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 58
+        x-id: 62
       - name: lte_init_error
         summary: Initialization status of LTE driver
         required: true
@@ -1738,7 +1793,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 59
+        x-id: 63
       - name: lte_apn
         summary: The LTE network access point name
         required: true
@@ -1750,7 +1805,7 @@ components:
         x-default: ''
         x-readable: true
         x-writable: true
-        x-id: 60
+        x-id: 64
       - name: lte_rsrp
         summary: Reference Signals Receive Power (RSRP) in dBm
         required: true
@@ -1760,7 +1815,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 61
+        x-id: 65
       - name: lte_sinr
         summary: Signal to Interference plus Noise Ratio (SINR) in dB
         required: true
@@ -1770,7 +1825,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 62
+        x-id: 66
       - name: lte_bands
         summary: Radio bands enabled in the LTE modem
         required: true
@@ -1783,7 +1838,7 @@ components:
         x-default: ''
         x-readable: true
         x-writable: true
-        x-id: 63
+        x-id: 67
       - name: lte_active_bands
         summary: Radio bands in use by the LTE modem
         required: true
@@ -1794,7 +1849,7 @@ components:
         x-broadcast: true
         x-default: ''
         x-readable: true
-        x-id: 64
+        x-id: 68
       - name: lte_operator_index
         summary: Operator index
         required: true
@@ -1804,7 +1859,7 @@ components:
         x-broadcast: true
         x-default: 255
         x-readable: true
-        x-id: 65
+        x-id: 69
       - name: lte_sleep_state
         summary: Sleep state of the driver
         required: true
@@ -1820,7 +1875,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 66
+        x-id: 70
       - name: lte_rat
         summary: Radio Access Technology
         required: true
@@ -1834,7 +1889,7 @@ components:
         x-default: 0
         x-readable: true
         x-writable: true
-        x-id: 67
+        x-id: 71
       - name: lte_log_lvl
         summary: HL7800 driver log level
         required: true
@@ -1852,7 +1907,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 68
+        x-id: 72
       - name: lte_fup_status
         summary: HL7800 firmware update status
         required: true
@@ -1872,7 +1927,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 69
+        x-id: 73
       - name: lte_udp_tx
         summary: Number of UDP TX payload bytes
         required: true
@@ -1882,7 +1937,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 70
+        x-id: 74
       - name: lte_udp_rx
         summary: Number of UDP RX payload bytes
         required: true
@@ -1892,7 +1947,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 71
+        x-id: 75
       - name: lte_tcp_tx
         summary: Number of TCP TX payload bytes
         required: true
@@ -1902,7 +1957,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 72
+        x-id: 76
       - name: lte_tcp_rx
         summary: Number of TCP RX payload bytes
         required: true
@@ -1912,7 +1967,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 73
+        x-id: 77
       - name: lte_data_total
         summary: Total number of socket (UDP and TCP) payload bytes
         required: true
@@ -1922,7 +1977,7 @@ components:
         x-broadcast: true
         x-default: 0
         x-readable: true
-        x-id: 74
+        x-id: 78
       - name: lwm2m_telem_server_url
         required: true
         schema:
@@ -1939,7 +1994,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Server URL to connect to
-        x-id: 75
+        x-id: 79
       - name: lwm2m_telem_endpoint
         required: true
         schema:
@@ -1954,7 +2009,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Endpoint name to identify the device
-        x-id: 76
+        x-id: 80
       - name: lwm2m_telem_security
         required: true
         schema:
@@ -1976,7 +2031,7 @@ components:
         x-savable: true
         x-writable: true
         summary: LwM2M Security mode
-        x-id: 77
+        x-id: 81
       - name: lwm2m_telem_psk_id
         required: true
         schema:
@@ -1992,7 +2047,7 @@ components:
         x-savable: true
         x-writable: true
         summary: PSK ID
-        x-id: 78
+        x-id: 82
       - name: lwm2m_telem_psk
         required: true
         schema:
@@ -2010,7 +2065,7 @@ components:
         x-writable: true
         x-obscure-in-show: true
         summary: Pre-shared key
-        x-id: 79
+        x-id: 83
       - name: lwm2m_telem_short_id
         required: true
         schema:
@@ -2028,7 +2083,7 @@ components:
         summary: short_server_id This identifier uniquely identifies each LwM2M Server
           configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server
           Resource has a value of 'false'.
-        x-id: 80
+        x-id: 84
       - name: lwm2m_telem_enable
         required: true
         schema:
@@ -2043,4 +2098,4 @@ components:
         x-savable: true
         x-writable: true
         summary: 0 - disable telemetry connection, 1 - enable
-        x-id: 81
+        x-id: 85

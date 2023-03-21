@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.0.0",
+            "x-default": "1.1.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2044,6 +2044,72 @@
             "x-id": 51
           },
           {
+            "name": "memfault_transport",
+            "summary": "Publish Memfault data using selected transport (so that it can be forwarded)",
+            "required": true,
+            "schema": {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer",
+              "enum": {
+                "NONE": 0,
+                "HTTP": 1,
+                "MQTT": 2,
+                "COAP": 3
+              }
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 0,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 52
+          },
+          {
+            "name": "mqtt_memfault_topic",
+            "summary": "Topic for publishing Memfault data",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 53
+          },
+          {
+            "name": "coap_mflt_proxy_route",
+            "summary": "Route used when publishing Memfault data to CoAP proxy",
+            "required": true,
+            "schema": {
+              "maxLength": 32,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "mflt",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 54
+          },
+          {
+            "name": "store_memfault_data",
+            "summary": "Flag to indicate whether memfault data should be stored to file or posted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 55
+          },
+          {
             "name": "lte_imei",
             "summary": "IMEI",
             "required": true,
@@ -2054,7 +2120,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 52
+            "x-id": 56
           },
           {
             "name": "lte_iccid",
@@ -2067,7 +2133,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 53
+            "x-id": 57
           },
           {
             "name": "lte_imsi",
@@ -2080,7 +2146,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 54
+            "x-id": 58
           },
           {
             "name": "lte_sn",
@@ -2093,7 +2159,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-readable": true,
-            "x-id": 55
+            "x-id": 59
           },
           {
             "name": "lte_version",
@@ -2107,7 +2173,7 @@
             "x-broadcast": true,
             "x-default": "",
             "x-readable": true,
-            "x-id": 56
+            "x-id": 60
           },
           {
             "name": "lte_network_state",
@@ -2130,7 +2196,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 57
+            "x-id": 61
           },
           {
             "name": "lte_startup_state",
@@ -2152,7 +2218,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 58
+            "x-id": 62
           },
           {
             "name": "lte_init_error",
@@ -2173,7 +2239,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 59
+            "x-id": 63
           },
           {
             "name": "lte_apn",
@@ -2188,7 +2254,7 @@
             "x-default": "",
             "x-readable": true,
             "x-writable": true,
-            "x-id": 60
+            "x-id": 64
           },
           {
             "name": "lte_rsrp",
@@ -2201,7 +2267,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 61
+            "x-id": 65
           },
           {
             "name": "lte_sinr",
@@ -2214,7 +2280,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 62
+            "x-id": 66
           },
           {
             "name": "lte_bands",
@@ -2230,7 +2296,7 @@
             "x-default": "",
             "x-readable": true,
             "x-writable": true,
-            "x-id": 63
+            "x-id": 67
           },
           {
             "name": "lte_active_bands",
@@ -2244,7 +2310,7 @@
             "x-broadcast": true,
             "x-default": "",
             "x-readable": true,
-            "x-id": 64
+            "x-id": 68
           },
           {
             "name": "lte_operator_index",
@@ -2257,7 +2323,7 @@
             "x-broadcast": true,
             "x-default": 255,
             "x-readable": true,
-            "x-id": 65
+            "x-id": 69
           },
           {
             "name": "lte_sleep_state",
@@ -2277,7 +2343,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 66
+            "x-id": 70
           },
           {
             "name": "lte_rat",
@@ -2295,7 +2361,7 @@
             "x-default": 0,
             "x-readable": true,
             "x-writable": true,
-            "x-id": 67
+            "x-id": 71
           },
           {
             "name": "lte_log_lvl",
@@ -2317,7 +2383,7 @@
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
-            "x-id": 68
+            "x-id": 72
           },
           {
             "name": "lte_fup_status",
@@ -2341,7 +2407,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 69
+            "x-id": 73
           },
           {
             "name": "lte_udp_tx",
@@ -2354,7 +2420,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 70
+            "x-id": 74
           },
           {
             "name": "lte_udp_rx",
@@ -2367,7 +2433,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 71
+            "x-id": 75
           },
           {
             "name": "lte_tcp_tx",
@@ -2380,7 +2446,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 72
+            "x-id": 76
           },
           {
             "name": "lte_tcp_rx",
@@ -2393,7 +2459,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 73
+            "x-id": 77
           },
           {
             "name": "lte_data_total",
@@ -2406,7 +2472,7 @@
             "x-broadcast": true,
             "x-default": 0,
             "x-readable": true,
-            "x-id": 74
+            "x-id": 78
           }
         ]
       }

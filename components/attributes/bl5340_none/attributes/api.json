@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.0.0",
+            "x-default": "1.1.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2044,6 +2044,72 @@
             "x-id": 51
           },
           {
+            "name": "memfault_transport",
+            "summary": "Publish Memfault data using selected transport (so that it can be forwarded)",
+            "required": true,
+            "schema": {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer",
+              "enum": {
+                "NONE": 0,
+                "HTTP": 1,
+                "MQTT": 2,
+                "COAP": 3
+              }
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 0,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 52
+          },
+          {
+            "name": "mqtt_memfault_topic",
+            "summary": "Topic for publishing Memfault data",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 53
+          },
+          {
+            "name": "coap_mflt_proxy_route",
+            "summary": "Route used when publishing Memfault data to CoAP proxy",
+            "required": true,
+            "schema": {
+              "maxLength": 32,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "mflt",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 54
+          },
+          {
+            "name": "store_memfault_data",
+            "summary": "Flag to indicate whether memfault data should be stored to file or posted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 55
+          },
+          {
             "name": "gw_ipv4_addr",
             "summary": "Internet Protocol Version 4 address for Gateway",
             "required": true,
@@ -2059,7 +2125,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 52
+            "x-id": 56
           }
         ]
       }

@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.0.0",
+            "x-default": "1.1.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2044,6 +2044,72 @@
             "x-id": 51
           },
           {
+            "name": "memfault_transport",
+            "summary": "Publish Memfault data using selected transport (so that it can be forwarded)",
+            "required": true,
+            "schema": {
+              "maximum": 3,
+              "minimum": 0,
+              "type": "integer",
+              "enum": {
+                "NONE": 0,
+                "HTTP": 1,
+                "MQTT": 2,
+                "COAP": 3
+              }
+            },
+            "x-ctype": "uint8_t",
+            "x-default": 0,
+            "x-readable": true,
+            "x-savable": true,
+            "x-writable": true,
+            "x-id": 52
+          },
+          {
+            "name": "mqtt_memfault_topic",
+            "summary": "Topic for publishing Memfault data",
+            "required": true,
+            "schema": {
+              "maxLength": 255,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 53
+          },
+          {
+            "name": "coap_mflt_proxy_route",
+            "summary": "Route used when publishing Memfault data to CoAP proxy",
+            "required": true,
+            "schema": {
+              "maxLength": 32,
+              "type": "string"
+            },
+            "x-ctype": "string",
+            "x-default": "mflt",
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 54
+          },
+          {
+            "name": "store_memfault_data",
+            "summary": "Flag to indicate whether memfault data should be stored to file or posted",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "x-ctype": "bool",
+            "x-default": 0,
+            "x-savable": true,
+            "x-writable": true,
+            "x-readable": true,
+            "x-id": 55
+          },
+          {
             "name": "gw_ipv4_addr",
             "summary": "Internet Protocol Version 4 address for Gateway",
             "required": true,
@@ -2059,7 +2125,7 @@
             "x-readable": true,
             "x-savable": false,
             "x-writable": false,
-            "x-id": 52
+            "x-id": 56
           },
           {
             "name": "lwm2m_telem_server_url",
@@ -2079,7 +2145,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "Server URL to connect to",
-            "x-id": 53
+            "x-id": 57
           },
           {
             "name": "lwm2m_telem_endpoint",
@@ -2097,7 +2163,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "Endpoint name to identify the device",
-            "x-id": 54
+            "x-id": 58
           },
           {
             "name": "lwm2m_telem_security",
@@ -2123,7 +2189,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "LwM2M Security mode",
-            "x-id": 55
+            "x-id": 59
           },
           {
             "name": "lwm2m_telem_psk_id",
@@ -2142,7 +2208,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "PSK ID",
-            "x-id": 56
+            "x-id": 60
           },
           {
             "name": "lwm2m_telem_psk",
@@ -2162,7 +2228,7 @@
             "x-writable": true,
             "x-obscure-in-show": true,
             "summary": "Pre-shared key",
-            "x-id": 57
+            "x-id": 61
           },
           {
             "name": "lwm2m_telem_short_id",
@@ -2181,7 +2247,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "short_server_id This identifier uniquely identifies each LwM2M Server configured for the LwM2M Client. This Resource MUST be set when the Bootstrap-Server Resource has a value of 'false'.",
-            "x-id": 58
+            "x-id": 62
           },
           {
             "name": "lwm2m_telem_enable",
@@ -2199,7 +2265,7 @@
             "x-savable": true,
             "x-writable": true,
             "summary": "0 - disable telemetry connection, 1 - enable",
-            "x-id": 59
+            "x-id": 63
           }
         ]
       }

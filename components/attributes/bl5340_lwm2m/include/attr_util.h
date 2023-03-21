@@ -78,6 +78,10 @@ extern "C" {
 #define _ATTRX57 _YYYY,
 #define _ATTRX58 _YYYY,
 #define _ATTRX59 _YYYY,
+#define _ATTRX60 _YYYY,
+#define _ATTRX61 _YYYY,
+#define _ATTRX62 _YYYY,
+#define _ATTRX63 _YYYY,
 /* pyend */
 
 #ifdef __cplusplus

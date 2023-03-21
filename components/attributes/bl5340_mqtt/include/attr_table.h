@@ -56,6 +56,13 @@ enum lwm2m_batt_stat {
 	LWM2M_BATT_STAT_UNKNOWN = 6,
 };
 
+enum memfault_transport {
+	MEMFAULT_TRANSPORT_NONE = 0,
+	MEMFAULT_TRANSPORT_HTTP = 1,
+	MEMFAULT_TRANSPORT_MQTT = 2,
+	MEMFAULT_TRANSPORT_COAP = 3,
+};
+
 enum mqtt_peer_verify {
 	MQTT_PEER_VERIFY_NONE = 0,
 	MQTT_PEER_VERIFY_OPTIONAL = 1,
@@ -69,6 +76,7 @@ enum mqtt_peer_verify {
 BUILD_ASSERT(sizeof(enum lwm2m_security) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_pwr_src) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum memfault_transport) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 /* pyend */
 
@@ -128,42 +136,44 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_ID_p2p_key_path                          49
 #define ATTR_ID_ipv4_addr                             50
 #define ATTR_ID_network_id_filter                     51
-#define ATTR_ID_gw_ipv4_addr                          52
-#define ATTR_ID_mqtt_user_name                        53
-#define ATTR_ID_mqtt_password                         54
-#define ATTR_ID_mqtt_endpoint                         55
-#define ATTR_ID_mqtt_port                             56
-#define ATTR_ID_mqtt_id                               57
-#define ATTR_ID_mqtt_watchdog                         58
-#define ATTR_ID_mqtt_publish_qos                      59
-#define ATTR_ID_mqtt_peer_verify                      60
-#define ATTR_ID_mqtt_subscribe_qos                    61
-#define ATTR_ID_mqtt_connect_on_request               62
-#define ATTR_ID_mqtt_transport_secure                 63
-#define ATTR_ID_mqtt_root_only                        64
-#define ATTR_ID_mqtt_clean_session                    65
-#define ATTR_ID_mqtt_ble_enable                       66
-#define ATTR_ID_mqtt_ble_topic                        67
-#define ATTR_ID_mqtt_ble_prefix                       68
-#define ATTR_ID_mqtt_ble_delimiter                    69
-#define ATTR_ID_mqtt_ble_postfix                      70
-#define ATTR_ID_mqtt_ble_quote                        71
-#define ATTR_ID_mqtt_memfault_enable                  72
-#define ATTR_ID_mqtt_memfault_topic                   73
+#define ATTR_ID_memfault_transport                    52
+#define ATTR_ID_mqtt_memfault_topic                   53
+#define ATTR_ID_coap_mflt_proxy_route                 54
+#define ATTR_ID_store_memfault_data                   55
+#define ATTR_ID_gw_ipv4_addr                          56
+#define ATTR_ID_mqtt_user_name                        57
+#define ATTR_ID_mqtt_password                         58
+#define ATTR_ID_mqtt_endpoint                         59
+#define ATTR_ID_mqtt_port                             60
+#define ATTR_ID_mqtt_id                               61
+#define ATTR_ID_mqtt_watchdog                         62
+#define ATTR_ID_mqtt_publish_qos                      63
+#define ATTR_ID_mqtt_peer_verify                      64
+#define ATTR_ID_mqtt_subscribe_qos                    65
+#define ATTR_ID_mqtt_connect_on_request               66
+#define ATTR_ID_mqtt_transport_secure                 67
+#define ATTR_ID_mqtt_root_only                        68
+#define ATTR_ID_mqtt_clean_session                    69
+#define ATTR_ID_mqtt_ble_enable                       70
+#define ATTR_ID_mqtt_ble_topic                        71
+#define ATTR_ID_mqtt_ble_prefix                       72
+#define ATTR_ID_mqtt_ble_delimiter                    73
+#define ATTR_ID_mqtt_ble_postfix                      74
+#define ATTR_ID_mqtt_ble_quote                        75
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                  74
-#define ATTR_TABLE_MAX_ID                                73
-#define ATTR_TABLE_WRITABLE_COUNT                        63
-#define ATTR_TABLE_CRC_OF_NAMES                          0x72c9a834
+#define ATTR_TABLE_SIZE                                  76
+#define ATTR_TABLE_MAX_ID                                75
+#define ATTR_TABLE_WRITABLE_COUNT                        65
+#define ATTR_TABLE_CRC_OF_NAMES                          0x8df16d3c
 #define ATTR_MAX_STR_LENGTH                              255
 #define ATTR_MAX_STR_SIZE                                256
 #define ATTR_MAX_BIN_SIZE                                16
 #define ATTR_MAX_INT_SIZE                                4
 #define ATTR_MAX_KEY_NAME_SIZE                           24
 #define ATTR_MAX_VALUE_SIZE                              256
-#define ATTR_MAX_FILE_SIZE                               4004
+#define ATTR_MAX_FILE_SIZE                               4081
 #define ATTR_ENABLE_FPU_CHECK                            1
 
 /* Attribute Max String Lengths */
@@ -197,6 +207,8 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                 33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                   33
 #define ATTR_IPV4_ADDR_MAX_STR_SIZE                      16
+#define ATTR_MQTT_MEMFAULT_TOPIC_MAX_STR_SIZE            256
+#define ATTR_COAP_MFLT_PROXY_ROUTE_MAX_STR_SIZE          33
 #define ATTR_GW_IPV4_ADDR_MAX_STR_SIZE                   16
 #define ATTR_MQTT_USER_NAME_MAX_STR_SIZE                 128
 #define ATTR_MQTT_PASSWORD_MAX_STR_SIZE                  128
@@ -207,7 +219,6 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 #define ATTR_MQTT_BLE_PREFIX_MAX_STR_SIZE                64
 #define ATTR_MQTT_BLE_DELIMITER_MAX_STR_SIZE             2
 #define ATTR_MQTT_BLE_POSTFIX_MAX_STR_SIZE               16
-#define ATTR_MQTT_MEMFAULT_TOPIC_MAX_STR_SIZE            256
 
 /* Attribute Byte Array Lengths */
 #define ATTR_LWM2M_PSK_SIZE                              16
@@ -223,6 +234,7 @@ BUILD_ASSERT(sizeof(enum mqtt_peer_verify) == ATTR_SIZE_U8);
 const char *const attr_get_string_lwm2m_security(int value);
 const char *const attr_get_string_lwm2m_pwr_src(int value);
 const char *const attr_get_string_lwm2m_batt_stat(int value);
+const char *const attr_get_string_memfault_transport(int value);
 const char *const attr_get_string_mqtt_peer_verify(int value);
 /* pyend */
 

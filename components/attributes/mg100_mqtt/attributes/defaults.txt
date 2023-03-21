@@ -1,6 +1,6 @@
 # Default Values for Attributes 
 reserved0=0
-api_version=1.0.0
+api_version=1.1.0
 firmware_version=0.0.0+0
 dump_path=/lfs1/attr_dump.txt
 load_path=/lfs1/enc/attr_load.txt
@@ -51,6 +51,10 @@ p2p_trust_path=/lfs1/p2p/trust
 p2p_key_path=/lfs1/enc/p2p/key
 ipv4_addr=""
 network_id_filter=0
+memfault_transport=0
+mqtt_memfault_topic=""
+coap_mflt_proxy_route=mflt
+store_memfault_data=0
 lte_imei=""
 lte_iccid=""
 lte_imsi=""
@@ -93,5 +97,3 @@ mqtt_ble_prefix=""
 mqtt_ble_delimiter=""
 mqtt_ble_postfix=""
 mqtt_ble_quote=0
-mqtt_memfault_enable=0
-mqtt_memfault_topic=""

@@ -56,6 +56,13 @@ enum lwm2m_batt_stat {
 	LWM2M_BATT_STAT_UNKNOWN = 6,
 };
 
+enum memfault_transport {
+	MEMFAULT_TRANSPORT_NONE = 0,
+	MEMFAULT_TRANSPORT_HTTP = 1,
+	MEMFAULT_TRANSPORT_MQTT = 2,
+	MEMFAULT_TRANSPORT_COAP = 3,
+};
+
 enum lwm2m_telem_security {
 	LWM2M_TELEM_SECURITY_PSK = 0,
 	LWM2M_TELEM_SECURITY_RPK = 1,
@@ -70,6 +77,7 @@ enum lwm2m_telem_security {
 BUILD_ASSERT(sizeof(enum lwm2m_security) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_pwr_src) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum memfault_transport) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 /* pyend */
 
@@ -129,28 +137,32 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_ID_p2p_key_path                          49
 #define ATTR_ID_ipv4_addr                             50
 #define ATTR_ID_network_id_filter                     51
-#define ATTR_ID_gw_ipv4_addr                          52
-#define ATTR_ID_lwm2m_telem_server_url                53
-#define ATTR_ID_lwm2m_telem_endpoint                  54
-#define ATTR_ID_lwm2m_telem_security                  55
-#define ATTR_ID_lwm2m_telem_psk_id                    56
-#define ATTR_ID_lwm2m_telem_psk                       57
-#define ATTR_ID_lwm2m_telem_short_id                  58
-#define ATTR_ID_lwm2m_telem_enable                    59
+#define ATTR_ID_memfault_transport                    52
+#define ATTR_ID_mqtt_memfault_topic                   53
+#define ATTR_ID_coap_mflt_proxy_route                 54
+#define ATTR_ID_store_memfault_data                   55
+#define ATTR_ID_gw_ipv4_addr                          56
+#define ATTR_ID_lwm2m_telem_server_url                57
+#define ATTR_ID_lwm2m_telem_endpoint                  58
+#define ATTR_ID_lwm2m_telem_security                  59
+#define ATTR_ID_lwm2m_telem_psk_id                    60
+#define ATTR_ID_lwm2m_telem_psk                       61
+#define ATTR_ID_lwm2m_telem_short_id                  62
+#define ATTR_ID_lwm2m_telem_enable                    63
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 60
-#define ATTR_TABLE_MAX_ID                               59
-#define ATTR_TABLE_WRITABLE_COUNT                       49
-#define ATTR_TABLE_CRC_OF_NAMES                         0x1b446779
+#define ATTR_TABLE_SIZE                                 64
+#define ATTR_TABLE_MAX_ID                               63
+#define ATTR_TABLE_WRITABLE_COUNT                       53
+#define ATTR_TABLE_CRC_OF_NAMES                         0xca13f90a
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
 #define ATTR_MAX_INT_SIZE                               4
 #define ATTR_MAX_KEY_NAME_SIZE                          23
 #define ATTR_MAX_VALUE_SIZE                             256
-#define ATTR_MAX_FILE_SIZE                              3080
+#define ATTR_MAX_FILE_SIZE                              3456
 #define ATTR_ENABLE_FPU_CHECK                           1
 
 /* Attribute Max String Lengths */
@@ -184,6 +196,8 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                  33
 #define ATTR_IPV4_ADDR_MAX_STR_SIZE                     16
+#define ATTR_MQTT_MEMFAULT_TOPIC_MAX_STR_SIZE           256
+#define ATTR_COAP_MFLT_PROXY_ROUTE_MAX_STR_SIZE         33
 #define ATTR_GW_IPV4_ADDR_MAX_STR_SIZE                  16
 #define ATTR_LWM2M_TELEM_SERVER_URL_MAX_STR_SIZE        256
 #define ATTR_LWM2M_TELEM_ENDPOINT_MAX_STR_SIZE          65
@@ -204,6 +218,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 const char *const attr_get_string_lwm2m_security(int value);
 const char *const attr_get_string_lwm2m_pwr_src(int value);
 const char *const attr_get_string_lwm2m_batt_stat(int value);
+const char *const attr_get_string_memfault_transport(int value);
 const char *const attr_get_string_lwm2m_telem_security(int value);
 /* pyend */
 

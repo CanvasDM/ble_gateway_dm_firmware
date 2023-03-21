@@ -56,6 +56,13 @@ enum lwm2m_batt_stat {
 	LWM2M_BATT_STAT_UNKNOWN = 6,
 };
 
+enum memfault_transport {
+	MEMFAULT_TRANSPORT_NONE = 0,
+	MEMFAULT_TRANSPORT_HTTP = 1,
+	MEMFAULT_TRANSPORT_MQTT = 2,
+	MEMFAULT_TRANSPORT_COAP = 3,
+};
+
 enum lte_network_state {
 	LTE_NETWORK_STATE_NOT_REGISTERED = 0,
 	LTE_NETWORK_STATE_HOME_NETWORK = 1,
@@ -133,6 +140,7 @@ enum lwm2m_telem_security {
 BUILD_ASSERT(sizeof(enum lwm2m_security) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_pwr_src) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lwm2m_batt_stat) == ATTR_SIZE_U8);
+BUILD_ASSERT(sizeof(enum memfault_transport) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lte_network_state) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lte_startup_state) == ATTR_SIZE_U8);
 BUILD_ASSERT(sizeof(enum lte_init_error) == ATTR_SIZE_S8);
@@ -199,50 +207,54 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_ID_p2p_key_path                          49
 #define ATTR_ID_ipv4_addr                             50
 #define ATTR_ID_network_id_filter                     51
-#define ATTR_ID_lte_imei                              52
-#define ATTR_ID_lte_iccid                             53
-#define ATTR_ID_lte_imsi                              54
-#define ATTR_ID_lte_sn                                55
-#define ATTR_ID_lte_version                           56
-#define ATTR_ID_lte_network_state                     57
-#define ATTR_ID_lte_startup_state                     58
-#define ATTR_ID_lte_init_error                        59
-#define ATTR_ID_lte_apn                               60
-#define ATTR_ID_lte_rsrp                              61
-#define ATTR_ID_lte_sinr                              62
-#define ATTR_ID_lte_bands                             63
-#define ATTR_ID_lte_active_bands                      64
-#define ATTR_ID_lte_operator_index                    65
-#define ATTR_ID_lte_sleep_state                       66
-#define ATTR_ID_lte_rat                               67
-#define ATTR_ID_lte_log_lvl                           68
-#define ATTR_ID_lte_fup_status                        69
-#define ATTR_ID_lte_udp_tx                            70
-#define ATTR_ID_lte_udp_rx                            71
-#define ATTR_ID_lte_tcp_tx                            72
-#define ATTR_ID_lte_tcp_rx                            73
-#define ATTR_ID_lte_data_total                        74
-#define ATTR_ID_lwm2m_telem_server_url                75
-#define ATTR_ID_lwm2m_telem_endpoint                  76
-#define ATTR_ID_lwm2m_telem_security                  77
-#define ATTR_ID_lwm2m_telem_psk_id                    78
-#define ATTR_ID_lwm2m_telem_psk                       79
-#define ATTR_ID_lwm2m_telem_short_id                  80
-#define ATTR_ID_lwm2m_telem_enable                    81
+#define ATTR_ID_memfault_transport                    52
+#define ATTR_ID_mqtt_memfault_topic                   53
+#define ATTR_ID_coap_mflt_proxy_route                 54
+#define ATTR_ID_store_memfault_data                   55
+#define ATTR_ID_lte_imei                              56
+#define ATTR_ID_lte_iccid                             57
+#define ATTR_ID_lte_imsi                              58
+#define ATTR_ID_lte_sn                                59
+#define ATTR_ID_lte_version                           60
+#define ATTR_ID_lte_network_state                     61
+#define ATTR_ID_lte_startup_state                     62
+#define ATTR_ID_lte_init_error                        63
+#define ATTR_ID_lte_apn                               64
+#define ATTR_ID_lte_rsrp                              65
+#define ATTR_ID_lte_sinr                              66
+#define ATTR_ID_lte_bands                             67
+#define ATTR_ID_lte_active_bands                      68
+#define ATTR_ID_lte_operator_index                    69
+#define ATTR_ID_lte_sleep_state                       70
+#define ATTR_ID_lte_rat                               71
+#define ATTR_ID_lte_log_lvl                           72
+#define ATTR_ID_lte_fup_status                        73
+#define ATTR_ID_lte_udp_tx                            74
+#define ATTR_ID_lte_udp_rx                            75
+#define ATTR_ID_lte_tcp_tx                            76
+#define ATTR_ID_lte_tcp_rx                            77
+#define ATTR_ID_lte_data_total                        78
+#define ATTR_ID_lwm2m_telem_server_url                79
+#define ATTR_ID_lwm2m_telem_endpoint                  80
+#define ATTR_ID_lwm2m_telem_security                  81
+#define ATTR_ID_lwm2m_telem_psk_id                    82
+#define ATTR_ID_lwm2m_telem_psk                       83
+#define ATTR_ID_lwm2m_telem_short_id                  84
+#define ATTR_ID_lwm2m_telem_enable                    85
 /* pyend */
 
 /* pystart - attribute constants */
-#define ATTR_TABLE_SIZE                                 82
-#define ATTR_TABLE_MAX_ID                               81
-#define ATTR_TABLE_WRITABLE_COUNT                       53
-#define ATTR_TABLE_CRC_OF_NAMES                         0x39952dd3
+#define ATTR_TABLE_SIZE                                 86
+#define ATTR_TABLE_MAX_ID                               85
+#define ATTR_TABLE_WRITABLE_COUNT                       57
+#define ATTR_TABLE_CRC_OF_NAMES                         0x5363a15b
 #define ATTR_MAX_STR_LENGTH                             255
 #define ATTR_MAX_STR_SIZE                               256
 #define ATTR_MAX_BIN_SIZE                               16
 #define ATTR_MAX_INT_SIZE                               4
 #define ATTR_MAX_KEY_NAME_SIZE                          23
 #define ATTR_MAX_VALUE_SIZE                             256
-#define ATTR_MAX_FILE_SIZE                              3638
+#define ATTR_MAX_FILE_SIZE                              4014
 #define ATTR_ENABLE_FPU_CHECK                           1
 
 /* Attribute Max String Lengths */
@@ -276,6 +288,8 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 #define ATTR_P2P_TRUST_PATH_MAX_STR_SIZE                33
 #define ATTR_P2P_KEY_PATH_MAX_STR_SIZE                  33
 #define ATTR_IPV4_ADDR_MAX_STR_SIZE                     16
+#define ATTR_MQTT_MEMFAULT_TOPIC_MAX_STR_SIZE           256
+#define ATTR_COAP_MFLT_PROXY_ROUTE_MAX_STR_SIZE         33
 #define ATTR_LTE_IMEI_MAX_STR_SIZE                      16
 #define ATTR_LTE_ICCID_MAX_STR_SIZE                     21
 #define ATTR_LTE_IMSI_MAX_STR_SIZE                      16
@@ -303,6 +317,7 @@ BUILD_ASSERT(sizeof(enum lwm2m_telem_security) == ATTR_SIZE_U8);
 const char *const attr_get_string_lwm2m_security(int value);
 const char *const attr_get_string_lwm2m_pwr_src(int value);
 const char *const attr_get_string_lwm2m_batt_stat(int value);
+const char *const attr_get_string_memfault_transport(int value);
 const char *const attr_get_string_lte_network_state(int value);
 const char *const attr_get_string_lte_startup_state(int value);
 const char *const attr_get_string_lte_init_error(int value);
