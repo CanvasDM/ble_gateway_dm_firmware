@@ -93,7 +93,6 @@ void main(void)
 #endif
 #ifdef CONFIG_LCZ_LWM2M_FW_UPDATE
 	(void)lcz_lwm2m_fw_update_set_pkg_name(PKG_NAME);
-	(void)lcz_lwm2m_fw_update_set_pkg_version(APP_VERSION_STRING);
 #endif
 
 	LOG_INF("BLE Gateway DM Firmware v%s [%s]", APP_VERSION_STRING, CONFIG_BOARD);

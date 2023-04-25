@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.1.0",
+            "x-default": "1.1.1",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -1583,7 +1583,6 @@
             "required": true,
             "schema": {
               "maxLength": 32,
-              "minLength": 1,
               "type": "string"
             },
             "x-ctype": "string",
