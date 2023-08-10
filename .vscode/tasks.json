@@ -241,12 +241,12 @@
 		{
 			"id": "telemetry",
 			"description": "Select telemetry type",
-			"default": "lwm2m",
+			"default": "mqtt",
 			"type": "pickString",
 			"options": [
+				"mqtt",
 				"none",
-				"lwm2m",
-				"mqtt"
+				"lwm2m"
 			]
 		},
 		{

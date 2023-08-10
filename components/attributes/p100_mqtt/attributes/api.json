@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.1.1",
+            "x-default": "1.1.2",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -2058,7 +2058,7 @@
               }
             },
             "x-ctype": "uint8_t",
-            "x-default": 0,
+            "x-default": 1,
             "x-readable": true,
             "x-savable": true,
             "x-writable": true,
@@ -2499,6 +2499,7 @@
             "x-default": "",
             "x-savable": true,
             "x-writable": true,
+            "x-obscure-in-show": true,
             "x-id": 80
           },
           {
@@ -2512,6 +2513,7 @@
             "x-ctype": "string",
             "x-default": "",
             "x-example": "a3tq8tk8zeye6t-ats.iot.us-east-1.amazonaws.com",
+            "x-readable": true,
             "x-savable": true,
             "x-writable": true,
             "x-id": 81

@@ -141,7 +141,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
 	.network_id_filter = 0,
-	.memfault_transport = 0,
+	.memfault_transport = 1,
 	.mqtt_memfault_topic = "",
 	.coap_mflt_proxy_route = "mflt",
 	.store_memfault_data = 0,
@@ -209,7 +209,7 @@ typedef struct ro_attribute {
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.reserved0 = 0,
-	.api_version = "1.1.1",
+	.api_version = "1.1.2",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
@@ -354,8 +354,8 @@ const struct attr_table_entry ATTR_TABLE[ATTR_TABLE_SIZE] = {
 	[77 ] = { RO_ATTRX(lte_tcp_rx)                          , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[78 ] = { RO_ATTRX(lte_data_total)                      , ATTR_TYPE_U32           , 0xa   , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },
 	[79 ] = { RW_ATTRS(mqtt_user_name)                      , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[80 ] = { RW_ATTRS(mqtt_password)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
-	[81 ] = { RW_ATTRS(mqtt_endpoint)                       , ATTR_TYPE_STRING        , 0x11  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[80 ] = { RW_ATTRS(mqtt_password)                       , ATTR_TYPE_STRING        , 0x51  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
+	[81 ] = { RW_ATTRS(mqtt_endpoint)                       , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
 	[82 ] = { RW_ATTRS(mqtt_port)                           , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 3         , .max.ux = 4         },
 	[83 ] = { RW_ATTRS(mqtt_id)                             , ATTR_TYPE_STRING        , 0x13  , av_string           , NULL                                , .min.ux = 0         , .max.ux = 127       },
 	[84 ] = { RW_ATTRX(mqtt_watchdog)                       , ATTR_TYPE_U32           , 0x13  , av_uint32           , NULL                                , .min.ux = 0         , .max.ux = 0         },

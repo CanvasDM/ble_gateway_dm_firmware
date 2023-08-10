@@ -122,7 +122,7 @@ static const rw_attribute_t DEFAULT_RW_ATTRIBUTE_VALUES =  {
 	.p2p_trust_path = "/lfs1/p2p/trust",
 	.p2p_key_path = "/lfs1/enc/p2p/key",
 	.network_id_filter = 0,
-	.memfault_transport = 0,
+	.memfault_transport = 1,
 	.mqtt_memfault_topic = "",
 	.coap_mflt_proxy_route = "mflt",
 	.store_memfault_data = 0,
@@ -171,7 +171,7 @@ typedef struct ro_attribute {
 /* pystart - ro defaults */
 static const ro_attribute_t DEFAULT_RO_ATTRIBUTE_VALUES =  {
 	.reserved0 = 0,
-	.api_version = "1.1.1",
+	.api_version = "1.1.2",
 	.firmware_version = "0.0.0+0",
 	.board = "my_board",
 	.lwm2m_pwr_src = 0,
