@@ -2,7 +2,7 @@
   "openrpc": "1.2.6",
   "info": {
     "title": "BLE Gateway DM Firmware",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "x-default-baud": 115200
   },
   "methods": [
@@ -1124,7 +1124,7 @@
               "type": "string"
             },
             "x-ctype": "string",
-            "x-default": "1.1.2",
+            "x-default": "1.2.0",
             "x-example": "0.1.0",
             "x-readable": true,
             "summary": "The API version that the firmware supports",
@@ -1249,7 +1249,7 @@
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "coap://leshan.eclipseprojects.io:5683",
+            "x-default": "coap://my.lwm2m.server.com:5683",
             "x-example": "coaps://leshan.eclipseprojects.io:5784",
             "x-prepare": false,
             "x-readable": true,
@@ -1263,12 +1263,12 @@
             "required": true,
             "schema": {
               "maxLength": 64,
-              "minLength": 1,
+              "minLength": 0,
               "type": "string"
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "my_device",
+            "x-default": "",
             "x-prepare": false,
             "x-readable": true,
             "x-savable": true,
@@ -1307,13 +1307,12 @@
             "required": true,
             "schema": {
               "maxLength": 64,
-              "minLength": 1,
+              "minLength": 0,
               "type": "string"
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "my_device",
-            "x-example": "my_device",
+            "x-default": "",
             "x-prepare": false,
             "x-readable": true,
             "x-savable": true,
@@ -1402,12 +1401,12 @@
             "required": false,
             "schema": {
               "maxLength": 32,
-              "minLength": 1,
+              "minLength": 0,
               "type": "string"
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "model",
+            "x-default": "",
             "x-prepare": false,
             "x-readable": true,
             "x-savable": true,
@@ -1420,12 +1419,12 @@
             "required": false,
             "schema": {
               "maxLength": 64,
-              "minLength": 1,
+              "minLength": 0,
               "type": "string"
             },
             "x-ctype": "string",
             "x-broadcast": true,
-            "x-default": "serial_number",
+            "x-default": "",
             "x-prepare": false,
             "x-readable": true,
             "x-savable": true,
