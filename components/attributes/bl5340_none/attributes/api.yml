@@ -1,7 +1,7 @@
 openrpc: 1.2.6
 info:
   title: BLE Gateway DM Firmware
-  version: 1.2.0
+  version: 1.3.0
   x-default-baud: 115200
 methods:
 - name: echo
@@ -851,7 +851,7 @@ components:
           minLength: 6
           type: string
         x-ctype: string
-        x-default: 1.2.0
+        x-default: 1.3.0
         x-example: 0.1.0
         x-readable: true
         summary: The API version that the firmware supports
@@ -1280,6 +1280,21 @@ components:
         x-writable: false
         summary: Bluetooth address
         x-id: 28
+      - name: dm_disable
+        required: true
+        schema:
+          maximum: 1
+          minimum: 0
+          type: integer
+        x-ctype: bool
+        x-broadcast: true
+        x-default: 0
+        x-prepare: false
+        x-readable: true
+        x-savable: true
+        x-writable: true
+        summary: If true, the device management LwM2M connection will not start.
+        x-id: 29
       - name: dm_cnx_delay
         required: true
         schema:
@@ -1298,7 +1313,7 @@ components:
         description: 'Write: Control point - Write 0 to generate new randomized delay
           with value between (mdm_cnx_delay_minin, dm_cnx_delay_max). Read: time in
           seconds to delay before connecting.'
-        x-id: 29
+        x-id: 30
       - name: dm_cnx_delay_min
         required: true
         schema:
@@ -1313,13 +1328,13 @@ components:
         x-savable: true
         x-writable: true
         summary: Min delay (in seconds) before connecting to DM server.
-        x-id: 30
+        x-id: 31
       - name: dm_cnx_delay_max
         required: true
         schema:
           type: integer
           minimum: 2
-          maximum: 600
+          maximum: 65535
         x-ctype: uint16_t
         x-broadcast: true
         x-default: 300
@@ -1328,7 +1343,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Max delay (in seconds) before connecting to DM server.
-        x-id: 31
+        x-id: 32
       - name: factory_load_path
         required: true
         schema:
@@ -1343,7 +1358,7 @@ components:
         x-savable: true
         x-writable: true
         summary: Path for factory settings that can be restored with attribute load
-        x-id: 32
+        x-id: 33
       - name: device_id
         required: true
         schema:
@@ -1360,7 +1375,7 @@ components:
         summary: Unique identifier for the device. When firmware boots, if the value
           is blank (the default value), the firmware will set a unique value for the
           device using BLE MAC address, IMEI, or some similar value.
-        x-id: 33
+        x-id: 34
       - name: smp_auth_req
         required: true
         schema:
@@ -1377,7 +1392,7 @@ components:
         summary: If true, SMP authentication will be required before accessing any
           SMP services. If false, all SMP services are available regardless of authentication
           status.
-        x-id: 34
+        x-id: 35
       - name: gw_smp_auth_req
         required: true
         schema:
@@ -1393,7 +1408,7 @@ components:
         x-writable: true
         summary: If true, the gateway will require peripherals to authenticate before
           sending SMP messages
-        x-id: 35
+        x-id: 36
       - name: smp_auth_timeout
         required: true
         schema:
@@ -1409,7 +1424,7 @@ components:
         x-writable: true
         summary: SMP authentication will time out after a lapse in SMP commands lasting
           this number of seconds.
-        x-id: 36
+        x-id: 37
       - name: dm_cnx_retries
         summary: Failed connection retries
         description: The number of times to retry a failed DM connection before going
@@ -1424,7 +1439,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 37
+        x-id: 38
       - name: dm_cnx_backoff_multi
         summary: Connection backoff multiplier
         description: When in backoff mode, this multiplier will be applied to dm_cnx_delay
@@ -1439,7 +1454,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 38
+        x-id: 39
       - name: dm_cnx_backoff_retries
         summary: Connection backoff retries
         description: The number of times to retry a failed DM connection in backoff
@@ -1454,7 +1469,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 39
+        x-id: 40
       - name: shell_password
         required: true
         schema:
@@ -1471,7 +1486,7 @@ components:
         x-hide-in-show: true
         x-show-on-change: false
         summary: Password to login and use the shell
-        x-id: 40
+        x-id: 41
       - name: shell_session_timeout
         summary: Time before a login session will expire (in minutes). Set to 0 to
           disable.
@@ -1485,7 +1500,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 41
+        x-id: 42
       - name: tel_trust_path
         required: true
         schema:
@@ -1500,7 +1515,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for telemetry authentication.
-        x-id: 42
+        x-id: 43
       - name: tel_key_path
         required: true
         schema:
@@ -1515,7 +1530,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for telemetry authentication.
-        x-id: 43
+        x-id: 44
       - name: dm_trust_path
         required: true
         schema:
@@ -1530,7 +1545,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for DM authentication.
-        x-id: 44
+        x-id: 45
       - name: dm_key_path
         required: true
         schema:
@@ -1545,7 +1560,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for DM authentication.
-        x-id: 45
+        x-id: 46
       - name: fs_trust_path
         required: true
         schema:
@@ -1560,7 +1575,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for firmware and file service authentication.
-        x-id: 46
+        x-id: 47
       - name: fs_key_path
         required: true
         schema:
@@ -1575,7 +1590,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for firmware and file service authentication.
-        x-id: 47
+        x-id: 48
       - name: p2p_trust_path
         required: true
         schema:
@@ -1590,7 +1605,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the trust store for peer-to-peer authentication.
-        x-id: 48
+        x-id: 49
       - name: p2p_key_path
         required: true
         schema:
@@ -1605,7 +1620,7 @@ components:
         x-savable: true
         x-writable: true
         summary: The path to the key store for peer-to-peer authentication.
-        x-id: 49
+        x-id: 50
       - name: ipv4_addr
         summary: Internet Protocol Version 4 address
         required: true
@@ -1620,7 +1635,7 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 50
+        x-id: 51
       - name: network_id_filter
         summary: If nonzero, then filter advertisements based on network ID
         required: true
@@ -1631,7 +1646,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 51
+        x-id: 52
       - name: memfault_transport
         summary: Publish Memfault data using selected transport (so that it can be
           forwarded)
@@ -1650,7 +1665,7 @@ components:
         x-readable: true
         x-savable: true
         x-writable: true
-        x-id: 52
+        x-id: 53
       - name: mqtt_memfault_topic
         summary: Topic for publishing Memfault data
         required: true
@@ -1662,7 +1677,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 53
+        x-id: 54
       - name: coap_mflt_proxy_route
         summary: Route used when publishing Memfault data to CoAP proxy
         required: true
@@ -1674,7 +1689,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 54
+        x-id: 55
       - name: store_memfault_data
         summary: Flag to indicate whether memfault data should be stored to file or
           posted
@@ -1686,7 +1701,7 @@ components:
         x-savable: true
         x-writable: true
         x-readable: true
-        x-id: 55
+        x-id: 56
       - name: gw_ipv4_addr
         summary: Internet Protocol Version 4 address for Gateway
         required: true
@@ -1701,4 +1716,4 @@ components:
         x-readable: true
         x-savable: false
         x-writable: false
-        x-id: 56
+        x-id: 57

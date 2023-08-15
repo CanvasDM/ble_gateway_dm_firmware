@@ -1,6 +1,6 @@
 # Default Values for Attributes 
 reserved0=0
-api_version=1.2.0
+api_version=1.3.0
 firmware_version=0.0.0+0
 dump_path=/lfs1/attr_dump.txt
 load_path=/lfs1/enc/attr_load.txt
@@ -28,6 +28,7 @@ lwm2m_fup_pkg_name=my_firmware
 lwm2m_fup_pkg_ver=0.0.0
 lwm2m_fup_proxy_srv=coaps://coap-proxy.salticidae.net:5684
 bluetooth_address=0
+dm_disable=0
 dm_cnx_delay=0
 dm_cnx_delay_min=1
 dm_cnx_delay_max=300

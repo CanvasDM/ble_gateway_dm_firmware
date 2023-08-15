@@ -19,6 +19,7 @@ lwm2m_pwr_src=0
 lwm2m_sw_ver=0.0.0
 lwm2m_hw_ver=0.0.0
 lwm2m_fup_proxy_srv=coaps://coap-proxy.salticidae.net:5684
+dm_disable=0
 dm_cnx_delay=0
 dm_cnx_delay_min=1
 dm_cnx_delay_max=300
