@@ -1,11 +1,21 @@
 # Version History
 
+## v1.2.0
+
+- LwM2M no security mode fixed [\[23675\]](https://bugzilla.devops.rfpros.com/show_bug.cgi?id=23675)
+- MQTT password protected in attr show output [\[24473\]](https://bugzilla.devops.rfpros.com/show_bug.cgi?id=24473)
+- Memfault HTTP protocol enabled by default [\[24634\]](https://bugzilla.devops.rfpros.com/show_bug.cgi?id=24634)
+- Fix large file upload to end devices [\[24262\]](https://bugzilla.devops.rfpros.com/show_bug.cgi?id=24262)
+- Object 5 firmware update package version is used to indicate the firmware version that is downloaded and ready to apply [\[23153\]](https://bugzilla.devops.rfpros.com/show_bug.cgi?id=23153)
+- Add new attribute to allow disabling the device management connection [\[PROD-190\]](https://rfpros.atlassian.net/browse/PROD-190)
+- Change LwM2M client attribute defaults [\[PROD-189\]](https://rfpros.atlassian.net/browse/PROD-189)
+
 ## v1.1.0
 
 - Fix LTE SINR not working (Object 4)
 - Fix BT610 FOTA crashing the gateway
 - Fix LwM2M non-secure connection not working
-- Allow non-telemetry firmware to scan for BT610 Canvas devices. 
+- Allow non-telemetry firmware to scan for BT610 Canvas devices
 
 ## v1.0.0
 
